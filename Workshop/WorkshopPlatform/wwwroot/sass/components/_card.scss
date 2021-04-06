@@ -1,0 +1,95 @@
+.workShops {
+    .card {
+        font-family: Roboto, sans-serif;
+        background: #fff;
+        border-radius: 0.25rem;
+        box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.1);
+        max-width: 37.5rem;
+        border-radius: 1.563rem;
+        position: absolute;
+        align-items: center;
+        h2 {
+            display: block;
+            font-size: 1.5rem;
+            margin-block-start: 0.83rem;
+            margin-block-end: 0.83rem;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: normal;
+            margin: 0;
+            padding: 0 1rem;
+        }
+        .title {
+            padding: 1rem;
+            text-align: right;
+            color: #D89216;
+            font-weight: bold;
+            font-size: 0.813rem;
+        }
+        .address {
+            padding: 0.5rem 1rem;
+            font-size: 0.938rem;
+        }
+        .actions {
+            text-align: right;
+        }
+        svg {
+            width: 5.313rem;
+            height: 5.313rem;
+            margin: 0 auto;
+        }
+        .card-text {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            width: 100%;
+        }
+        .title-total {
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            min-height: 270;
+        }
+        .portada {
+            width: 100%;
+            height: 100%;
+            border-top-left-radius: 1.25rem;
+            border-bottom-left-radius: 1.25rem;
+            background-size: cover;
+            background-repeat: no-repeat, repeat;
+        }
+        .phonelb {
+            color: $danger;
+            padding: 0.313rem;
+        }
+        button {
+            border: 0.063rem $primary solid;
+            background: none;
+            font-size: 0.938rem;
+            color: $primary;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-bottom: auto;
+        }
+        .wsbtn {
+            position: absolute;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            border-radius: 1.563rem;
+        }
+        .rate {
+            font-size: 1.1rem;
+            margin: .15rem;
+        }
+    }
+}
+
+//Bs Done
+.logo {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    border-radius: 50%;
+    border: 6px solid #F4F4F4;
+    top: 11%;
+    left: 26.5%;
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}

@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+@mixin on-event($self: false) {
+    @if $self {
+        &:hover,
+        &:active {
+            @content;
+        }
+    }
+    @else {
+        &:hover,
+        &:active {
+            @content;
+        }
+    }
+}
+
+/// Make a context based selector a little more friendly
+/// @author Hugo Giraudel
+/// @param {String} $context
+@mixin when-inside($context) {
+    #{$context} & {
+        @content;
+    }
+}

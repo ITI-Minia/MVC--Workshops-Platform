@@ -11,6 +11,19 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\sass\site.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>site.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\site.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>site.css</LastGenOutput>
+    </Content>
   </ItemGroup>
 
 </Project>
