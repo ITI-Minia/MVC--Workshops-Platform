@@ -12,22 +12,29 @@ namespace Workshop.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Title { get; set; }
+
         [Required]
+        [Range(0, int.MaxValue)]
         public int Price { get; set; }
+
         public string Description { get; set; }
+
         [Required]
         public bool Verified { get; set; }
+
         public string Image { get; set; }
 
         [ForeignKey("WorkShop")]
         public int WorkShopId { get; set; }
+
         public virtual WorkShop WorkShop { get; set; }
 
         [ForeignKey("Confirmation")]
         public int ConfirmationId { get; set; }
+
         public virtual Confirmations Confirmation { get; set; }
-       
     }
 }
