@@ -1,0 +1,40 @@
+.emergancy{
+    .card{
+        min-width: 88%;
+    }
+    .logo{
+        left: 30%;
+
+    }
+    .card .rate {
+        font-size: 1.3rem;
+    }
+    .phone ,.rcorner{
+        padding: 0rem 1rem;
+        font-size: 0.938rem;
+        line-height: 2rem;
+
+    }
+    
+    .rcorner{
+        span{
+            color: $danger;
+        }
+    }
+    .icolor{
+        color: $primary;
+        font-size: 1rem;
+
+    }
+    .pleft{
+        border-right: .16rem solid $primary;
+    }
+    .WshopTd {
+        margin-top: 8rem;
+        margin-bottom: 0%;
+        height: 12rem;
+    }
+
+}
+.imergancyfooter{
+    margin-top: 120px ;}

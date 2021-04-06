@@ -1,0 +1,60 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+/// Regular font family
+/// @type List
+$text-font-stack: 'Open Sans',
+'Helvetica Neue Light',
+'Helvetica Neue',
+'Helvetica',
+'Arial',
+sans-serif !default;
+/// header font family
+/// @type List
+$header-font-stack: 'Roboto',
+sans-serif;
+$secondary-font:'Comfortaa',
+cursive;
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New',
+'DejaVu Sans Mono',
+'Bitstream Vera Sans Mono',
+'Monaco',
+monospace !default;
+
+/***
+* Main theme colors
+***/
+
+$primary: #d89216 !default;
+$secondary: #3A3535 !default;
+$danger: #8c0909 !default;
+$light: #f4f4f4 !default;
+$dark: #171616 !default;
+$mycolor:#064acb !default;
+$light-gray: #d3d3d3;
+$primary-light: #f7c02b;
+
+/// Copy text color
+/// @type Color
+$text-dark: #171616 !default;
+/// Copy text color
+/// @type Color
+$text-light: #ffffff !default;
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: ( 'small': 320px,
+'medium': 768px,
+'large': 1024px,
+) !default;
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;

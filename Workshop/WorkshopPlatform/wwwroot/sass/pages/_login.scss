@@ -1,0 +1,134 @@
+/***********************************
+*   login page style 
+***********************************/
+
+.login--page {
+    & {
+        background-color: $dark;
+        background-size: cover;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        background: url('/public/assets/images/sigup-background.jpg');
+        background-size: cover;
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+    }
+    .container {
+        width: 100%;
+        margin-top: 5rem;
+    }
+    .login--header {
+        color: $primary;
+        font-weight: 700;
+    }
+    .card {
+        border: none;
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+        background-color: $light;
+        border-radius: 0px;
+    }
+    .invalid-login {
+        color: $danger;
+        font-size: 17px;
+    }
+    [type="submit"] {
+        font-family: $header-font-stack;
+        color: $text-light;
+        text-align: center;
+        letter-spacing: 1px;
+        padding: 0.5rem 1rem;
+        font-size: 1em;
+        border-radius: 0px;
+    }
+    .form-group {
+        &.login--form--group {
+            margin-bottom: 2rem;
+        }
+        input[type="text"],
+        input[type="password"] {
+            & {
+                display: block;
+                width: 100%;
+                height: 2.2rem;
+                padding-bottom: 0.1rem;
+                border: none;
+                border-bottom: 1px solid $light-gray;
+                background-color: transparent;
+                color: $dark;
+                font-size: 17px;
+            }
+            &:active,
+            &:focus {
+                padding-left: 0.5rem;
+                background-color: #ffffff67;
+            }
+            &~label {
+                position: absolute;
+                color: $secondary;
+                top: 0;
+                left: 0;
+            }
+            &:focus~label,
+            &~label.t {
+                top: -21px;
+                left: -7px;
+                color: $primary;
+                font-size: 0.8em;
+            }
+            &~.focus-border {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: $primary;
+                transition: 0.4s;
+            }
+            &:focus~.focus-border {
+                width: 100%;
+                transition: 0.4s;
+            }
+        }
+        &.form-check {
+            @media (max-width: 575px) {
+                & {
+                    margin-left: -0.5rem;
+                }
+            }
+            @media (min-width: 576px) {
+                & {
+                    margin-left: 3rem;
+                }
+            }
+            @media (min-width: 768px) {
+                & {
+                    margin-left: 3.5rem;
+                }
+            }
+            @media (min-width: 992px) {
+                & {
+                    margin-left: 3.8rem;
+                }
+            }
+            @media (min-width: 1200px) {
+                & {
+                    margin-left: 4.7rem;
+                }
+            }
+            .form-check-input {
+                height: 20px;
+            }
+        }
+    }
+    .login--footer {
+        font-size: 0.75em;
+        text-align: center;
+    }
+}

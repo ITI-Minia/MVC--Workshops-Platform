@@ -1,0 +1,167 @@
+/***********************************
+*   Signup style 
+***********************************/
+
+.signup--page {
+    & {
+        background-color: $dark;
+        background-size: cover;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        background: url('/public/assets/images/sigup-background.jpg');
+        background-size: cover;
+        opacity: 0.2;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+    }
+    .header--border {
+        width: 4rem;
+        margin: 0px;
+        border-bottom: 2px solid $light-gray;
+        border-top: 0;
+    }
+    @media (min-width: 992px) {
+        .right--side {
+            border-radius: 0 0.4rem 0.4rem 0;
+        }
+    }
+    @media (min-width: 576px) and (max-width:991) {
+        .right--side {
+            border-radius: 0.4rem;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .right--side {
+            border-radius: 0;
+        }
+        container {
+            width: 70%;
+            margin: auto;
+        }
+    }
+    .content {
+        a.main--link:hover {
+            text-decoration: none;
+        }
+    }
+    .signup--form {
+        td {
+            position: relative;
+        }
+        i {
+            color: $primary;
+            position: absolute;
+            bottom: 1.6rem;
+            font-size: 16px;
+        }
+        i.error--icon {
+            display: none;
+            color: $danger;
+            padding-top: 10px;
+            margin-left: -20px;
+        }
+        .col-sm-6 input.delete--padding {
+            padding-left: 0rem;
+        }
+        input {
+            & {
+                display: inline-block;
+                height: 2.2rem;
+                width: 100%;
+                margin-bottom: 1rem;
+                padding-bottom: 0.1rem;
+                padding-left: 2.1rem;
+                border: none;
+                border-bottom: 1px solid $light-gray;
+                background-color: transparent;
+                color: $dark;
+                font-size: 18px;
+            }
+            &:active {
+                border-bottom: 1rem solid $danger;
+            }
+            &:focus {
+                border-bottom: 1px solid;
+                border-image-slice: 1;
+                border-image-source: linear-gradient(60deg, $primary-light, $primary);
+                padding-left: 0.5rem;
+                animation: moveGradient 3s ease alternate infinite;
+            }
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 1.8rem $light inset !important;
+                box-shadow: 0 0 0 1.8rem $light inset !important;
+            }
+            @keyframes moveGradient {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+        }
+        .btn-primary {
+            color: $text-light;
+            font-family: $header-font-stack;
+            letter-spacing: 1px;
+        }
+    }
+    .left--side {
+        background-color: #171616d3;
+        border-radius: 0.4rem 0 0 0.4rem;
+        .carousel-indicators {
+            bottom: 10px;
+            opacity: 0.7;
+        }
+        .carousel-indicators i {
+            width: 15px;
+            height: 25px;
+            margin-right: 20px;
+            color: $text-light;
+            font-size: 13px;
+        }
+        .carousel-indicators .active {
+            background-color: transparent;
+            color: $primary;
+        }
+        .carousel-caption {
+            color: $text-light;
+            text-align: center;
+        }
+        .carousel-caption span {
+            font-family: $header-font-stack;
+            color: $primary;
+            font-size: 1.3em;
+        }
+        .carousel-item {
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        img {
+            height: 470px;
+            margin-bottom: 1.5rem;
+        }
+    }
+    .alert {
+        position: absolute;
+        z-index: 1;
+        top: 2rem;
+        padding: 0.5rem 2.4rem;
+        background-color: $danger;
+        color: white;
+        border: none;
+        border-radius: 0;
+        box-shadow: 1px 1px 4px black;
+    }
+}
