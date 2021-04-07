@@ -39,9 +39,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.User)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Confirmation)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -74,9 +72,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Confirmation.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

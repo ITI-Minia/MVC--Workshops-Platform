@@ -44,12 +44,7 @@ namespace Workshop.Models
         public string UserId { get; set; }
 
         public virtual IdentityUser User { get; set; }
-
-        [ForeignKey("Confirmation")]
-        public int ConfirmationId { get; set; }
-
-        public virtual Confirmations Confirmation { get; set; }
-
+     
         public virtual ICollection<Service> Services { get; set; }
         public virtual ICollection<WorkshopRate> WorkshopRates { get; set; }
     }
