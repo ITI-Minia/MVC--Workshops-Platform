@@ -63,8 +63,12 @@ namespace WorkshopPlatform
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+             name: "default1",
+             pattern: "{controller=Home}/{action=Index}/{username?}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

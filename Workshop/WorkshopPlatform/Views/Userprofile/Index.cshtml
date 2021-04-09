@@ -1,0 +1,93 @@
+﻿<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                         alt="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h3>@Model.User.UserName</h3>
+                    <br />
+                    <br />
+                    <br />
+
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit"
+                       class="profile-edit-btn"
+                       name="btnAddMore"
+                       value="Edit Profile" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-work">
+                    <h3>
+                        Car</h3>
+                        <p>Car Brand: @Model.CarBrand</p>
+                        <p>Car Model: @Model.CarModel</p>
+                        <h3>
+                            Adress</h3>
+                            <p>Government: @Model.Government</p>
+                            <p>City: @Model.City</p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           id="home-tab"
+                           data-toggle="tab"
+                           href="#home"
+                           role="tab"
+                           aria-controls="home"
+                           aria-selected="true">About</a>
+                    </li>
+                </ul>
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active"
+                         id="home"
+                         role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Frist name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p> @Model.FirstName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Last name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.LastName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.User.Email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.User.PhoneNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

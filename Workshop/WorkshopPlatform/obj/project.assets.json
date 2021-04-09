@@ -7493,19 +7493,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Yomina\\.nuget\\packages\\": {}
+    "C:\\Users\\Elamen Soft\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+      "projectUniqueName": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
       "projectName": "WorkshopPlatform",
-      "projectPath": "D:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
-      "packagesPath": "C:\\Users\\Yomina\\.nuget\\packages\\",
-      "outputPath": "D:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
+      "projectPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+      "packagesPath": "C:\\Users\\Elamen Soft\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Yomina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Elamen Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

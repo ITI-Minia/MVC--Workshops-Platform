@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
@@ -15,15 +23,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\sass\site.css">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>site.scss</DependentUpon>
+    <Content Update="wwwroot\sass\pages\_userprofile.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_userprofile.css</LastGenOutput>
     </Content>
     <Content Update="wwwroot\sass\site.scss">
       <Generator>SassTranspiler</Generator>
-      <LastGenOutput>site.css</LastGenOutput>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
 </Project>
