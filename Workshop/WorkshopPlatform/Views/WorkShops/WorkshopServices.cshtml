@@ -1,0 +1,155 @@
+﻿@model IEnumerable<Workshop.Models.Service>
+@*@{
+        ViewData["Title"] = "ser";
+    }
+
+    <h1>ser</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Verified)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WorkShop)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Verified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkShop.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+<section class="services">
+    <div class="container-fluid">
+        <div class="row d-md-flex justify-content-center p-5">
+            <h2 class="pb-5" s> Service & price </h2>
+
+
+            <div id="demo" class="carousel slide col-xl-12 text-center">
+
+                <!-- Indicators -->
+
+                <ul class="carousel-indicators" id="serviceList">
+                    <li data-target="#demo" data-slide-to="0" class="active Warshacircle"></li>
+                    <li data-target="#demo" data-slide-to="1" class="Warshacircle">
+                    </li>
+                    <li data-target="#demo" data-slide-to="2" class="Warshacircle"></li>
+
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner text-center warshaSlideShow " id="service_price">
+                    @foreach (var item in Model)
+                    {
+                        @if (ViewBag.servcount % 3 == 0)
+                        {
+                            @if (ViewBag.servcount == 0)
+                            {
+                                @:<div class="carousel-item active WarshaCurosal">
+                                }
+                                else
+                                {
+                                    @:<div class="carousel-item  WarshaCurosal">
+                                    } 
+                            @:<div class="card-deck ">
+                            }
+
+
+                        <div class="card cardService">
+
+                            <div class="card-body text-center">
+                                <span class="serviceName">@item.Title</span><br>
+                                <span class="price"><sup>$</sup> <span class="number">@item.Price</span></span><br>
+                                <img src="@item.Image"
+                                     class="img-thumbnail priceImage">
+                                <br><br>
+                                @*<a href="update.html">
+                                        <button class="btn btn-secondary AddToCard row"
+                                                data-target="#myModals" data-toggle="modal">
+                                            Edit
+                                            Service
+                                        </button>
+                                    </a>*@
+
+                                <br>
+
+                            </div>
+                        </div>
+                        ViewBag.servcount++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+        </div>
+
+</section>
+@*<section class="services">
+        <h2 class="pb-5"> Service & price </h2>
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+
+                <div class="card cardService" style="width:20em;margin:10px">
+
+                    <div class="card-body text-center">
+                        <span class="serviceName">@Html.DisplayFor(modelItem => item.Title)</span><br>
+                        <span class="price"><sup>$</sup> <span class="number">@Html.DisplayFor(modelItem => item.Price)</span></span><br>
+                       <img src="@item.Image" width="200px"/>
+                        <br><br>
+
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </section>*@
+

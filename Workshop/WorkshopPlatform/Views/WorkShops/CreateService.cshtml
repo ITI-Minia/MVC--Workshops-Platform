@@ -1,0 +1,183 @@
+﻿@model Workshop.Models.Service
+
+<!--<h4>Service</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateService">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>-->
+            @*<div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>*@
+            <!--<div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Verified" /> @Html.DisplayNameFor(model => model.Verified)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <select asp-for="Title" class="form-control" asp-items="ViewBag.WorkShopService"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>-->
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+@*@section Scripts {
+        @{await Html.RenderPartialAsync("~/Views/WorkShops/AboutWarsha.cshtml");}
+    }*@
+<section class="review warshaimg" style="background-image: url(/imgs/wallpaper.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row d-md-flex justify-content-end">
+            <div class="col-md-12 col-lg-6 p-3 py-5 pl-lg-5">
+                @*<div class="WarshaTab">
+                    <button class="tablinks" onclick="openCity(event, 'NotNew')">NotNew</button>
+                    <button class="tablinks" onclick="openCity(event, 'NeW')">NeW</button>
+                </div>*@
+                <h2>You Can Add New Service</h2>
+                <br>
+                <form asp-action="CreateService" id="NotNew" class="tabcontent">
+                    <div class="row">
+                        <div class="col-sm-4  ">
+                            <label asp-for="Title" class="control-label"></label>
+
+                        </div>
+                        <div class="col-sm-8 ">
+                            <select asp-for="Title" class="form-control" asp-items="ViewBag.WorkShopService"></select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4 ">
+                            <label asp-for="Price" class="control-label"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="Price" class="form-control" placeholder="price in $ .. " />
+                            <span asp-validation-for="Price" class="text-dark"></span>
+                        </div>
+
+
+                    </div>
+                    <br>
+
+
+
+                    <br>
+                    
+                    <input type="submit" value="AddServices" class="btn btn-secondary btn-block" />
+
+
+                </form>
+                <!--<form asp-action="CreateService" id="New" class="tabcontent">
+                    <div class="row">
+                        <div class="col-sm-4  ">
+                            <label asp-for="Title" class="control-label"></label>
+
+                        </div>
+                        <div class="col-sm-8 ">
+                            <select asp-for="Title" class="form-control" asp-items="ViewBag.WorkShopService"></select>-->
+
+                            @*<input type="text" class="form-control" placeholder="New Service .. "
+                                id="warshaService">*@
+
+                        <!--</div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-4 ">
+                            <label asp-for="Price" class="control-label"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="Price" class="form-control" placeholder="price in $ .. " />
+                            <span asp-validation-for="Price" class="text-danger"></span>-->
+                            @*<input type="number" class="form-control" placeholder="price in $ .. "
+                                id="servicePrice">*@
+
+                        <!--</div>
+
+
+                    </div>
+                    <br>
+
+
+
+                    <br>
+                    <button onclick="AddServices()" class="btn btn-secondary btn-block " data-toggle="modal"
+                            data-target="#myModal">
+                        Add Service
+                    </button>-->
+                    <!-- The Modal -->
+                    <!--<div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">-->
+
+                                <!-- Modal Header -->
+                                <!--<div class="modal-header">
+                                    <h4 class="modal-title warshaModalName">Warsha</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>-->
+
+                                <!-- Modal body -->
+                                <!--<div class="modal-body">
+                                    <p id="Thanks"></p>
+                                </div>-->
+
+                                <!-- Modal footer -->
+                                <!--<div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>-->
+            </div>
+        </div>
+    </div>
+
+</section>
+@*@section Scripts {
+    <script type="text/javascript">
+        
+        function openCity(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+}*@

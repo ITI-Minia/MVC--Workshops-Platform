@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Workshop.Models.WorkShop>
+
+<br />
+<br />
+
+<section class=" aboutUS">
+
+    <div class="container-fluid">
+        <div class="row d-md-flex justify-content-end">
+            @foreach (var item in Model)
+            {
+
+                //string img = @Html.DisplayFor(modelItem => item.Image);
+
+
+                <div class="col-xl-6 col-md-6 warshaimg"  style="background-image:url(@item.Image)" >
+
+                </div>
+
+                <div class="col-md-6 col-xl-6 p-3 py-5 pl-lg-5">
+
+                    <h3><span style="color: white;"> About</span> US</h3>
+                    <br>
+                    <p>
+                        <i class="fas fa-city mr-2 warshaIcon" ></i><span style="font-size:x-large ">City :</span>
+                        <span style="color: white;font-size: larger"> @Html.DisplayFor(modelItem => item.City) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-user-circle mr-2 warshaIcon"></i><span style="font-size:x-large ">Name :</span>
+                        <span style="color: white;font-size: larger">@Html.DisplayFor(modelItem => item.Name) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-map-marker mr-2 warshaIcon "></i><span style="font-size:x-large ">Address :</span>
+                        <span style="color: white;font-size:larger" >
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-phone mr-2 warshaIcon"></i><span style="font-size:x-large ">Phone :</span>
+                        <span style="color: white; font-size:larger" >@Html.DisplayFor(modelItem => item.User.PhoneNumber) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-percent mr-2 warshaIcon"></i><span style="font-size:x-large ">Rate :</span>
+                        <span style="color: white;font-size:larger" >
+                            @Html.DisplayFor(modelItem => item.Rate)
+                        </span>
+                    </p>
+
+                </div>
+            }
+        </div>
+    </div>
+</section>
