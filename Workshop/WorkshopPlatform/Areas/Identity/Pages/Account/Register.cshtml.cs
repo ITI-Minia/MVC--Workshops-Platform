@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Workshop.Models;
+using WorkshopPlatform.Models;
 
 namespace WorkshopPlatform.Areas.Identity.Pages.Account
 {
@@ -21,23 +23,48 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly WorkShopDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            WorkShopDbContext context)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
+
+        [Required(ErrorMessage = "Username field is required")]
+        [RegularExpression("^([a-z0-9]|[-._](?![-._])){3,}$", ErrorMessage = "Enter 3 or more letter (no special chars or space and start with letter)")]
+        [PageRemote(ErrorMessage = "Username already exists",
+            HttpMethod = "post",
+            PageHandler = "CheckUsername",
+            AdditionalFields = "__RequestVerificationToken")]
+        [BindProperty]
+        public string UsernameInput { get; set; }
+
+        [Required(ErrorMessage = "Email filed is required")]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        [PageRemote(ErrorMessage = "Email address already exists",
+            HttpMethod = "post",
+            PageHandler = "CheckEmail",
+            AdditionalFields = "__RequestVerificationToken")]
+        [BindProperty]
+        public string EmailInput { get; set; }
 
         public string ReturnUrl { get; set; }
 
@@ -45,14 +72,29 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            public string Username { get; set; }
+
             [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
+
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [RegularExpression(@"^(012||011||015||010)\d{8}$", ErrorMessage = "Invalid phone number")]
+            [Display(Name = "Phone number")]
+            public string Phone { get; set; }
+
+            [Required]
             [DataType(DataType.Password)]
+            [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W])[0-9a-zA-Z-\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long with one (digit,special character,upper and lower case letter).")]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
@@ -74,14 +116,53 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                Input.Username = UsernameInput;
+                Input.Email = EmailInput;
+
+                IdentityUser user = new()
+                {
+                    UserName = Input.Username,
+                    Email = Input.Email,
+                    PhoneNumber = Input.Phone,
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    #region assign to role
+
+                    if (await _roleManager.FindByNameAsync("User") == null)
+                    {
+                        result = await _roleManager.CreateAsync(new IdentityRole("User"));
+                    }
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                    }
+
+                    #endregion assign to role
+
+                    #region create user profile
+
+                    _context.UserProfiles.Add(new UserProfile
+                    {
+                        FirstName = Input.FirstName,
+                        LastName = Input.LastName,
+                        UserId = user.Id
+                    });
+
+                    _context.SaveChanges();
+
+                    #endregion create user profile
+
                     _logger.LogInformation("User created a new account with password.");
 
+                    #region Email confirmation
+
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
@@ -90,6 +171,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    #endregion Email confirmation
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -109,6 +192,20 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        public JsonResult OnPostCheckEmail()
+        {
+            var user = _userManager.FindByEmailAsync(EmailInput).Result;
+            var valid = user == null;
+            return new JsonResult(valid);
+        }
+
+        public JsonResult OnPostCheckUsername()
+        {
+            var user = _userManager.FindByNameAsync(UsernameInput).Result;
+            var valid = user == null;
+            return new JsonResult(valid);
         }
     }
 }

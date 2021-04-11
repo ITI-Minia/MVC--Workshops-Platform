@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "G9foc82adqX3qm2rww0N9o6B00Qi4JBb5TV5sB/fgYOQhsZFndbSFVVXpZuVN95tNBsKXYyFIxWG93iQkXrQCA==",
+  "dgSpecHash": "eHGRtooCzAA96p0r+IqC5v0wtmHRFjuXthGGtbrkH3Jh7PmUqNLssw4y6OyILwCt0a8OeSvOmMKgzqiBsYBtyg==",
   "success": true,
   "projectFilePath": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.5\\microsoft.aspnetcore.authentication.facebook.5.0.5.nupkg.sha512",
+    "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.5\\microsoft.aspnetcore.authentication.google.5.0.5.nupkg.sha512",
     "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.4\\microsoft.aspnetcore.cryptography.internal.5.0.4.nupkg.sha512",
     "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.4\\microsoft.aspnetcore.cryptography.keyderivation.5.0.4.nupkg.sha512",
     "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.4\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.4.nupkg.sha512",
