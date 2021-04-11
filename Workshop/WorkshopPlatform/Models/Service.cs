@@ -30,11 +30,6 @@ namespace Workshop.Models
         [ForeignKey("WorkShop")]
         public int WorkShopId { get; set; }
 
-        public virtual WorkShop WorkShop { get; set; }
-
-        [ForeignKey("Confirmation")]
-        public int ConfirmationId { get; set; }
-
-        public virtual Confirmations Confirmation { get; set; }
+        public virtual WorkShop WorkShop { get; set; }     
     }
 }

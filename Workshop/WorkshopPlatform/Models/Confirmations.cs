@@ -21,12 +21,8 @@ namespace Workshop.Models
         [Required]
         public DateTime CreationTime { get; set; }
 
-
-  
-        public virtual WorkShop WorkShop { get; set; }
-        public virtual Service Service { get; set; }
-
-
+        [Required]
+        public int ConfirmedEntityId { get; set; }
         
     }
 }

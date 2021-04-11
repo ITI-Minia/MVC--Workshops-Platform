@@ -22,7 +22,7 @@ namespace WorkshopPlatform.Controllers
         // GET: WorkShops
         public async Task<IActionResult> Index()
         {
-            var workShopDbContext = _context.WorkShops.Include(w => w.Confirmation).Include(w => w.User);
+            var workShopDbContext = _context.WorkShops.Include(w => w.User);
             return View(await workShopDbContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops
-                .Include(w => w.Confirmation)
                 .Include(w => w.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (workShop == null)
@@ -67,7 +66,6 @@ namespace WorkshopPlatform.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ConfirmationId"] = new SelectList(_context.Confirmations, "Id", "Id", workShop.ConfirmationId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
             return View(workShop);
         }
@@ -85,7 +83,6 @@ namespace WorkshopPlatform.Controllers
             {
                 return NotFound();
             }
-            ViewData["ConfirmationId"] = new SelectList(_context.Confirmations, "Id", "Id", workShop.ConfirmationId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
             return View(workShop);
         }
@@ -122,7 +119,6 @@ namespace WorkshopPlatform.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ConfirmationId"] = new SelectList(_context.Confirmations, "Id", "Id", workShop.ConfirmationId);
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
             return View(workShop);
         }
@@ -136,7 +132,6 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops
-                .Include(w => w.Confirmation)
                 .Include(w => w.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (workShop == null)
