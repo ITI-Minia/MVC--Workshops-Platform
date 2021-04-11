@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Workshop.Models;
+using WorkshopPlatform.Models;
 
 namespace WorkshopPlatform.Areas.Identity.Pages.Account
 {
@@ -21,19 +23,25 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly WorkShopDbContext _context;
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            RoleManager<IdentityRole> roleManager,
+            IEmailSender emailSender,
+            WorkShopDbContext context)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -72,7 +80,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             if (remoteError != null)
             {
                 ErrorMessage = $"Error from external provider: {remoteError}";
-                return RedirectToPage("./Login", new {ReturnUrl = returnUrl });
+                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
@@ -82,7 +90,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             }
 
             // Sign in the user with this external login provider if the user already has a login.
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor : true);
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
@@ -124,6 +132,31 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
 
                 var result = await _userManager.CreateAsync(user);
+
+                #region assign to role
+
+                if (await _roleManager.FindByNameAsync("User") == null)
+                {
+                    result = await _roleManager.CreateAsync(new IdentityRole("User"));
+                }
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                }
+
+                #endregion assign to role
+
+                #region create user profile
+
+                await _context.UserProfiles.AddAsync(new UserProfile
+                {
+                    UserId = user.Id
+                });
+
+                _context.SaveChanges();
+
+                #endregion create user profile
+
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);

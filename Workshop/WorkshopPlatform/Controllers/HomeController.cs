@@ -12,15 +12,18 @@ namespace WorkshopPlatform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly WorkShopDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, WorkShopDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string username)
         {
-            return View();
+            var user = _context.Users.Where(u => u.UserName == username).FirstOrDefault();
+            return View(user);
         }
 
         public IActionResult Privacy()
