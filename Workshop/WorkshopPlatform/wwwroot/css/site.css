@@ -1646,17 +1646,27 @@ html {
   margin-bottom: 1.5rem;
 }
 
-.signup--page .alert {
+.signup--page .alert-dismissible {
   position: absolute;
   z-index: 1;
-  top: 2rem;
+  width: 100%;
+  top: 0rem;
   padding: 0.5rem 2.4rem;
-  background-color: #dc3545;
+  background-color: rgba(220, 56, 72, 0.671);
   color: white;
   border: none;
   border-radius: 0;
-  -webkit-box-shadow: 1px 1px 4px black;
-          box-shadow: 1px 1px 4px black;
+  text-align: center;
+}
+
+.signup--page .alert-dismissible .close {
+  position: absolute;
+  right: initial;
+  padding: 0;
+}
+
+.signup--page .alert-dismissible .close:hover {
+  color: #F4F4F4;
 }
 
 .signup--page .btn-icon {

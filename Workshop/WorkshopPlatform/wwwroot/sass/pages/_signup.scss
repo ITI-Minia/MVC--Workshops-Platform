@@ -160,16 +160,25 @@
             margin-bottom: 1.5rem;
         }
     }
-    .alert {
+    .alert-dismissible {
         position: absolute;
         z-index: 1;
-        top: 2rem;
+        width: 100%;
+        top: 0rem;
         padding: 0.5rem 2.4rem;
-        background-color: $danger;
+        background-color: hsla(354, 70%, 54%, 0.671);
         color: white;
         border: none;
         border-radius: 0;
-        box-shadow: 1px 1px 4px black;
+        text-align: center;
+    }
+    .alert-dismissible .close {
+        position: absolute;
+        right: initial;
+        padding: 0;
+    }
+    .alert-dismissible .close:hover {
+        color: $light
     }
     .btn-icon {
         border-radius: 60px;

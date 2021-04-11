@@ -80,7 +80,18 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
+                //login with email
+                if (Input.Useranme.Contains('@'))
+                {
+                    string username = _userManager.Users.Where(u => u.Email == Input.Useranme).Select(u => u.UserName).FirstOrDefault();
+
+                    if (username != null)
+                        Input.Useranme = username;
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(Input.Useranme, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -98,7 +109,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                 else
                 {
                     TempData.Add("invalid", true);
-                    ModelState.AddModelError(string.Empty, "Incorrect username or password");
+                    ModelState.AddModelError(string.Empty, "Incorrect email/username or password");
                     return Page();
                 }
             }

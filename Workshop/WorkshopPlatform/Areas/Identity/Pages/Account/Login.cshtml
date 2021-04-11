@@ -43,7 +43,7 @@
     <div class="container justify-content-center">
         <div class="row justify-content-center">
             <div class="col-11 col-md-9 col-lg-7 login--header">
-                <h2> Welcome Back </h2>
+                @*<h2> Welcome Back </h2>*@
             </div>
             <div class="col-11 col-md-9 col-lg-7">
                 <div class="card">
@@ -81,10 +81,10 @@
                                 <span>
                                     Don't have account? <br class="d-md-none">
                                     <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">
-                                        Signup Now!
+                                        Sign up Now!
                                     </a>
                                 </span>
-                                <p>
+                                <p class="mt-2">
                                     <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                                 </p>
                             </div>
@@ -95,7 +95,7 @@
                             <section>
                                 <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                                     <div>
-                                        <small class="text-muted">Sign up using:</small>
+                                        <small class="text-muted">Login using:</small>
                                         <button type="submit" class="btn btn-secondary btn-icon" name="provider" value="@Model.ExternalLogins[1].Name" title="Log in using your @Model.ExternalLogins[1].DisplayName account">
                                             <span class="fab fa-facebook-f"></span>
                                         </button>
@@ -129,6 +129,7 @@
                     $(label).siblings('label').addClass("t");
                 }
             }
+
         });
 
         $('.input').blur(function () {
@@ -142,7 +143,7 @@
         function hideErrorAlert() {
             let promise1 = (
                 new Promise((resolve, reject) => {
-                    setTimeout(() => resolve("Welcome !!"), 6000);
+                    setTimeout(() => resolve("Welcome !!"), 4000);
                 }))
                 .then(() => $('#alert-error').fadeOut());
         }

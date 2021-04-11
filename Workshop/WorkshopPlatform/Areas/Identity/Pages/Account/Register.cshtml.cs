@@ -48,7 +48,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
         public InputModel Input { get; set; }
 
         [Required(ErrorMessage = "Username field is required")]
-        [RegularExpression("^([a-z0-9]|[-._](?![-._])){3,}$", ErrorMessage = "Enter 3 or more letter (no special chars or space and start with letter)")]
+        [RegularExpression("^([a-z0-9]|[-._@](?![-._])){3,}$", ErrorMessage = "Enter 3 or more letter (no special chars or space and start with letter)")]
         [PageRemote(ErrorMessage = "Username already exists",
             HttpMethod = "post",
             PageHandler = "CheckUsername",
