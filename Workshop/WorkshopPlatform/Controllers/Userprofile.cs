@@ -15,6 +15,7 @@ namespace WorkshopPlatform.Controllers
         {
             _context = context;
         }
+<<<<<<< Updated upstream
         public IActionResult Index(string username)
         {
             var user = _context.Users.Where(u => u.UserName == username).FirstOrDefault();
@@ -23,6 +24,15 @@ namespace WorkshopPlatform.Controllers
             //var userProfiles = _context.UserProfiles.Where(u => u.Id == id);
             // var user = _context.UserProfiles.Include(w=>w.User).Where(u => u.User.UserName == username).FirstOrDefault();
             return View(userprofile);
+=======
+        public IActionResult Index(int id)
+        {
+            //var user = _context.Users.Where(u => u.UserName == username).FirstOrDefault();
+            //var userprofile = _context.UserProfiles.Where(u => u.UserId == user.Id).FirstOrDefault();
+            ////userprofile.User = user;
+            var userProfiles = _context.UserProfiles.Where(u => u.Id == id);
+            return View(userProfiles);
+>>>>>>> Stashed changes
         }
     }
 }
