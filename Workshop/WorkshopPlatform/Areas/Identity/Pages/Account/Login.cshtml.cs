@@ -97,6 +97,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                 }
                 else
                 {
+                    TempData.Add("invalid", true);
                     ModelState.AddModelError(string.Empty, "Incorrect username or password");
                     return Page();
                 }

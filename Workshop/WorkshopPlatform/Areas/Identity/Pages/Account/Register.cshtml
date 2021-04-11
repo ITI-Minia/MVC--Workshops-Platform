@@ -165,14 +165,10 @@
         $('input').focus(function () {
             $(this).prev().fadeOut()
         });
+
         //get back icon and validate input when blur
         $('input').blur(function () {
             $(this).prev().fadeIn();
-        });
-
-        $('.error--icon').change(function () {
-            $(this).attr('title', $(this).html());
-            $(this).html("")
         });
 
         $('.error--icon').on('DOMSubtreeModified', function () {

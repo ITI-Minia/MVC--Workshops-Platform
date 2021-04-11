@@ -21,21 +21,24 @@
 
 <body class="login--page">
 
-    <div class="d-flex justify-content-center ">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-error">
-            <div class="row">
-                <div class="col-9">
-                    <i class="fa fa-exclamation-circle"></i>
-                    <div asp-validation-summary="All" id="error" class="invalid-login"></div>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    @if (TempData["invalid"] != null && (bool)TempData["invalid"] == true)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-error">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fa fa-exclamation-circle mr-3"></i>
+                        <div asp-validation-summary="All" id="error" class="invalid-login"></div>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    }
 
     <div class="container justify-content-center">
         <div class="row justify-content-center">
@@ -118,7 +121,8 @@
     <script>
 
         $(function () {
-            $('#alert-error').hide();
+
+            hideErrorAlert();
 
             for (let label of $('.input')) {
                 if (label.value != "") {
@@ -135,11 +139,13 @@
             }
         });
 
-        $('#error').on('DOMSubtreeModified', function () {
-            if ($(this).hasClass('validation-summary-errors')) {
-                $('#alert-error').show();
-            }
-        });
+        function hideErrorAlert() {
+            let promise1 = (
+                new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("Welcome !!"), 6000);
+                }))
+                .then(() => $('#alert-error').fadeOut());
+        }
     </script>
 </body>
 </html>
