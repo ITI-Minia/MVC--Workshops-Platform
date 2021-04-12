@@ -6,10 +6,15 @@
     border-radius: 0.5rem;
     background: #fff;
 
+
     .profile-head {
         h3 {
             margin: 10px 15px 0 0;
             color: #e2ad21;
+        }
+
+        h5 {
+            margin-top: 15px;
         }
     }
 
@@ -44,48 +49,39 @@
 }
 
 .nav-tabs {
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 
     .nav-link {
         font-weight: 600;
         border: none;
         color: $info;
-        border-bottom: 2px solid #0062cc;
-    }
-}
-
-
-.profile-work {
-    padding: 14%;
-
-    h3 {
-        margin-top: 5%;
-    }
-
-    p {
-        font-size: 16px;
-        color: #e2ad21;
-        font-weight: 600;
-        margin-top: 5%;
-    }
-
-    ul {
-        list-style: none;
+        border-bottom: 2px solid #e2ad21;
     }
 }
 
 .profile-tab {
+
     label {
-        font-weight: 600;
-        margin-top: 3%;
+        font-weight: 400;
+        margin-top: 1%;
         color: $info;
     }
 
     p {
-        font-weight: 600;
+        font-weight: 400;
         font-size: 20px;
-        color: #e2ad21;
-        font-weight: 600;
-        margin-top: 3%;
+        margin-top: 1%;
     }
+}
+
+#profile-tab {
+    border-bottom: none;
+}
+
+#profile {
+    display: none;
+}
+
+#home {
+    display: block;
 }
