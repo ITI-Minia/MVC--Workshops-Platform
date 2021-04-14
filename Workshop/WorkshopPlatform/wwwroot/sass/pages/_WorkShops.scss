@@ -8,6 +8,10 @@
       padding-left: 2rem !important;
   
     }
+    .col-md-6{
+      margin-bottom: 10rem;
+  
+    }
   }
    
   .box{
@@ -63,7 +67,6 @@
     .row{
            margin-right: 0px !important;
            margin-left:  0px !important;
-           margin-bottom: 20px;
         }
              
         
@@ -72,13 +75,13 @@
 
  .searchContent{
   margin: auto;
-  width: 60% !important;
+  width: 70% !important;
   padding: 2%;
   .search{
     width: -webkit-fill-available;
   }
   .searchInput{
-    width: 90%;
+    width: 80%;
     display: inline;
   }
   .btn{

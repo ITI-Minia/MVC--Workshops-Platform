@@ -1397,6 +1397,10 @@ html {
   padding-left: 2rem !important;
 }
 
+.WshopTd .col-md-6 {
+  margin-bottom: 10rem;
+}
+
 .box {
   display: inline;
   font: 25rem 0.833rem Arial;
@@ -1451,12 +1455,11 @@ html {
 .workShops .row {
   margin-right: 0px !important;
   margin-left: 0px !important;
-  margin-bottom: 20px;
 }
 
 .searchContent {
   margin: auto;
-  width: 60% !important;
+  width: 70% !important;
   padding: 2%;
 }
 
@@ -1465,7 +1468,7 @@ html {
 }
 
 .searchContent .searchInput {
-  width: 90%;
+  width: 80%;
   display: inline;
 }
 

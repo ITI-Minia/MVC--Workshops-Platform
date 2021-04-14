@@ -34,20 +34,29 @@ namespace WorkshopPlatform.Controllers
             {
                 return NotFound();
             }
-            var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
-            var workShop = await  _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.Contains(id) ||
-                                                                        ws.Rate.ToString().Contains(id) ||
-                                                                        ws.Address.Contains(id) ||
-                                                                        ws.City.Contains(id) ||
-                                                                        ws.Government.Contains(id)).ToListAsync();         
-            if (workShop == null)
+            if (id == "")
             {
-                return NotFound();
-             }
-            ViewBag.SearchData = workShop;
-            ViewBag.SearchCount = workShop.Count();
-            ViewBag.flag = 1;
-            return View("Index", workShop); 
+                var workShopDbContext = _context.WorkShops.Include(w => w.User);
+
+                return View("Index", await workShopDbContext.ToListAsync());
+            }
+            else
+            {
+                var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
+                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.Contains(id) ||
+                                                                           ws.Rate.ToString().Contains(id) ||
+                                                                           ws.Address.Contains(id) ||
+                                                                           ws.City.Contains(id) ||
+                                                                           ws.Government.Contains(id)).ToListAsync();
+                if (workShop == null)
+                {
+                    return NotFound();
+                }
+                ViewBag.SearchData = workShop;
+                ViewBag.SearchCount = workShop.Count();
+                ViewBag.flag = 1;
+                return View("Index", workShop);
+            }
         }
 
 
