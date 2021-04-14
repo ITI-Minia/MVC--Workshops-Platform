@@ -27,14 +27,25 @@ namespace WorkshopPlatform.Controllers
             return View(await workShopDbContext.ToListAsync());
         }
 
+        //public async Task<IActionResult> Emergacy(string City , string Government)
+        //{
+        //    if (Government!=""&& Government!=null)
+        //    {
+        //        var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
+        //        Government = Government.ToLower();
+        //        var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(Government) ||
+        //                                                                   ws.Rate.ToString().Contains(Government) ||
+        //                                                                   ws.Address.ToLower().Contains(Government) ||
+        //                                                                   ws.City.ToLower().Contains(Government) ||
+        //                                                                   ws.Government.ToLower().Contains(Government)).ToListAsync();
+        //    }
+        //   // var workShopDbContext = _context.WorkShops.Include(w => w.User);
+
+        //    return View(await workShopDbContext.ToListAsync());
+        //}
         public async Task<IActionResult> Search(string id)
-        {
-          
-            if (id == null)
-            {
-                return NotFound();
-            }
-            if (id == "")
+        {                     
+            if (id == "" || id==null)
             {
                 var workShopDbContext = _context.WorkShops.Include(w => w.User);
 
@@ -43,11 +54,12 @@ namespace WorkshopPlatform.Controllers
             else
             {
                 var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
-                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.Contains(id) ||
+                id = id.ToLower();
+                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(id) ||
                                                                            ws.Rate.ToString().Contains(id) ||
-                                                                           ws.Address.Contains(id) ||
-                                                                           ws.City.Contains(id) ||
-                                                                           ws.Government.Contains(id)).ToListAsync();
+                                                                           ws.Address.ToLower().Contains(id) ||
+                                                                           ws.City.ToLower().Contains(id) ||
+                                                                           ws.Government.ToLower().Contains(id)).ToListAsync();
                 if (workShop == null)
                 {
                     return NotFound();

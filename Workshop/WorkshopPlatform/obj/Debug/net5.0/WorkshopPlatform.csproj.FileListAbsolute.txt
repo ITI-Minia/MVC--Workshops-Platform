@@ -739,3 +739,4 @@ F:\iti\MINIA\MVC--Workshops-Platform-main\MVC--Workshops-Platform\Workshop\Works
 F:\iti\MINIA\MVC--Workshops-Platform-main\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 F:\iti\MINIA\MVC--Workshops-Platform-main\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 F:\iti\MINIA\MVC--Workshops-Platform-main\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
+F:\iti\MINIA\MVC--Workshops-Platform-main\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Emergacy.cshtml.g.cs
