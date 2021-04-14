@@ -22,9 +22,34 @@ namespace WorkshopPlatform.Controllers
         // GET: WorkShops
         public async Task<IActionResult> Index()
         {
-            var workShopDbContext = _context.WorkShops.Include(w => w.User);
+            var workShopDbContext = _context.WorkShops.Include(w => w.User);         
+         
             return View(await workShopDbContext.ToListAsync());
         }
+
+        public async Task<IActionResult> Search(string id)
+        {
+          
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
+            var workShop = await  _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.Contains(id) ||
+                                                                        ws.Rate.ToString().Contains(id) ||
+                                                                        ws.Address.Contains(id) ||
+                                                                        ws.City.Contains(id) ||
+                                                                        ws.Government.Contains(id)).ToListAsync();         
+            if (workShop == null)
+            {
+                return NotFound();
+             }
+            ViewBag.SearchData = workShop;
+            ViewBag.SearchCount = workShop.Count();
+            ViewBag.flag = 1;
+            return View("Index", workShop); 
+        }
+
 
         // GET: WorkShops/Details/5
         public async Task<IActionResult> Details(int? id)
