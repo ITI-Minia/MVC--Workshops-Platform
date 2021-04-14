@@ -1,240 +1,215 @@
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
-
-    /***
+/***
     * Main theme colors
     ***/
-   
-    
-.singleWarsha
-{
-   color: $text-dark;
-  background-color: $light
+
+.singleWarsha {
+    color: $text-dark;
+    background-color: $light
 }
 
-.searchDiv
-{
-  background-color: $text-light;
-  
-  .warshacart
-  {
-    border-left: 6px solid black;
-                height: 30px;
-  }
+.searchDiv {
+    background-color: $text-light;
+
+    .warshacart {
+        border-left: 6px solid black;
+        height: 30px;
+    }
 }
 
-.Warshacircle
-      {
-        height:15px !important;
-        width:15px!important;
-        border-radius: 100%!important;
-        cursor: pointer!important;
-        background-color: $secondary !important;
-      }
-      .Warshacircle.active
-      {
-        background-color:#f79f24!important;
-      }
-      .warshaMain{
-        color:$text-dark; 
-        background-color: $light; 
-       }
-       .warshaSlideShow
-       {
-         margin-bottom: 50px;
-       }
-       
+.Warshacircle {
+    height: 15px !important;
+    width: 15px !important;
+    border-radius: 100% !important;
+    cursor: pointer !important;
+    background-color: $secondary !important;
+}
 
+.Warshacircle.active {
+    background-color: #f79f24 !important;
+}
+
+.warshaMain {
+    color: $text-dark;
+    background-color: $light;
+}
+
+.warshaSlideShow {
+    margin-bottom: 50px;
+}
 
 .review {
-  
-    position: relative;   
-     .overlay {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      opacity: 1;
-       background:#f79f24
-     }
-      .warshaMain{
-      color:$text-dark; 
-      background-color: $light; 
-     }
+    position: relative;
 
-       #txtArea {
-          height: 6.25rem;
-          width: 100%;
-          padding: 1rem;
-      }
-      .warshaModalName
-      {
-        color: $mycolor;
-      }
-      /*styling star rating*/
-.rating{
-	border: none;
-	float: left;
-}
-
-.rating > input{
-	display: none;
-}
-
-.rating > label:before{
-	content: '\f005';
-	font-family: FontAwesome;
-	// margin: 5px;
-	font-size: 1.5rem;
-	display: inline-block;
-	cursor: pointer;
-}
-
-.rating > .half:before{
-	content: '\f089';
-	position: absolute;
-	cursor: pointer;
-}
-
-
-.rating > label{
-	color: $light;
-	float: right;
-	cursor: pointer;
-}
-
-.rating > input:checked ~ label,
-.rating:not(:checked) > label:hover, 
-.rating:not(:checked) > label:hover ~ label{
-	color: $secondary;
-}
-
-.rating > input:checked + label:hover,
-.rating > input:checked ~ label:hover,
-.rating > label:hover ~ input:checked ~ label,
-.rating > input:checked ~ label:hover ~ label{
-	color:$secondary;
-	
-}
-    
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        opacity: 1;
+        background: #f79f24
     }
 
-    // .aboutUS{
-    //   .h3
-    //   {
-    //   color: red !important;
-    // }
-    // }
-   
+    .warshaMain {
+        color: $text-dark;
+        background-color: $light;
+    }
 
-   .services{
-      
-       .serviceName
-       {
-         font-size: medium;
-       }
-       .price
-       {
-         color: $mycolor;
-       }
-       .priceImage
-       {
-         width: 300px;
-         height: 200px;
-       }
-       .AddToCard:hover
-      {
-      transform: scale(.9);
-      }
-   }
+    #txtArea {
+        height: 6.25rem;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .warshaModalName {
+        color: $secondary;
+    }
+    /*styling star rating*/
+    .rating {
+        border: none;
+        float: left;
+    }
+
+    .rating > input {
+        display: none;
+    }
+
+    .rating > label:before {
+        content: '\f005';
+        font-family: FontAwesome;
+        // margin: 5px;
+        font-size: 1.5rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .rating > .half:before {
+        content: '\f089';
+        position: absolute;
+        cursor: pointer;
+    }
+
+    .rating > label {
+        color: $light;
+        float: right;
+        cursor: pointer;
+    }
+
+    .rating > input:checked ~ label,
+    .rating:not(:checked) > label:hover,
+    .rating:not(:checked) > label:hover ~ label {
+        color: $secondary;
+    }
+
+    .rating > input:checked + label:hover,
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label,
+    .rating > input:checked ~ label:hover ~ label {
+        color: $secondary;
+    }
+}
+
+// .aboutUS{
+//   .h3
+//   {
+//   color: red !important;
+// }
+// }
+.services {
+    .serviceName {
+        font-size: medium;
+    }
+
+    .price {
+        color: $secondary;
+    }
+
+    .priceImage {
+        width: 300px;
+        height: 200px;
+    }
+
+    .AddToCard:hover {
+        transform: scale(.9);
+    }
+}
+
 // .card
 // {
 //   background-color: white;
 //   color: $dark;
 // }
-
-.clientFeedback{
-  
-  .feedback
-  {
-    text-align: center; 
-    margin:auto;
-  }
-  .commentIconBackground
-  {
-    width: 30px; 
-    height: 28px ;
-    border-radius: 50%; 
-    background-color: #f79f24; 
-    margin: auto;
-    
-  }
-  .commentIcon
-    {
-      color: $text-light;
+.clientFeedback {
+    .feedback {
+        text-align: center;
+        margin: auto;
     }
-  // .clientFeedbackCard
-  // {
-  //     border-radius: 0 100px 0px 100px;
-  // }
-  .userInfo
-  {
-    text-align: left; 
-    display: inline-block;
-  }
-  .userName
-  {
-    color: $mycolor;
-  }
-  .date
-  {
-    font-size: medium;
-  }
-  .clientImage
-  {
-    width: 75px;
-    height: 70px;
-  }
-  .userComment
-  {
-    font-size: medium; 
-    text-align: left; 
-  }
+
+    .commentIconBackground {
+        width: 30px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: #f79f24;
+        margin: auto;
+    }
+
+    .commentIcon {
+        color: $text-light;
+    }
+    // .clientFeedbackCard
+    // {
+    //     border-radius: 0 100px 0px 100px;
+    // }
+    .userInfo {
+        text-align: left;
+        display: inline-block;
+    }
+
+    .userName {
+        color: $secondary;
+    }
+
+    .date {
+        font-size: medium;
+    }
+
+    .clientImage {
+        width: 75px;
+        height: 70px;
+    }
+
+    .userComment {
+        font-size: medium;
+        text-align: left;
+    }
 }
 
-
-
-    .warshaimg,
-  .blog-img,
-  .user-img {
+.warshaimg,
+.blog-img,
+.user-img {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center; }
+    background-position: center center;
+}
 
-    
-   
+@media (min-width: 992px) {
+    .review .overlay {
+        width: 50%;
+    }
 
+    .WarshaCurosal {
+        padding-right: 100px;
+        padding-left: 100px;
+    }
 
+    .clientFeedbackCard {
+        max-width: 35%;
+    }
+}
 
-
-
-
-    @media (min-width: 992px) {
-      .review .overlay {
-        
-        width: 50%; }
-        .WarshaCurosal
-        {
-         padding-right: 100px;
-         padding-left: 100px;
-        } 
-      
-        .clientFeedbackCard
-        {
-          max-width: 35%;
-        }
-      }
-    @media (max-width: 991.98px) {
-      .review .overlay {
-        opacity: .9; } }
+@media (max-width: 991.98px) {
+    .review .overlay {
+        opacity: .9;
+    }
+}

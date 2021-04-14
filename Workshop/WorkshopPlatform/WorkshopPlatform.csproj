@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
@@ -15,15 +23,117 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\sass\site.css">
+    <Content Update="wwwroot\sass\abstracts\_functions.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\abstracts\_mixins.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\abstracts\_variables.css">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>site.scss</DependentUpon>
+      <DependentUpon>_variables.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\abstracts\_variables.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_variables.css</LastGenOutput>
+    </Content>
+    <Content Update="wwwroot\sass\base\_base.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\base\_fonts.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_fonts.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\base\_fonts.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_fonts.css</LastGenOutput>
+    </Content>
+    <Content Update="wwwroot\sass\base\_helpers.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_helpers.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\base\_helpers.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_helpers.css</LastGenOutput>
+    </Content>
+    <Content Update="wwwroot\sass\base\_typography.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\components\_button.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_button.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\components\_button.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_button.css</LastGenOutput>
+    </Content>
+    <Content Update="wwwroot\sass\components\_card.scss">
+      <Generator>SassTranspiler</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\sass\components\_homepage.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\layout\_footer.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\layout\_header.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_emergancy.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_Error.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_home.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_login.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_profile.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_signup.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_SingleWarsha.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_singleWarshAdmin.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_update.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_WorkShops.css">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>_WorkShops.scss</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\sass\pages\_WorkShops.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>_WorkShops.css</LastGenOutput>
     </Content>
     <Content Update="wwwroot\sass\site.scss">
       <Generator>SassTranspiler</Generator>
       <LastGenOutput>site.css</LastGenOutput>
     </Content>
+    <Content Update="wwwroot\sass\themes\_default.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+    <Content Update="wwwroot\sass\vendors\_normalize.scss">
+      <Generator>SassTranspiler</Generator>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
 </Project>

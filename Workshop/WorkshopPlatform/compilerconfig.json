@@ -1,0 +1,30 @@
+﻿[
+  {
+    "outputFile": "wwwroot/sass/pages/_WorkShops.css",
+    "inputFile": "wwwroot/sass/pages/_WorkShops.scss"
+  },
+  {
+    "outputFile": "wwwroot/sass/abstracts/_variables.css",
+    "inputFile": "wwwroot/sass/abstracts/_variables.scss"
+  },
+  {
+    "outputFile": "wwwroot/sass/base/_fonts.css",
+    "inputFile": "wwwroot/sass/base/_fonts.scss"
+  },
+  {
+    "outputFile": "wwwroot/sass/components/_button.css",
+    "inputFile": "wwwroot/sass/components/_button.scss"
+  },
+  {
+    "outputFile": "wwwroot/sass/layout/_footer.css",
+    "inputFile": "wwwroot/sass/layout/_footer.scss"
+  },
+  {
+    "outputFile": "wwwroot/sass/components/_card.css",
+    "inputFile": "wwwroot/sass/components/_card.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "wwwroot/sass/site.scss"
+  }
+]

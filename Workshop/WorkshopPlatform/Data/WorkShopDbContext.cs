@@ -44,6 +44,7 @@ namespace WorkshopPlatform.Models
             modelBuilder.Entity<WorkShop>(e =>
             {
                 e.HasIndex(p => p.UserId).IsUnique();
+
             });
             base.OnModelCreating(modelBuilder);
         }

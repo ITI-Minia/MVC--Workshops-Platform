@@ -1,8 +1,9 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Yomina\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Yomina\\.nuget\\packages"
+      "C:\\Users\\Yomna\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Yomna\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
     ]
   }
 }

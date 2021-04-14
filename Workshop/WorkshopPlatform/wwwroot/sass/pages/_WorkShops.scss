@@ -1,5 +1,5 @@
   .WshopTd{
-    margin-bottom: 3.8rem;
+    margin-bottom: 2.8rem;
     float: left;
     width: 40.625rem;
     height: 15rem;
@@ -63,11 +63,26 @@
     .row{
            margin-right: 0px !important;
            margin-left:  0px !important;
+           margin-bottom: 20px;
         }
-        .col-md-6{
-          padding-left: 0rem !important;
-      
-        }      
+             
         
 
   }
+
+ .searchContent{
+  margin: auto;
+  width: 60% !important;
+  padding: 2%;
+  .search{
+    width: -webkit-fill-available;
+  }
+  .searchInput{
+    width: 90%;
+    display: inline;
+  }
+  .btn{
+    border-bottom-width: medium
+  }
+ }
+ 
