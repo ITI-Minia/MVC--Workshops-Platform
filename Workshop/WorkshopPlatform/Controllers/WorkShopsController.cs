@@ -7,11 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Workshop.Models;
 using WorkshopPlatform.Models;
+using System.Dynamic;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace WorkshopPlatform.Controllers
 {
     public class WorkShopsController : Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly WorkShopDbContext _context;
 
         public WorkShopsController(WorkShopDbContext context)
@@ -35,6 +41,7 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops
+
                 .Include(w => w.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (workShop == null)
@@ -156,6 +163,91 @@ namespace WorkshopPlatform.Controllers
         private bool WorkShopExists(int id)
         {
             return _context.WorkShops.Any(e => e.Id == id);
+        }
+
+        //public IActionResult CreateService()
+        //{
+        //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Title", "Title");
+        //    return PartialView();
+        //}
+
+        //// POST: WorkShops/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> CreateService(Service Service)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //       var workshopServices = _context.workshopServices.Where(w=>w.Title==Service.Title).FirstOrDefault();
+        //        Service.Description = workshopServices.Description;
+        //        Service.Image = workshopServices.Image;
+        //        Service.Verified = true;
+        //        Service.WorkShopId = 2;
+        //        _context.Add(Service);
+        //            await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Id", "Title");
+        //    return View(Service);
+        //}
+
+        public IActionResult Workshopcollector(int id)
+        {
+            dynamic dy = new ExpandoObject();
+            dy.aboutwarsha = Workshop(id);
+            dy.WarshaRate = WorkshopRating(id);
+            dy.warshaservices = WorkshopService(id);
+
+            return View(dy);
+        }
+
+        public List<WorkShop> Workshop(int? id)
+        {
+            List<WorkShop> workShopDbContext = _context.WorkShops.Include(w => w.User).Where(w => w.Id == id).ToList();
+            return workShopDbContext;
+        }
+
+        public List<Service> WorkshopService(int? id)
+        {
+            List<Service> workShopDbContext = _context.Services.Where(w => w.WorkShopId == id).ToList();
+            ViewBag.servcount = 0;
+
+            return workShopDbContext;
+        }
+
+        public List<WorkshopRate> WorkshopRating(int? id)
+        {
+            List<WorkshopRate> workShopRatingDbContext = _context.WorkshopRates.Include(w => w.UserProfile).Include(w => w.UserProfile.User).Where(w => w.WorkShopId == id).ToList();
+            ViewBag.active = "active";
+            ViewBag.itemcount = 0;
+
+            return workShopRatingDbContext;
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Userrate(WorkshopRate WorkshopRate)
+        {
+            try
+            {
+                WorkshopRate.Date = DateTime.Now;
+                var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //var user = _userManager.FindByIdAsync(userID).Result;
+                int UId = int.Parse(userID);
+                var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
+                WorkshopRate.UserProfileId = UId;
+                WorkshopRate.UserProfile = userprofile;
+
+                _context.Add(WorkshopRate);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Workshopcollector));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Workshopcollector));
+            }
         }
     }
 }
