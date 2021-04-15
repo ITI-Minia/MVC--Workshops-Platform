@@ -1,5 +1,5 @@
 /***********************************
-*   login page style 
+*   login page style
 ***********************************/
 
 .login--page {
@@ -10,7 +10,7 @@
     &::after {
         content: "";
         position: absolute;
-        background: url('/public/assets/images/sigup-background.jpg');
+        background: url('/imgs/sigup-background.jpg');
         background-size: cover;
         opacity: 0.2;
         top: 0;
@@ -29,16 +29,12 @@
     }
     .card {
         border: none;
-        padding-top: 4rem;
+        padding-top: 3.5rem;
         padding-bottom: 2rem;
         background-color: $light;
         border-radius: 0px;
     }
-    .invalid-login {
-        color: $danger;
-        font-size: 17px;
-    }
-    [type="submit"] {
+    #login[type="submit"] {
         font-family: $header-font-stack;
         color: $text-light;
         text-align: center;
@@ -59,7 +55,7 @@
                 height: 2.2rem;
                 padding-bottom: 0.1rem;
                 border: none;
-                border-bottom: 1px solid $light-gray;
+                border-bottom: 1px solid $gray-200;
                 background-color: transparent;
                 color: $dark;
                 font-size: 17px;
@@ -71,7 +67,7 @@
             }
             &~label {
                 position: absolute;
-                color: $secondary;
+                color: $success;
                 top: 0;
                 left: 0;
             }
@@ -130,5 +126,52 @@
     .login--footer {
         font-size: 0.75em;
         text-align: center;
+    }
+    .btn-icon {
+        border-radius: 60px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+    hr {
+        width: 80%;
+    }
+    #error {
+        margin-left: -2.5em;
+        margin-bottom: 15px;
+    }
+    .invalid-login {
+        display: inline;
+        color: $text-light;
+        font-size: 17px;
+        text-align: left;
+        margin-left: -2em;
+    }
+    .invalid-login ul {
+        display: inline;
+        list-style: none;
+    }
+    .invalid-login ul li {
+        display: inline;
+    }
+    .alert-dismissible {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        top: 0rem;
+        padding: 0.5rem 2.4rem;
+        background-color: hsla(354, 70%, 54%, 0.671);
+        color: white;
+        border: none;
+        border-radius: 0;
+        text-align: center;
+    }
+    .alert-dismissible .close {
+        position: absolute;
+        right: initial;
+        padding: 0;
+    }
+    .alert-dismissible .close:hover {
+        color: $light
     }
 }

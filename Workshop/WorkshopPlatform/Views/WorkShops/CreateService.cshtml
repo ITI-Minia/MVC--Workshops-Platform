@@ -49,6 +49,8 @@
 @*@section Scripts {
         @{await Html.RenderPartialAsync("~/Views/WorkShops/AboutWarsha.cshtml");}
     }*@
+@*<partial name="AboutWarsha.cshtml"/>*@
+
 <section class="review warshaimg" style="background-image: url(/imgs/wallpaper.jpg);">
     <div class="overlay"></div>
     <div class="container">
@@ -60,6 +62,7 @@
                 </div>*@
                 <h2>You Can Add New Service</h2>
                 <br>
+
                 <form asp-action="CreateService" id="NotNew" class="tabcontent">
                     <div class="row">
                         <div class="col-sm-4  ">
@@ -181,3 +184,4 @@
         }
     </script>
 }*@
+<partial></partial>

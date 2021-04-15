@@ -37,6 +37,10 @@ namespace WorkshopPlatform
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<WorkShopDbContext>();
             services.AddControllersWithViews();
+            services.AddMvc().AddRazorOptions(options =>
+            {
+                options.PageViewLocationFormats.Add("/WorkShops/workshopcollector.cshtml");
+            });
 
             
         }

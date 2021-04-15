@@ -536,15 +536,12 @@ E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Wo
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\AboutWarsha.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Create.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\CreateService.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Delete.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Details.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Edit.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Index.cshtml.g.cs
-E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\workshopcollector.cshtml.g.cs
-E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\WorkshopServices.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorTargetAssemblyInfo.cache
@@ -555,4 +552,4 @@ E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Wo
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
-E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\WorkshopRates.cshtml.g.cs
+E:\Information technology institute\Server Side Technologies\MVC Project\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\workshopcollector.cshtml.g.cs

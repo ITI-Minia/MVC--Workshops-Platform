@@ -2,112 +2,140 @@
 ////////from here
 var name = localStorage.getItem('firstName') + " " + localStorage.getItem('lastName');
 var done;
+var url = window.location.href;
 post = () => {
-    var review = document.getElementById("txtArea").value;
-    var thanking = document.getElementById("Thanks")
+    var review = $("#txtArea").val();
+    var rate = starValue;
+    var id = url.substring(url.lastIndexOf('/') + 1);
+    var obj = {
+        Review: review,
+        Rate: rate,
+        WorkShopId: id
+    };
+    $.ajax({
+        url: "/WorkShops/userrate",
+        type: "POST",
+        //dataType: "json",
+        data: obj,
+        success: function (data) {
+            //data = JSON.parse(data)
+            //alert(data);
 
-    if (review && starValue) {
-        document.getElementById("txtArea").value = "";
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
 
-        thanking.innerHTML = "Thanks " + name + " For Your Review";
-        var LInode = document.createElement("li");
-        LInode.dataset.target = "#demo2";
-        LInode.className = "Warshacircle";
-        LInode.setAttribute('data-slide-to', 3);
-        document.getElementById("commentsList").appendChild(LInode);
+    //document.getElementById("rate").value = starValue;
+    console.log(starValue);
 
-        var inp = document.getElementById("inp");
+    //var review = document.getElementById("txtArea").value;
+    //var thanking = document.getElementById("Thanks")
 
-        var carousalITem = document.createElement("div");
-        carousalITem.classList.add('WarshaCurosal', 'carousel-item');
+    //if (review && starValue) {
+    //    document.getElementById("txtArea").value = "";
 
+    //    thanking.innerHTML = "Thanks " + name + " For Your Review";
+    //    var LInode = document.createElement("li");
+    //    LInode.dataset.target = "#demo2";
+    //    LInode.className = "Warshacircle";
+    //    LInode.setAttribute('data-slide-to', 3);
+    //    document.getElementById("commentsList").appendChild(LInode);
 
-        var cardeck = document.createElement("div");
-        cardeck.className = "card-deck";
-        carousalITem.appendChild(cardeck);
+    //    var inp = document.getElementById("inp");
 
-        var clientFeedbackCard = document.createElement("div");
-        clientFeedbackCard.classList.add('card', 'border', 'p-3', 'clientFeedbackCard')
-
-        cardeck.appendChild(clientFeedbackCard);
-
-
-        //awl div
-        var commentIconBackground = document.createElement("div");
-        commentIconBackground.className = "commentIconBackground";
-        //span in awl div
-        var Warshaspan = document.createElement("span");
-        Warshaspan.classList.add('fa', 'fa-quote-left', 'commentIcon');
-        commentIconBackground.appendChild(Warshaspan);
-        clientFeedbackCard.appendChild(commentIconBackground);
+    //    var carousalITem = document.createElement("div");
+    //    carousalITem.classList.add('WarshaCurosal', 'carousel-item');
 
 
+    //    var cardeck = document.createElement("div");
+    //    cardeck.className = "card-deck";
+    //    carousalITem.appendChild(cardeck);
 
-        //
-        var flexdiv = document.createElement('div');
-        flexdiv.style.display = "flex";
-        flexdiv.className = "row";
+    //    var clientFeedbackCard = document.createElement("div");
+    //    clientFeedbackCard.classList.add('card', 'border', 'p-3', 'clientFeedbackCard')
 
-        var warshImage = document.createElement('img');
-        warshImage.src = 'assets/images/img_avatar3.png';
-        warshImage.classList.add('mt-3', 'rounded-circle', 'clientImage', 'ml-3');
-        //
-        var mediaBody = document.createElement("div");
-        mediaBody.classList.add('media-body', 'pl-3', 'mt-3', 'userInfo');
-        //
-        var WarshaH5 = document.createElement('h5');
-        var nameNode = document.createTextNode(name);
-        WarshaH5.className = "userName";
-        WarshaH5.appendChild(nameNode);
-        //
-        var warshaParagraph = document.createElement('p');
-        var d = new Date();
-        var todayDate = d.getDate() + "/" + parseInt(d.getMonth() + 1) + "/" + d.getFullYear();
-        console.log(todayDate);
+    //    cardeck.appendChild(clientFeedbackCard);
 
-        var dateNode = document.createTextNode(todayDate);
 
-        warshaParagraph.className = "date";
-        warshaParagraph.appendChild(dateNode);
-        //
-        mediaBody.appendChild(WarshaH5);
-        mediaBody.appendChild(warshaParagraph);
-        flexdiv.appendChild(warshImage);
-
-        flexdiv.appendChild(mediaBody);
-
-        var userComment = document.createElement('p');
-        var commentNode = document.createTextNode(review);
-        userComment.classList.add('pl-2', 'pt-4', 'userComment');
-        userComment.appendChild(commentNode);
-
-        clientFeedbackCard.appendChild(flexdiv);
-        clientFeedbackCard.appendChild(userComment);
-
-        inp.appendChild(carousalITem);
-        done = 0;
-        document.getElementById("txtArea").readOnly = true;
+    //    //awl div
+    //    var commentIconBackground = document.createElement("div");
+    //    commentIconBackground.className = "commentIconBackground";
+    //    //span in awl div
+    //    var Warshaspan = document.createElement("span");
+    //    Warshaspan.classList.add('fa', 'fa-quote-left', 'commentIcon');
+    //    commentIconBackground.appendChild(Warshaspan);
+    //    clientFeedbackCard.appendChild(commentIconBackground);
 
 
 
-    }
-    else if (done == 0) {
+    //    //
+    //    var flexdiv = document.createElement('div');
+    //    flexdiv.style.display = "flex";
+    //    flexdiv.className = "row";
 
-        thanking.innerHTML = "Your Review have been already Recorded";
+    //    var warshImage = document.createElement('img');
+    //    warshImage.src = 'assets/images/img_avatar3.png';
+    //    warshImage.classList.add('mt-3', 'rounded-circle', 'clientImage', 'ml-3');
+    //    //
+    //    var mediaBody = document.createElement("div");
+    //    mediaBody.classList.add('media-body', 'pl-3', 'mt-3', 'userInfo');
+    //    //
+    //    var WarshaH5 = document.createElement('h5');
+    //    var nameNode = document.createTextNode(name);
+    //    WarshaH5.className = "userName";
+    //    WarshaH5.appendChild(nameNode);
+    //    //
+    //    var warshaParagraph = document.createElement('p');
+    //    var d = new Date();
+    //    var todayDate = d.getDate() + "/" + parseInt(d.getMonth() + 1) + "/" + d.getFullYear();
+    //    document.getElementById("date").value = todayDate;
+    //    console.log(todayDate);
 
-    }
-    else if (review) {
-        thanking.innerHTML = "Please Rate our Services";
+    //    var dateNode = document.createTextNode(todayDate);
 
-    }
-    else if (starValue) {
-        thanking.innerHTML = "Please Write your Review";
+    //    warshaParagraph.className = "date";
+    //    warshaParagraph.appendChild(dateNode);
+    //    //
+    //    mediaBody.appendChild(WarshaH5);
+    //    mediaBody.appendChild(warshaParagraph);
+    //    flexdiv.appendChild(warshImage);
 
-    }
-    else {
-        thanking.innerHTML = "Please Write your Review and Rate our Services";
+    //    flexdiv.appendChild(mediaBody);
 
-    }
+    //    var userComment = document.createElement('p');
+    //    var commentNode = document.createTextNode(review);
+    //    userComment.classList.add('pl-2', 'pt-4', 'userComment');
+    //    userComment.appendChild(commentNode);
+
+    //    clientFeedbackCard.appendChild(flexdiv);
+    //    clientFeedbackCard.appendChild(userComment);
+
+    //    inp.appendChild(carousalITem);
+    //    done = 0;
+    //    document.getElementById("txtArea").readOnly = true;
+
+
+
+    //}
+    //else if (done == 0) {
+
+    //    thanking.innerHTML = "Your Review have been already Recorded";
+
+    //}
+    //else if (review) {
+    //    thanking.innerHTML = "Please Rate our Services";
+
+    //}
+    //else if (starValue) {
+    //    thanking.innerHTML = "Please Write your Review";
+
+    //}
+    //else {
+    //    thanking.innerHTML = "Please Write your Review and Rate our Services";
+
+    //}
 
 }
 AddServices = () => {
@@ -207,6 +235,7 @@ for (let i = 0; i < star.length; i++) {
     star[i].addEventListener('click', function () {
         // i = this.value;
         starValue = this.value;
+        console.log(starValue);
     });
 
 
@@ -219,4 +248,24 @@ function warshaCounte() {
     warshaCount += 1;
 
     document.getElementById("warshaBadge").innerHTML = warshaCount;
+}
+
+function SubmitForm() {
+    var obj = {
+        Review: $("#txtArea").val(),
+        rate: $(starValue)
+    };
+    $.ajax({
+        url: "/WorkShops/UserRate",
+        type: "POST",
+        //dataType: "json",
+        data: obj,
+        success: function (data) {
+            alert(data);
+
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
 }
