@@ -233,9 +233,6 @@ namespace WorkshopPlatform.Migrations
                     b.Property<bool>("Confirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ConfirmedEntityId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -257,6 +254,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ConfirmationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -277,6 +277,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConfirmationId")
+                        .IsUnique();
 
                     b.HasIndex("WorkShopId");
 
@@ -338,6 +341,9 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ConfirmationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Government")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -362,6 +368,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConfirmationId")
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -472,11 +481,19 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.Service", b =>
                 {
+                    b.HasOne("Workshop.Models.Confirmations", "Confirmation")
+                        .WithOne("Service")
+                        .HasForeignKey("Workshop.Models.Service", "ConfirmationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Workshop.Models.WorkShop", "WorkShop")
                         .WithMany("Services")
                         .HasForeignKey("WorkShopId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Confirmation");
 
                     b.Navigation("WorkShop");
                 });
@@ -492,9 +509,17 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.WorkShop", b =>
                 {
+                    b.HasOne("Workshop.Models.Confirmations", "Confirmation")
+                        .WithOne("WorkShop")
+                        .HasForeignKey("Workshop.Models.WorkShop", "ConfirmationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Confirmation");
 
                     b.Navigation("User");
                 });
@@ -514,6 +539,13 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired();
 
                     b.Navigation("UserProfile");
+
+                    b.Navigation("WorkShop");
+                });
+
+            modelBuilder.Entity("Workshop.Models.Confirmations", b =>
+                {
+                    b.Navigation("Service");
 
                     b.Navigation("WorkShop");
                 });

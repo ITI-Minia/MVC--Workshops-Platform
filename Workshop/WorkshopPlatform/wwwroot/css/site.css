@@ -1648,17 +1648,27 @@ html {
   margin-bottom: 1.5rem;
 }
 
-.signup--page .alert {
+.signup--page .alert-dismissible {
   position: absolute;
   z-index: 1;
-  top: 2rem;
+  width: 100%;
+  top: 0rem;
   padding: 0.5rem 2.4rem;
-  background-color: #dc3545;
+  background-color: rgba(220, 56, 72, 0.671);
   color: white;
   border: none;
   border-radius: 0;
-  -webkit-box-shadow: 1px 1px 4px black;
-          box-shadow: 1px 1px 4px black;
+  text-align: center;
+}
+
+.signup--page .alert-dismissible .close {
+  position: absolute;
+  right: initial;
+  padding: 0;
+}
+
+.signup--page .alert-dismissible .close:hover {
+  color: #F4F4F4;
 }
 
 .signup--page .btn-icon {
@@ -2009,5 +2019,48 @@ html {
 
 .imergancyfooter {
   margin-top: 120px;
+}
+
+.register-confirm-page {
+  width: 100%;
+}
+
+.register-confirm-page #email-img {
+  width: 500px;
+}
+
+.register-confirm-page #verified-img {
+  width: 500px;
+}
+
+.register-confirm-page #password-img {
+  height: 200px;
+}
+
+.register-confirm-page .small-text {
+  font-size: 14px;
+}
+
+.register-confirm-page .alert-dismissible {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 0rem;
+  padding: 0.5rem 2.4rem;
+  background-color: rgba(226, 149, 34, 0.774);
+  color: white;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+}
+
+.register-confirm-page .alert-dismissible .close {
+  position: absolute;
+  right: initial;
+  padding: 0;
+}
+
+.register-confirm-page .alert-dismissible .close:hover {
+  color: #F4F4F4;
 }
 /*# sourceMappingURL=site.css.map */
