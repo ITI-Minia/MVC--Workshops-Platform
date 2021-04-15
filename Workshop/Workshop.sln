@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkshopPlatform", "WorkshopPlatform\WorkshopPlatform.csproj", "{58CFE866-5221-4118-B038-1AE8231818EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkshopPlatform", "WorkshopPlatform\WorkshopPlatform.csproj", "{58CFE866-5221-4118-B038-1AE8231818EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
