@@ -41,7 +41,7 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops
-               
+
                 .Include(w => w.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (workShop == null)
@@ -165,8 +165,6 @@ namespace WorkshopPlatform.Controllers
             return _context.WorkShops.Any(e => e.Id == id);
         }
 
-
-
         //public IActionResult CreateService()
         //{
         //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Title", "Title");
@@ -182,7 +180,6 @@ namespace WorkshopPlatform.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-
         //       var workshopServices = _context.workshopServices.Where(w=>w.Title==Service.Title).FirstOrDefault();
         //        Service.Description = workshopServices.Description;
         //        Service.Image = workshopServices.Image;
@@ -195,24 +192,23 @@ namespace WorkshopPlatform.Controllers
         //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Id", "Title");
         //    return View(Service);
         //}
-       
-        
-      
-        public IActionResult workshopcollector(int id)
+
+        public IActionResult Workshopcollector(int id)
         {
             dynamic dy = new ExpandoObject();
-            dy.aboutwarsha = workshop(id);
+            dy.aboutwarsha = Workshop(id);
             dy.WarshaRate = WorkshopRating(id);
             dy.warshaservices = WorkshopService(id);
-            
+
             return View(dy);
         }
-        
-        public List<WorkShop> workshop(int? id)
+
+        public List<WorkShop> Workshop(int? id)
         {
             List<WorkShop> workShopDbContext = _context.WorkShops.Include(w => w.User).Where(w => w.Id == id).ToList();
             return workShopDbContext;
         }
+
         public List<Service> WorkshopService(int? id)
         {
             List<Service> workShopDbContext = _context.Services.Where(w => w.WorkShopId == id).ToList();
@@ -220,7 +216,6 @@ namespace WorkshopPlatform.Controllers
 
             return workShopDbContext;
         }
-       
 
         public List<WorkshopRate> WorkshopRating(int? id)
         {
@@ -230,30 +225,29 @@ namespace WorkshopPlatform.Controllers
 
             return workShopRatingDbContext;
         }
-       
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> userrate(WorkshopRate WorkshopRate)
+        public async Task<IActionResult> Userrate(WorkshopRate WorkshopRate)
         {
             try
-            { 
-            WorkshopRate.Date = DateTime.Now;
-            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var user = _userManager.FindByIdAsync(userID).Result;
-            int UId = int.Parse(userID);
-            var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
-            WorkshopRate.UserProfileId = UId;
-            WorkshopRate.UserProfile = userprofile;
-            
-                _context.Add(WorkshopRate);
-               await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(workshopcollector));
-            }
-            catch(Exception)
             {
-                return RedirectToAction(nameof(workshopcollector));
+                WorkshopRate.Date = DateTime.Now;
+                var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //var user = _userManager.FindByIdAsync(userID).Result;
+                int UId = int.Parse(userID);
+                var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
+                WorkshopRate.UserProfileId = UId;
+                WorkshopRate.UserProfile = userprofile;
+
+                _context.Add(WorkshopRate);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Workshopcollector));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(Workshopcollector));
             }
         }
     }
-
 }

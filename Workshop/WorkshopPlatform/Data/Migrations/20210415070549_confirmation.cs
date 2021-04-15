@@ -2,7 +2,7 @@
 
 namespace WorkshopPlatform.Migrations
 {
-    public partial class updateConfirmation : Migration
+    public partial class confirmation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
