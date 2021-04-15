@@ -199,7 +199,7 @@ html {
     .slid .slid--node .active {
       border: 3px solid #f4f4f4; }
   .slid .main {
-    background: url(../images/sild1.jpg) no-repeat center;
+    background: url(../imgs/sild1.jpg) no-repeat center;
     position: relative;
     height: 95vh;
     display: flex;
@@ -220,13 +220,13 @@ html {
       .slid .main .main-3 h1 {
         font-weight: normal;
         color: white;
-        font-size: 4rem;
+        font-size: 3rem;
         font-weight: bold; }
   .slid .main-two {
-    background: url(../images/slide1.jpg) no-repeat center;
+    background: url(../imgs/slide1.jpg) no-repeat center;
     background-size: cover; }
   .slid .main-one {
-    background: url(../images/wensh.jpg) no-repeat center;
+    background: url(../imgs/slide2.jpg) no-repeat center;
     background-size: cover; }
 
 #service .display {
@@ -367,11 +367,11 @@ html {
                 padding: 30px; }
 
 #service header {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center; }
   #service header h1 {
     margin: 10px;
-    font-size: 6rem;
+    font-size: 3rem;
     font-weight: bold; }
 
 #service .service--type {
@@ -388,7 +388,7 @@ html {
       align-items: center;
       margin-top: 30px;
       margin-left: 20px;
-      font-size: 2rem; }
+      font-size: 1.5rem; }
       #service .service--type .service--emergancy .service--emergancy--content .service--emergancy--items {
         padding: 20px;
         list-style: none;
@@ -418,7 +418,7 @@ html {
       align-items: center;
       margin-top: 30px;
       margin-left: 20px;
-      font-size: 2rem; }
+      font-size: 1.5rem; }
       #service .service--type .requist--repair .service--emergancy--content .service--emergancy--items {
         padding: 20px;
         list-style: none;
@@ -528,80 +528,64 @@ html {
       margin-bottom: 20px; }
 
 .toprated {
-  margin-top: 5px;
-  text-align: center;
-  width: 100%;
-  height: 90vh;
-  position: relative;
-  background: url(../images/slide1.jpg) no-repeat center;
-  background-size: cover;
-  z-index: 1; }
-  .toprated::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(to right, #000, rgba(255, 255, 255, 0.315));
-    background-size: cover; }
-  .toprated header {
-    color: #f4f4f4; }
-    .toprated header h1 {
-      margin: 10px;
-      font-size: 6rem;
-      font-weight: bold; }
-  .toprated .card--slider {
-    padding: 0 30px; }
-    .toprated .card--slider .card {
-      margin-top: 20px;
-      margin-right: 20px;
-      text-align: center;
-      width: auto;
-      border: 2px black solid;
-      border-radius: 7px;
-      background-color: #f4f4f4; }
-      .toprated .card--slider .card .card--img {
-        margin: 10px auto;
-        width: 150px;
-        height: 150px;
+  font-size: 2rem;
+  text-align: center; }
+  .toprated h1 {
+    margin: 20px;
+    font-size: 3rem;
+    font-weight: bold; }
+  .toprated .card {
+    margin-top: 20px;
+    margin-right: 20px;
+    text-align: center;
+    width: auto;
+    border: 1px black solid;
+    border-radius: 7px;
+    background-color: #f4f4f4; }
+    .toprated .card .card--img {
+      margin: 10px auto;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .toprated .card .card--img img {
+        width: 135px;
+        height: 135px;
         border-radius: 50%;
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        .toprated .card--slider .card .card--img img {
-          width: 135px;
-          height: 135px;
-          border-radius: 50%;
-          object-fit: cover; }
-      .toprated .card--slider .card h1 {
-        margin: 10px;
-        font-size: 3rem;
-        font-weight: bold; }
-      .toprated .card--slider .card .card--info {
-        list-style: none;
-        padding-left: 0; }
-        .toprated .card--slider .card .card--info .card--info--item {
-          padding: 6px;
-          font-size: 2rem; }
-          .toprated .card--slider .card .card--info .card--info--item i {
-            margin-right: 15px;
-            font-size: 1rem;
-            color: #8c0909; }
-          .toprated .card--slider .card .card--info .card--info--item .checked {
-            color: orange; }
-      .toprated .card--slider .card .btn {
-        background-color: #d89216;
-        margin: 20px;
-        color: white;
-        font-size: 18px;
-        padding: 12px 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: none;
-        border-radius: 40px; }
+        object-fit: cover; }
+    .toprated .card h1 {
+      margin: 10px;
+      font-size: 2rem;
+      font-weight: bold; }
+    .toprated .card .card--info {
+      list-style: none;
+      padding-left: 0; }
+      .toprated .card .card--info .card--info--item {
+        padding: 6px;
+        font-size: 1.5rem; }
+        .toprated .card .card--info .card--info--item i {
+          margin-right: 15px;
+          font-size: 1rem;
+          color: #e2ad21; }
+        .toprated .card .card--info .card--info--item .checked {
+          color: orange; }
+    .toprated .card .btn {
+      background-color: #e2ad21;
+      color: white;
+      font-size: 20px;
+      width: 440px;
+      height: 50px;
+      border: none;
+      border-radius: 40px;
+      width: 150px;
+      cursor: pointer; }
+      .toprated .card .btn:hover {
+        background-color: #d89216; }
+  .toprated .carousel-indicators {
+    display: none; }
 
 .footer--home footer {
   width: 100%;

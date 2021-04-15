@@ -1,8 +1,5 @@
 ﻿@model Workshop.Models.UserProfile
-@{
-    var imagePath = "~/imgs/profile.png";
-    
-}
+
 <div class="container emp-profile">
     <form method="post">
         <div class="row">
@@ -10,7 +7,7 @@
                 <div class="profile-img">
                     @{ if (Model.Image == null)
                         {
-                            <img src="@imagePath"
+                            <img src="~/imgs/profile.png"
                                  alt="" />
                         }
                         else
