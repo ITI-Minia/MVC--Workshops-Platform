@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WorkshopPlatform</title>
-    <link href="~/sass/site.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/site.min.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -31,7 +30,7 @@
             </div>
         </nav>
     </header>
-    <div> 
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -46,7 +45,6 @@
     <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

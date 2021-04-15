@@ -10,61 +10,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="compilerconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="compilerconfig.json" />
-    <None Include="wwwroot\sass\abstracts\_functions.scss" />
-    <None Include="wwwroot\sass\abstracts\_mixins.scss" />
-    <None Include="wwwroot\sass\abstracts\_variables.scss" />
-    <None Include="wwwroot\sass\base\_base.scss" />
-    <None Include="wwwroot\sass\base\_fonts.scss" />
-    <None Include="wwwroot\sass\base\_helpers.scss" />
-    <None Include="wwwroot\sass\base\_typography.scss" />
-    <None Include="wwwroot\sass\components\_button.scss" />
-    <None Include="wwwroot\sass\components\_card.scss" />
-    <None Include="wwwroot\sass\components\_homepage.scss" />
-    <None Include="wwwroot\sass\layout\_footer.scss" />
-    <None Include="wwwroot\sass\layout\_header.scss" />
-    <None Include="wwwroot\sass\pages\_emergancy.scss" />
-    <None Include="wwwroot\sass\pages\_Error.scss" />
-    <None Include="wwwroot\sass\pages\_home.scss" />
-    <None Include="wwwroot\sass\pages\_login.scss" />
-    <None Include="wwwroot\sass\pages\_profile.scss" />
-    <None Include="wwwroot\sass\pages\_signup.scss" />
-    <None Include="wwwroot\sass\pages\_SingleWarsha.scss" />
-    <None Include="wwwroot\sass\pages\_singleWarshAdmin.scss" />
-    <None Include="wwwroot\sass\pages\_update.scss" />
-    <None Include="wwwroot\sass\pages\_WorkShops.scss" />
-    <None Include="wwwroot\sass\site.scss">
-      <Generator>SassTranspiler</Generator>
-      <LastGenOutput>site.css</LastGenOutput>
-    </None>
-    <None Include="wwwroot\sass\themes\_default.scss" />
-    <None Include="wwwroot\sass\vendors\_normalize.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
-    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\sass\site.css">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>site.scss</DependentUpon>
+    <Content Update="wwwroot\sass\site.scss">
+      <Generator>SassTranspiler</Generator>
+      <LastGenOutput>site.css</LastGenOutput>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\sass\pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 </Project>
