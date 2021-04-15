@@ -1,22 +1,77 @@
 ﻿@page
 @model RegisterConfirmationModel
 @{
+    Layout = null;
     ViewData["Title"] = "Register confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Workshop platform</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
+<body class="register-confirm-page">
+
+    @if (TempData["resend"] != null && (bool)TempData["resend"] == true)
     {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
+        <div class="d-flex justify-content-center">
+            <div class="alert alert-primary alert-dismissible show fade" role="alert" id="alert-info">
+                <div class="row">
+                    <div class="col-9">
+                        Confirmation email sent. <br class="d-none d-none d-sm-block d-md-none"> Please check your inbox.
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-info').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     }
-    else
-    {
-<p>
-        Please check your email to confirm your account.
-</p>
-    }
-}
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4 d-none d-lg-block pt-5 pr-4">
+            <img src="/imgs/email-send.png" id="email-img" alt="Confirmation email has been sent">
+        </div>
+        <div class="col-lg-5 col-md-9 pt-5">
+            <div class="card shadow-lg mt-5 pt-3 pb-3">
+                <div class="card-body p-0">
+                    <div class="row mt-4">
+                        <div class="col-12 p-5">
+                            <div class="text-center p-3">
+                                <h1 class="h2 mb-4 text-primary">Thank you !</h1>
+                                <div class="mb-3 text-muted">
+                                    <h3 class="h5"> We need to verify your email address to continue </h3>
+
+                                    <p class="small-text">
+                                        <span>  As an added safety measure, we sent you an email. </span>
+                                        <br>
+                                        <span>  Please check your email to confirm your account. </span>
+                                    </p>
+                                </div>
+                                <hr style="width:70%">
+                                <p class="mb-4 text-muted small-text">
+                                    Didn't receive a confirmation email? <br>
+                                    Check your spam filter
+                                    or try
+                                    <a id="resend-confirmation" asp-page="RegisterConfirmation" asp-route-email="@Model.Email" asp-route-resend="true">sending again.</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
