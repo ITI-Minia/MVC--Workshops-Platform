@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using MimeKit;
 using Workshop.Models;
 using WorkshopPlatform.Models;
 
@@ -27,6 +30,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
         private readonly WorkShopDbContext _context;
+        private IWebHostEnvironment _env;
 
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
@@ -34,7 +38,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             ILogger<ExternalLoginModel> logger,
             RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender,
-            WorkShopDbContext context)
+            WorkShopDbContext context,
+            IWebHostEnvironment env)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -42,6 +47,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             _emailSender = emailSender;
             _context = context;
             _roleManager = roleManager;
+            _env = env;
         }
 
         [BindProperty]
@@ -173,8 +179,27 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                             values: new { area = "Identity", userId = userId, code = code },
                             protocol: Request.Scheme);
 
-                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        var pathToFile = _env.WebRootPath
+                      + Path.DirectorySeparatorChar.ToString()
+                      + "Templates"
+                      + Path.DirectorySeparatorChar.ToString()
+                      + "EmailTemplate"
+                      + Path.DirectorySeparatorChar.ToString()
+                      + "RegisterConfirmationEmail.html";
+
+                        var builder = new BodyBuilder();
+
+                        using (StreamReader SourceReader = System.IO.File.OpenText(pathToFile))
+                        {
+                            builder.HtmlBody = SourceReader.ReadToEnd();
+                        }
+
+                        //use string.Format(format item, dynamic values as parameters) In our case, {x}
+                        //values in Templates are to replace by dynamic values.
+                        string messageBody = string.Format(builder.HtmlBody, "",
+                            HtmlEncoder.Default.Encode(callbackUrl));
+
+                        await _emailSender.SendEmailAsync(user.Email, "Confirm your email", messageBody);
 
                         // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)

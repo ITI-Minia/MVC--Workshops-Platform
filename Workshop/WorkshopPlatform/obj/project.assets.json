@@ -8918,19 +8918,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Elamen Soft\\.nuget\\packages\\": {}
+    "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+      "projectUniqueName": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
       "projectName": "WorkshopPlatform",
-      "projectPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
-      "packagesPath": "C:\\Users\\Elamen Soft\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
+      "projectPath": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+      "packagesPath": "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\",
+      "outputPath": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Elamen Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mai-AbdEltwab\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9014,13 +9014,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
