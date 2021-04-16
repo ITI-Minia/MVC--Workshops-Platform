@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +22,8 @@ namespace WorkshopPlatform.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly WorkShopDbContext _context;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<IdentityUser> _userManager;
         public WorkShopsController(WorkShopDbContext context)
         {
             _context = context;
@@ -28,9 +32,89 @@ namespace WorkshopPlatform.Controllers
         // GET: WorkShops
         public async Task<IActionResult> Index()
         {
-            var workShopDbContext = _context.WorkShops.Include(w => w.User);
+            var workShopDbContext = _context.WorkShops;         
+         
             return View(await workShopDbContext.ToListAsync());
         }
+
+        public async Task<IActionResult> Emergacy(string City, string Government)
+        {
+            var workShopDbContext = _context.WorkShops.Include(w => w.User);
+            
+            
+
+            if (Government != "" && Government != null)
+            {
+                Government = Government.ToLower();
+                var workShop = await workShopDbContext.Where(ws =>ws.Government.ToLower().Contains(Government)).ToListAsync();
+                return View(workShop);
+            }
+            else if (City != "" && City != null)
+            {
+                City = City.ToLower();
+                var workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                return View(workShop);
+            }
+            else
+            return View(await workShopDbContext.ToListAsync());
+        }
+        public async Task<IActionResult> Search(string id)
+        {                     
+            if (id == "" || id==null)
+            {
+                var workShopDbContext = _context.WorkShops;
+
+                return View("Index", await workShopDbContext.ToListAsync());
+            }
+            else
+            {
+                var workShopDbContext = _context.WorkShops.ToList();
+                id = id.ToLower();
+                var workShop = await _context.WorkShops.Where(ws => ws.Name.ToLower().Contains(id) ||
+                                                                           ws.Rate.ToString().Contains(id) ||
+                                                                           ws.Address.ToLower().Contains(id) ||
+                                                                           ws.City.ToLower().Contains(id) ||
+                                                                           ws.Government.ToLower().Contains(id)).ToListAsync();
+                if (workShop == null)
+                {
+                    return NotFound();
+                }
+                ViewBag.SearchData = workShop;
+                ViewBag.SearchCount = workShop.Count();
+                ViewBag.flag = 1;
+                return View("Index", workShop);
+            }
+        }
+
+        public async Task<IActionResult> SearchEmergacy(string id)
+        {       
+        
+
+            if (id == "" || id == null)
+            {
+                var workShopDbContext = _context.WorkShops.Include(w => w.User);
+
+                return View("Emergacy", await workShopDbContext.Include(w => w.User).ToListAsync());
+            }
+            else
+            {
+                var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
+                id = id.ToLower();
+               // var w = await( from w in _context.WorkShops)
+                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(id) ||
+                                                                           ws.Rate.ToString().Contains(id) ||
+                                                                           ws.Address.ToLower().Contains(id) ||
+                                                                           ws.City.ToLower().Contains(id) ||
+                                                                           ws.Government.ToLower().Contains(id)/*||*/
+                                                                          /* ws.User.PhoneNumber.ToString().Contains(id)*/).ToListAsync();
+                if (workShop == null)
+                {
+                    return NotFound();
+                }
+                return View("Emergacy", workShop);
+            }
+        }
+
 
         // GET: WorkShops/Details/5
         public async Task<IActionResult> Details(int? id)
