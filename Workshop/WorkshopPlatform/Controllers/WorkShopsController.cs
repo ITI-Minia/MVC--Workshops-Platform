@@ -241,34 +241,6 @@ namespace WorkshopPlatform.Controllers
             return _context.WorkShops.Any(e => e.Id == id);
         }
 
-        //public IActionResult CreateService()
-        //{
-        //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Title", "Title");
-        //    return PartialView();
-        //}
-
-        //// POST: WorkShops/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> CreateService(Service Service)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //       var workshopServices = _context.workshopServices.Where(w=>w.Title==Service.Title).FirstOrDefault();
-        //        Service.Description = workshopServices.Description;
-        //        Service.Image = workshopServices.Image;
-        //        Service.Verified = true;
-        //        Service.WorkShopId = 2;
-        //        _context.Add(Service);
-        //            await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewBag.WorkShopService = new SelectList(_context.workshopServices, "Id", "Title");
-        //    return View(Service);
-        //}
-
         public IActionResult Workshopcollector(int id)
         {
             dynamic dy = new ExpandoObject();

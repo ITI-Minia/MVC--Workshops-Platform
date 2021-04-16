@@ -13,16 +13,19 @@ namespace Workshop.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+
         [Required]
-        public ConfirmationType Type { get; set; }       
+        public ConfirmationType Type { get; set; }
+
         public string Message { get; set; }
+
         [Required]
         public bool Confirmed { get; set; }
+
         [Required]
         public DateTime CreationTime { get; set; }
 
         [Required]
         public int ConfirmedEntityId { get; set; }
-        
     }
 }
