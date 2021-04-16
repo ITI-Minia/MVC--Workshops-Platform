@@ -1,11 +1,15 @@
   .WshopTd{
-    margin-bottom: 3.8rem;
+    margin-bottom: 2.8rem;
     float: left;
     width: 40.625rem;
     height: 15rem;
     .col-md-6{
       padding-right: -1.5%;
       padding-left: 2rem !important;
+  
+    }
+    .col-md-6{
+      margin-bottom: 10rem;
   
     }
   }
@@ -64,10 +68,24 @@
            margin-right: 0px !important;
            margin-left:  0px !important;
         }
-        .col-md-6{
-          padding-left: 0rem !important;
-      
-        }      
+             
         
 
   }
+
+ .searchContent{
+  margin: auto;
+  width: 70% !important;
+  padding: 2%;
+  .search{
+    width: -webkit-fill-available;
+  }
+  .searchInput{
+    width: 80%;
+    display: inline;
+  }
+  .btn{
+    border-bottom-width: medium
+  }
+ }
+ 

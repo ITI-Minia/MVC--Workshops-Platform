@@ -1,13 +1,333 @@
-﻿@model Microsoft.AspNetCore.Identity.IdentityUser
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">
-        Welcome
-        @if (Model != null)
-            @Model.UserName
-    </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿@model IEnumerable<Workshop.Models.WorkShop>
+<div class="slid">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="main main-one" >
+                    <div class="main-3">
+                        <div class="slider--header">
+                            <h1>We Can Come To You Any Where</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="main main-two" >
+                    <div class="main-3">
+                        <h1>WE Can Delivere You To Any Car WorkShop In Any Where</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="main">
+                    <div class="main-3">
+                        <h1>The First Web Site That Provides This Service in Egypt </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
+<div id="service">
+    <header>
+        <h1>Ser<span style="color: #d89216">vice</span></h1>
+    </header>
+    <div class="service--type">
+        <div class="service--emergancy">
+            <div class="container">
+                <div class="row">
+                    <div class=" col-md-6 col-12">
+                        <img src="~/imgs/emergancy.svg">
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="service--emergancy--content">
+                            <ul class="service--emergancy--items">
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> If You Have Accident Don't worry Call Us.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> Repair All Faults In Your Place .
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> We can Take You TO Any car workShop.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> Come To You Any Where.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> We Can connet YOu To Any car workshop.
+                                </li>
+                                <div style="text-align: center; margin-top: 10px;">
+                                    <button class="btn emergancy--btn" >emergancy</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="requist--repair">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="service--emergancy--content">
+                            <ul class="service--emergancy--items">
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> If You Have Accident Don't worry Call Us.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> Repair All Faults In Your Place .
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> We can Take You TO Any car workShop.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> Come To You Any Where.
+                                </li>
+                                <li class="service--emergancy--item">
+                                    <i class="fas fa-wrench"></i> We Can connet YOu To Any car workshop.
+                                </li>
+                                <div style="text-align: center; margin-top: 10px;">
+                                    <button class="btn emergancy--btn" >requist rebair</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" col-md-6 col-12">
+                        <img src="~/imgs/repair.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@foreach (var item in Model)
+{
+    <div id="carouselExampleIndicators"
+         class="carousel slide"
+         data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators"
+                data-slide-to="0"
+                class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card--img">
+                                    <img src="@item.Logo" />
+                                </div>
+                                <h1>@item.Name</h1>
+                                <ul class="card--info">
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.Government
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>@item.City
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i>Car winch
+                                    </li>
+                                    <li class="card--info--item">
+                                        <i class="fas fa-check"></i><span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </li>
+                                    <li>
+                                        <input asp-controller="WorkShops" asp-action="workshopcollector" asp-route-id="@item.Id" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev"
+               href="#carouselExampleIndicators"
+               role="button"
+               data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next"
+               href="#carouselExampleIndicators"
+               role="button"
+               data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+}*@
