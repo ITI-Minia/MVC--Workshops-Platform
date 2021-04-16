@@ -41,7 +41,11 @@ namespace WorkshopPlatform
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+            })
                 .AddDefaultTokenProviders()
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<WorkShopDbContext>();
@@ -50,6 +54,7 @@ namespace WorkshopPlatform
             // using Microsoft.AspNetCore.Identity.UI.Services;
             // using WebPWrecover.Services;
             services.AddTransient<IEmailSender, EmailSender>();
+
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddControllersWithViews();

@@ -1,0 +1,340 @@
+﻿
+@using Workshop.Models;
+
+@model dynamic
+
+@{
+    ViewBag.Title = "WorkShop";
+}
+
+
+<section class=" aboutUS" style="width:70%; margin:auto;display:block">
+
+    <div class="container-fluid">
+        <div class="row d-md-flex justify-content-end">
+            @foreach (WorkShop item in Model.aboutwarsha)
+            {
+
+                <div class="col-xl-6 col-md-6 warshaimg" style="background-image:url(@item.Image)">
+
+                </div>
+
+                <div class="col-md-6 col-xl-6 p-3 py-5 pl-lg-5">
+
+                    <h3><span style="color: black;"> About</span> US</h3>
+                    <br>
+                    <p>
+                        <i class="fas fa-city mr-2 warshaIcon"></i><span style="">City :</span>
+                        <span style="color: #171616;"> @Html.DisplayFor(modelItem => item.City) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-user-circle mr-2 warshaIcon"></i><span>Name :</span>
+                        <span style="color: #171616;">@Html.DisplayFor(modelItem => item.Name) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-map-marker mr-2 warshaIcon "></i><span>Address :</span>
+                        <span style="color: #171616;">
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-phone mr-2 warshaIcon"></i><span>Phone :</span>
+                        <span style="color: #171616; ">@Html.DisplayFor(modelItem => item.User.PhoneNumber) </span>
+                    </p>
+                    <p>
+                        <i class="fa fa-percent mr-2 warshaIcon"></i><span>Rate :</span>
+                        <span style="color: #171616;">
+                            @Html.DisplayFor(modelItem => item.Rate)
+                        </span>
+                    </p>
+
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container-fluid">
+        <div class="row d-md-flex justify-content-center p-5">
+            <h2 class="pb-5"> Service & price </h2>
+
+
+            <div id="demo" class="carousel slide col-xl-12 text-center">
+
+                <!-- Indicators -->
+
+                <ul class="carousel-indicators" id="serviceList">
+                    <li data-target="#demo" data-slide-to="0" class="active Warshacircle"></li>
+                    <li data-target="#demo" data-slide-to="1" class="Warshacircle">
+                    </li>
+                    <li data-target="#demo" data-slide-to="2" class="Warshacircle"></li>
+
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner text-center warshaSlideShow " id="service_price">
+                    @foreach (Service item in Model.warshaservices)
+                    {
+                        @if (ViewBag.servcount % 3 == 0)
+                        {
+                            @if (ViewBag.servcount == 0)
+                            {
+                                @:<div class="carousel-item active WarshaCurosal">
+                                }
+                                else
+                                {
+                                    @:<div class="carousel-item  WarshaCurosal">
+                                    }
+                            @:<div class="card-deck ">
+                            }
+
+
+                        <div class="card cardService">
+
+                            <div class="card-body text-center">
+                                <span class="serviceName">@item.Title</span><br>
+                                <span class="price"><sup>$</sup> <span class="number">@item.Price</span></span><br>
+                                <img src="@item.Image"
+                                     class="img-thumbnail priceImage">
+                                <br><br>
+                                @*<a href="update.html">
+                                        <button class="btn btn-secondary AddToCard row"
+                                                data-target="#myModals" data-toggle="modal">
+                                            Edit
+                                            Service
+                                        </button>
+                                    </a>*@
+
+                                <br>
+
+                            </div>
+                        </div>
+                        ViewBag.servcount++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</section>
+<br />
+<br />
+<br />
+@*<partial name="~/Views/WorkShops/CreateService.cshtml" />*@
+@*<section class="review warshaimg" style="background-image: url(/imgs/wallpaper.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row d-md-flex justify-content-end">
+                <div class="col-md-12 col-lg-6 p-3 py-5 pl-lg-5">
+                    <div class="WarshaTab">
+                            <button class="tablinks" onclick="openCity(event, 'NotNew')">NotNew</button>
+                            <button class="tablinks" onclick="openCity(event, 'NeW')">NeW</button>
+                        </div>
+                    <h2>You Can Add New Service</h2>
+                    <br>
+                    @foreach (Service item in Model.createser)
+                    {
+
+
+                    <form asp-action="CreateService" id="NotNew" class="tabcontent" method="post">
+                            <div class="row">
+                                <div class="col-sm-4  ">
+                                    <label asp-for="@item.Title" class="control-label"></label>
+
+                                </div>
+                                <div class="col-sm-8 ">
+                                    <select asp-for="@item.Title" class="form-control" asp-items="ViewBag.WorkShopService"></select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-4 ">
+                                    <label asp-for="@item.Price" class="control-label"></label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input asp-for="@item.Price" class="form-control" placeholder="price in $ .. " />
+                                    <span asp-validation-for="@item.Price" class="text-dark"></span>
+                                </div>
+
+
+                            </div>
+                            <br>
+
+
+
+                            <br>
+
+                            <input type="submit" value="AddServices" class="btn btn-secondary btn-block" />
+
+
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </section>*@
+<section class="review warshaimg" style="background-image: url(/imgs/wallpaper.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        @*<form >*@
+        <div class="row d-md-flex justify-content-end">
+            <div class="col-md-12 col-lg-6 p-3 py-5 pl-lg-5">
+                <span>Help us to improve our Services</span>
+                <h2 class="mb-4">Write Review</h2>
+                <div class="rating-wrap ">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="yourComment">Rate US</div>
+                        </div>
+                        @*<input asp-for="Rate" type="hidden" id="rate" />
+                            <input asp-for="Date" type="hidden" id="date" />*@
+
+
+                        <div class="col-sm-6">
+                            <div class="center">
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" class="star" name="rating" value="5" /><label for="star5" class="full" title="Awesome"></label>
+                                    <input type="radio" id="star4.5" class="star" name="rating" value="4.5" /><label for="star4.5" class="half"></label>
+                                    <input type="radio" id="star4" class="star" name="rating" value="4" /><label for="star4" class="full"></label>
+                                    <input type="radio" id="star3.5" class="star" name="rating" value="3.5" /><label for="star3.5" class="half"></label>
+                                    <input type="radio" id="star3" class="star" name="rating" value="3" /><label for="star3" class="full"></label>
+                                    <input type="radio" id="star2.5" class="star" name="rating" value="2.5" /><label for="star2.5" class="half"></label>
+                                    <input type="radio" id="star2" class="star" name="rating" value="2" /><label for="star2" class="full"></label>
+                                    <input type="radio" id="star1.5" class="star" name="rating" value="1.5" /><label for="star1.5" class="half"></label>
+                                    <input type="radio" id="star1" class="star" name="rating" value="1" /><label for="star1" class="full"></label>
+                                    <input type="radio" id="star0.5" class="star" name="rating" value="0.5" /><label for="star0.5" class="half"></label>
+                                </fieldset>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <input id="txtArea" placeholder="Write your Review" />
+
+                <br>
+                <br>
+                <input type="submit" onclick="post()" class="btn btn-secondary btn-block " data-toggle="modal" data-target="#myModal"
+                       value="Submit Your Review" />
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title warshaModalName">Warsha</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p id="Thanks"></p>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @*</form>*@
+    </div>
+
+</section>
+
+<section class="clientFeedback">
+    <div class="container-fluid">
+        <div class="row d-md-flex  p-5">
+            <h2 class="pb-5 feedback"> Clients & Feedbacks </h2>
+
+
+            <div id="demo2" class="carousel slide col-xl-12 text-center">
+                <!-- commentlist for create li in js -->
+                <ul class="carousel-indicators" id="commentsList">
+                    <li data-target="#demo2" data-slide-to="0" class="active Warshacircle"></li>
+                    <li data-target="#demo2" data-slide-to="1" class="Warshacircle">
+                    </li>
+                    <li data-target="#demo2" data-slide-to="2" class="Warshacircle"></li>
+
+                </ul>
+                <div class="carousel-inner text-center warshaComments warshaSlideShow" id="inp">
+                    @foreach (WorkshopRate item in Model.WarshaRate)
+                    {
+                        @if (ViewBag.itemcount % 3 == 0)
+                        {
+                            @if (ViewBag.itemcount == 0)
+                             {
+                                @:<div class="carousel-item active WarshaCurosal">
+                             }
+                             else
+                             {
+                                    @:<div class="carousel-item  WarshaCurosal">
+                              }
+                            @:<div class="card-deck ">
+                            }
+                        <div class="card border p-3 clientFeedbackCard ">
+                            <div class="commentIconBackground">
+                                <span class="fa fa-quote-left commentIcon"></span>
+                            </div>
+
+                            <div class="row" style="display: flex;">
+                                @{ if (item.UserProfile.Image == null)
+                                    {
+                                        <img src="~/imgs/person.png" class=" mt-3 ml-3 rounded-circle clientImage" />
+                                    }
+                                    else
+                                    {
+
+                                        <img src=" @item.UserProfile.Image"
+                                             class=" mt-3 ml-3 rounded-circle clientImage">
+                                    }
+                                }
+                                <div class="media-body pl-3 mt-3 userInfo">
+
+                                    <h5 class="userName">@Html.DisplayFor(modelItem => item.UserProfile.User.UserName) </h5>
+                                    <p class="date">@Html.DisplayFor(modelItem => item.Date)</p>
+                                </div>
+                            </div>
+
+                            <p class="pl-2 pt-4 userComment">
+                                @Html.DisplayFor(modelItem => item.Review)
+                            </p>
+                            <p style="text-align:right; margin-right:50px;font-size:larger">Rate : <span style="color: #2748BA">@item.Rate / 5</span></p>
+                        </div>
+                        ++ViewBag.itemcount;
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/script.js"></script>
+}

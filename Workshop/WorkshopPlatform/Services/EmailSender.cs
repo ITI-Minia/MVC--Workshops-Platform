@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -22,14 +23,14 @@ namespace WorkshopPlatform.Services
             return Execute(subject, message, email);
         }
 
-        public Task Execute(string subject, string message, string email)
+        public Task Execute(string subject, string link, string email)
         {
             MailMessage mailMessage = new()
             {
                 From = new MailAddress(Options.GmailUser),
                 Subject = subject,
                 IsBodyHtml = true,
-                Body = message
+                Body = link
             };
 
             mailMessage.To.Add(new MailAddress(email));

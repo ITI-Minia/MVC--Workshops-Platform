@@ -7,6 +7,7 @@
         background-color: $dark;
         background-size: cover;
     }
+
     &::after {
         content: "";
         position: absolute;
@@ -19,40 +20,48 @@
         right: 0;
         z-index: -1;
     }
+
     .header--border {
         width: 4rem;
         margin: 0px;
         border-bottom: 2px solid $gray-200;
         border-top: 0;
     }
+
     @media (min-width: 992px) {
         .right--side {
             border-radius: 0 0.4rem 0.4rem 0;
         }
     }
+
     @media (min-width: 576px) and (max-width:991) {
         .right--side {
             border-radius: 0.4rem;
         }
     }
+
     @media (max-width: 575.98px) {
         .right--side {
             border-radius: 0;
         }
+
         container {
             width: 70%;
             margin: auto;
         }
     }
+
     .content {
         a.main--link:hover {
             text-decoration: none;
         }
     }
+
     .signup--form {
         td {
             position: relative;
         }
+
         i,
         .error--icon {
             color: $primary;
@@ -60,18 +69,22 @@
             bottom: 1.6rem;
             font-size: 16px;
         }
+
         .error--icon {
             display: none;
             color: $danger;
             padding-top: 10px;
             margin-left: -20px;
         }
+
         .error--icon.field-validation-error {
             display: inline;
         }
+
         .col-sm-6 input.delete--padding {
             padding-left: 0rem;
         }
+
         input {
             & {
                 display: inline-block;
@@ -86,9 +99,11 @@
                 color: $dark;
                 font-size: 18px;
             }
+
             &:active {
                 border-bottom: 1rem solid $danger;
             }
+
             &:focus {
                 border-bottom: 1px solid;
                 border-image-slice: 1;
@@ -96,6 +111,7 @@
                 padding-left: 0.5rem;
                 animation: moveGradient 3s ease alternate infinite;
             }
+
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
@@ -103,34 +119,42 @@
                 -webkit-box-shadow: 0 0 0 1.8rem $light inset !important;
                 box-shadow: 0 0 0 1.8rem $light inset !important;
             }
+
             @keyframes moveGradient {
                 0% {
                     background-position: 0% 50%;
                 }
+
                 50% {
                     background-position: 100% 50%;
                 }
+
                 100% {
                     background-position: 0% 50%;
                 }
             }
+
             &.input-validation-error {
                 border-color: $danger;
             }
         }
+
         .btn-primary {
             color: $text-light;
             font-family: $header-font-stack;
             letter-spacing: 1px;
         }
     }
+
     .left--side {
         background-color: hsla(0, 2%, 9%, 0.827);
         border-radius: 0.4rem 0 0 0.4rem;
+
         .carousel-indicators {
             bottom: 10px;
             opacity: 0.7;
         }
+
         .carousel-indicators i {
             width: 15px;
             height: 25px;
@@ -138,39 +162,57 @@
             color: $text-light;
             font-size: 13px;
         }
+
         .carousel-indicators .active {
             background-color: transparent;
             color: $primary;
         }
+
         .carousel-caption {
             color: $text-light;
             text-align: center;
         }
+
         .carousel-caption span {
             font-family: $header-font-stack;
             color: $primary;
             font-size: 1.3em;
         }
+
         .carousel-item {
             padding: 1rem;
             margin-bottom: 2rem;
         }
+
         img {
             height: 470px;
             margin-bottom: 1.5rem;
         }
     }
-    .alert {
+
+    .alert-dismissible {
         position: absolute;
         z-index: 1;
-        top: 2rem;
+        width: 100%;
+        top: 0rem;
         padding: 0.5rem 2.4rem;
-        background-color: $danger;
+        background-color: hsla(354, 70%, 54%, 0.671);
         color: white;
         border: none;
         border-radius: 0;
-        box-shadow: 1px 1px 4px black;
+        text-align: center;
     }
+
+    .alert-dismissible .close {
+        position: absolute;
+        right: initial;
+        padding: 0;
+    }
+
+    .alert-dismissible .close:hover {
+        color: $light
+    }
+
     .btn-icon {
         border-radius: 60px;
         width: 40px;
