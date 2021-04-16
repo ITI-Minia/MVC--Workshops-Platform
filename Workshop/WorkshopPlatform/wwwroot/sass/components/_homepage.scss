@@ -16,15 +16,18 @@ html {
         background-color: $secondary;
         z-index: 1001;
         height: 73px;
+
         .header--logo {
             flex: 2;
             display: flex;
             align-items: center;
+
             h1 {
                 padding: 3px 10px;
                 color: white;
             }
         }
+
         .header--menu--items {
             list-style: none;
             display: flex;
@@ -33,53 +36,65 @@ html {
             color: white;
             align-items: center;
             margin-bottom: 0;
+
             .header--menu--item {
                 font-size: large;
                 font-weight: bold;
+
                 a {
                     color: white;
                     text-decoration: none;
+
                     &:hover {
                         color: $primary;
                     }
                 }
             }
         }
+
         .header--signin {
             align-self: center;
             font-size: large;
             font-weight: bold;
             margin-right: 15px;
+
             a {
                 color: white;
                 text-decoration: none;
+
                 &:hover {
                     color: $primary;
                     text-decoration: underline;
+
                     i {
                         color: $primary;
                     }
                 }
+
                 i {
                     margin-right: 7px;
                     color: white;
+
                     &:hover {
                         color: $primary;
                     }
                 }
             }
         }
+
         .collaps {
             align-self: center;
             margin-right: 15px;
             position: relative;
             display: none;
+
             .collaps-icon {
                 background: white;
                 width: 35px;
                 height: 5px;
                 margin-bottom: 7px;
             }
+
             .collaps--menu {
                 position: absolute;
                 top: 100%;
@@ -87,16 +102,20 @@ html {
                 transition: 1s all;
                 transform: translateX(120px);
                 z-index: 1001;
+
                 .collaps--items {
                     list-style: none;
                     text-align: center;
                     padding: 25px;
+
                     .collaps--item {
                         padding: 25px;
                         white-space: nowrap;
+
                         a {
                             font-size: 2rem;
                             color: white;
+
                             &:hover {
                                 color: $primary;
                             }
@@ -104,6 +123,7 @@ html {
                     }
                 }
             }
+
             .appered {
                 transform: translateX(-120px);
             }
@@ -117,6 +137,7 @@ html {
             .disapperd {
                 display: none;
             }
+
             .collaps {
                 display: block;
             }
@@ -126,9 +147,11 @@ html {
 
 .slid {
     height: 100vh;
+
     .slid--node {
         padding: 15px;
         transform: translate(10%, 100%);
+
         .node--slider {
             background: $primary;
             width: 12px;
@@ -136,18 +159,21 @@ html {
             border-radius: 50%;
             margin: 12px;
         }
+
         .active {
             border: 3px solid #f4f4f4;
         }
     }
+
     .main {
-        background: url(../images/sild1.jpg) no-repeat center;
+        background: url(../imgs/sild1.jpg) no-repeat center;
         position: relative;
         height: 95vh;
         display: flex;
         background-size: cover;
         align-items: center;
         flex-wrap: wrap;
+
         &::before {
             content: "";
             position: absolute;
@@ -155,25 +181,29 @@ html {
             height: 100%;
             background-image: linear-gradient(to right, #000, rgba(255, 255, 255, 0.315));
         }
+
         .main-3 {
             position: absolute;
             z-index: 1000;
             width: 50%;
             margin-left: 100px;
+
             h1 {
                 font-weight: normal;
                 color: white;
-                font-size: 4rem;
+                font-size: 3rem;
                 font-weight: bold;
             }
         }
     }
+
     .main-two {
-        background: url(../images/slide1.jpg) no-repeat center;
+        background: url(../imgs/slide1.jpg) no-repeat center;
         background-size: cover;
     }
+
     .main-one {
-        background: url(../images/wensh.jpg) no-repeat center;
+        background: url(../imgs/slide2.jpg) no-repeat center;
         background-size: cover;
     }
 }
@@ -185,6 +215,7 @@ html {
         height: 100vh;
         width: 100vw;
         display: none;
+
         .signup-emergancy {
             background-color: #f4f4f4a8;
             height: 100vh;
@@ -192,9 +223,11 @@ html {
             display: flex;
             justify-content: center;
             align-items: center;
+
             .d-grid {
                 display: grid;
                 overflow: visible;
+
                 #cross {
                     color: white;
                     font-size: 3rem;
@@ -203,8 +236,10 @@ html {
                     position: absolute;
                     z-index: 900;
                 }
+
                 .left-container {
                     position: relative;
+
                     .form-header {
                         display: inline-block;
                         position: relative;
@@ -222,6 +257,7 @@ html {
                         align-self: center;
                         z-index: 1;
                     }
+
                     .signup-form {
                         position: relative;
                         display: block;
@@ -232,21 +268,25 @@ html {
                         background-color: #3a3535;
                         box-shadow: 1px 1px 5px hsla(0, 0%, 26%, 0.651);
                         border-radius: 7px;
+
                         input:focus,
                         textarea:focus,
                         select:focus,
                         button:focus {
                             outline: none;
                         }
+
                         i {
                             position: absolute;
                         }
+
                         .icon {
                             padding-top: 10px;
                             min-width: 40px;
                             color: #f4f4f4;
                             font-size: 2rem;
                         }
+
                         input[type="text"],
                         input[type="tel"],
                         input[type="checkbox "] {
@@ -263,11 +303,13 @@ html {
                             color: white;
                             font-size: 18px;
                         }
+
                         input[type="text"]:active,
                         input[type="tel"]:active,
                         input[type="select"] :active {
                             border-bottom: 1px solid #8c0909;
                         }
+
                         input[type="email"]:focus,
                         input[type="password"]:focus,
                         input[type="text"]:focus,
@@ -275,6 +317,7 @@ html {
                             border-bottom: 1px solid #f4f4f4;
                             padding-left: 7px;
                         }
+
                         button {
                             background-color: #d89216;
                             margin-left: 35px;
@@ -287,19 +330,23 @@ html {
                             width: 150px;
                             float: right;
                             margin-right: 35px;
+
                             &:hover {
                                 background-color: #faac24
                             }
                         }
+
                         .half {
                             input {
                                 margin-right: 40px;
                                 padding-left: 7px;
                                 width: 210px;
                             }
+
                             .box {
                                 display: inline;
                                 font: 400 13.3333px Arial;
+
                                 &::before {
                                     font-family: FontAwesome;
                                     position: absolute;
@@ -312,6 +359,7 @@ html {
                                     line-height: 45px;
                                     pointer-events: none;
                                 }
+
                                 select {
                                     background-color: #d89216;
                                     color: white;
@@ -326,6 +374,7 @@ html {
                                     margin-bottom: 20px;
                                     margin-right: 20px;
                                     text-align: center;
+
                                     option {
                                         padding: 30px;
                                     }
@@ -337,41 +386,51 @@ html {
             }
         }
     }
+
     header {
-        font-size: 2.5rem;
+        font-size: 2rem;
         text-align: center;
+
         h1 {
             margin: 10px;
-            font-size: 6rem;
+            font-size: 3rem;
             font-weight: bold;
         }
     }
+
     .service--type {
         margin-top: 30px;
+
         .service--emergancy {
             margin-top: 30px;
+
             img {
                 object-fit: cover;
                 height: 60vh;
                 width: 100%;
             }
+
             .service--emergancy--content {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: 30px;
                 margin-left: 20px;
-                font-size: 2rem;
+                font-size: 1.5rem;
+
                 .service--emergancy--items {
                     padding: 20px;
                     list-style: none;
                     white-space: nowrap;
+
                     .service--emergancy--item {
                         padding: 10px;
+
                         i {
                             margin-right: 7px;
                         }
                     }
+
                     .emergancy--btn {
                         padding: 15px 20px;
                         background-color: $primary;
@@ -385,30 +444,37 @@ html {
                 }
             }
         }
+
         .requist--repair {
             margin-top: 30px;
+
             img {
                 object-fit: scale-down;
                 height: 60vh;
                 width: 100%;
             }
+
             .service--emergancy--content {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-top: 30px;
                 margin-left: 20px;
-                font-size: 2rem;
+                font-size: 1.5rem;
+
                 .service--emergancy--items {
                     padding: 20px;
                     list-style: none;
                     white-space: nowrap;
+
                     .service--emergancy--item {
                         padding: 10px;
+
                         i {
                             margin-right: 7px;
                         }
                     }
+
                     .emergancy--btn {
                         padding: 15px 20px;
                         background-color: $primary;
@@ -434,6 +500,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+
     &:before {
         content: "";
         position: absolute;
@@ -444,6 +511,7 @@ html {
         opacity: 0.7;
         background: #000;
     }
+
     h2.heading {
         color: #fff;
         font-size: 40px;
@@ -454,15 +522,18 @@ html {
         text-align: center;
         margin-bottom: 1.5rem;
     }
+
     h3 {
         color: #ccc;
         width: 80%;
         margin: auto;
     }
+
     .padding {
         background: rgba(0, 0, 0, 0.527);
         margin: 2em auto auto;
         padding: 2.5em;
+
         .btn {
             color: #fff;
             background-color: $primary;
@@ -477,33 +548,40 @@ html {
             transition: 0.5s all;
             margin-bottom: 15px;
         }
+
         span {
             font-size: 13px;
             color: white;
+
             a {
                 color: rgb(22, 22, 155);
             }
         }
+
         h2 {
             color: #fff;
             letter-spacing: 2px;
             font-weight: 500;
         }
+
         .form-inputs {
             i {
                 color: $primary;
                 bottom: 4rem;
                 font-size: 16px;
             }
+
             i.error--icon {
                 display: none;
                 color: $danger;
                 padding-top: 10px;
                 margin-left: -20px;
             }
+
             .wrong--input {
                 font-size: 60px;
             }
+
             textarea {
                 outline: none;
                 font-size: 14px;
@@ -516,6 +594,7 @@ html {
                 box-sizing: border-box;
                 margin-bottom: 15px;
             }
+
             .form-input {
                 outline: none;
                 font-size: 17px;
@@ -531,93 +610,91 @@ html {
     }
 }
 
+
 .toprated {
-    margin-top: 5px;
+    font-size: 2rem;
     text-align: center;
-    width: 100%;
-    height: 90vh;
-    position: relative;
-    background: url(../images/slide1.jpg) no-repeat center;
-    background-size: cover;
-    z-index: 1;
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background: linear-gradient(to right, #000, rgba(255, 255, 255, 0.315));
-        background-size: cover;
+
+    h1 {
+        margin: 20px;
+        font-size: 3rem;
+        font-weight: bold;
     }
-    header {
-        color: #f4f4f4;
+
+
+    .card {
+        margin-top: 20px;
+        margin-right: 20px;
+        text-align: center;
+        width: auto;
+        border: 1px black solid;
+        border-radius: 7px;
+        background-color: #f4f4f4;
+
+        .card--img {
+            margin: 10px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 135px;
+                height: 135px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
         h1 {
             margin: 10px;
-            font-size: 6rem;
+            font-size: 2rem;
             font-weight: bold;
         }
-    }
-    .card--slider {
-        padding: 0 30px;
-        .card {
-            margin-top: 20px;
-            margin-right: 20px;
-            text-align: center;
-            width: auto;
-            border: 2px black solid;
-            border-radius: 7px;
-            background-color: #f4f4f4;
-            .card--img {
-                margin: 10px auto;
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
-                background-color: white;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                img {
-                    width: 135px;
-                    height: 135px;
-                    border-radius: 50%;
-                    object-fit: cover;
+
+        .card--info {
+            list-style: none;
+            padding-left: 0;
+
+            .card--info--item {
+                padding: 6px;
+                font-size: 1.5rem;
+
+                i {
+                    margin-right: 15px;
+                    font-size: 1rem;
+                    color: #e2ad21;
                 }
-            }
-            h1 {
-                margin: 10px;
-                font-size: 3rem;
-                font-weight: bold;
-            }
-            .card--info {
-                list-style: none;
-                padding-left: 0;
-                .card--info--item {
-                    padding: 6px;
-                    font-size: 2rem;
-                    i {
-                        margin-right: 15px;
-                        font-size: 1rem;
-                        color: #8c0909;
-                    }
-                    .checked {
-                        color: orange;
-                    }
+
+                .checked {
+                    color: orange;
                 }
-            }
-            .btn {
-                background-color: #d89216;
-                margin: 20px;
-                color: white;
-                font-size: 18px;
-                padding: 12px 15px;
-                font-weight: bold;
-                text-transform: uppercase;
-                border: none;
-                border-radius: 40px;
             }
         }
+
+        .btn {
+            background-color: #e2ad21;
+            color: white;
+            font-size: 20px;
+            width: 440px;
+            height: 50px;
+            border: none;
+            border-radius: 40px;
+            width: 150px;
+
+            &:hover {
+                background-color: #d89216;
+            }
+
+            cursor: pointer;
+        }
+    }
+
+    .carousel-indicators {
+        display: none;
     }
 }
 
@@ -627,49 +704,61 @@ html {
         background-color: #171616;
         padding: 20px;
         margin-top: 10px;
+
         a {
             color: white;
             text-decoration: none;
             font-size: 2rem;
+
             &:hover {
                 color: $primary;
                 text-decoration: underline;
             }
         }
+
         .footer--logo--icon {
             display: flex;
             justify-content: space-between;
             padding: 15px 0;
             border-bottom: 2px solid white;
             margin-top: 20px;
+
             h1 {
                 color: white;
                 font-size: 3rem;
             }
+
             .footer--icons {
                 color: white;
                 align-self: flex-end;
+
                 a {
                     font-size: 3rem;
+
                     i {
                         margin-right: 10px;
                     }
                 }
             }
         }
+
         .footer--links {
             padding: 15px 0;
             display: flex;
             justify-content: space-between;
             border-bottom: 3px solid white;
+
             .footer--frist--links {
                 .footer--frist--links--items {
                     padding-left: 0;
+
                     .footer--frist--links--item {
                         padding: 10px 0;
+
                         .sub {
                             margin-top: 10px;
                         }
+
                         .sub--link {
                             a {
                                 color: rgba(128, 128, 128, 0.795);
@@ -678,48 +767,59 @@ html {
                     }
                 }
             }
+
             .footer--second--links {
                 padding: 0 100px;
+
                 .footer--frist--links--items {
                     padding-left: 0;
+
                     .footer--frist--links--item {
                         padding: 10px 0;
                     }
                 }
             }
         }
+
         .footer--contact {
             display: flex;
             justify-content: space-around;
             padding-top: 20px;
         }
+
         i {
             font-size: 2rem;
             margin-right: 7px;
         }
+
         .footer--form {
             padding: 20px;
             border: 3px solid white;
             border-radius: 10px;
             margin-top: 20px;
+
             h1 {
                 color: white;
                 padding: 0 10px;
                 font-size: 4rem;
             }
+
             .input-icons {
                 width: 100%;
                 padding: 10px 0;
                 font-size: 18px;
                 position: relative;
+
                 i {
                     position: absolute;
                     color: white;
                 }
+
                 .icon {
                     padding: 17px 10px;
                     min-width: 40px
                 }
+
                 .input-field {
                     width: 100%;
                     padding: 15px 35px;
@@ -729,15 +829,18 @@ html {
                 }
             }
         }
+
         .footer--btn {
             background: $secondary;
             color: white;
             border-radius: 0px;
             padding: 10px 50px;
             font-size: 1.75rem;
+
             &:hover {
                 color: $primary;
             }
+
             i {
                 margin-left: 10px;
             }

@@ -29,10 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\sass\pages\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="wwwroot\Templates\EmailTemplate\RegisterConfirmationEmail.html" />
     <None Include="wwwroot\Templates\EmailTemplate\ResetPasswordEmail.html" />

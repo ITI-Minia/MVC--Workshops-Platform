@@ -1,0 +1,151 @@
+﻿@model Workshop.Models.UserProfile
+
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    @{ if (Model.Image == null)
+                        {
+                            <img src="~/imgs/profile.png"
+                                 alt="" />
+                        }
+                        else
+                        {
+                            <img src="@Model.Image" alt="" />
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h3>@Model.FirstName @Model.LastName</h3>
+                    <h5>@Model.User.UserName</h5>
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit"
+                       class="profile-edit-btn"
+                       name="btnAddMore"
+                       value="Edit Profile" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           id="home-tab"
+                           data-toggle="tab"
+                           href="#home"
+                           role="tab"
+                           aria-controls="home"
+                           aria-selected="true">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           id="profile-tab"
+                           data-toggle="tab"
+                           href="#profile"
+                           role="tab"
+                           aria-controls="profile"
+                           aria-selected="false">Preferences</a>
+                    </li>
+                </ul>
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active"
+                         id="home"
+                         role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Frist name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p> @Model.FirstName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Last name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.LastName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.User.Email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Phone</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.User.PhoneNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show active"
+                         id="profile"
+                         role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Car</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Car Model</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.CarModel</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Car Brand</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.CarBrand</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label>Adress</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Government</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.Government</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>City</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>@Model.City</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
