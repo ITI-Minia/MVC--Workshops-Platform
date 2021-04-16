@@ -1,0 +1,37 @@
+.register-confirm-page {
+    & {
+        width: 100%;
+    }
+    #email-img {
+        width: 500px;
+    }
+    #verified-img {
+        width: 500px;
+    }
+    #password-img {
+        height: 200px;
+    }
+    .small-text {
+        font-size: 14px;
+    }
+    .alert-dismissible {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        top: 0rem;
+        padding: 0.5rem 2.4rem;
+        background-color: hsla(36, 77%, 51%, 0.774);
+        color: white;
+        border: none;
+        border-radius: 0;
+        text-align: center;
+    }
+    .alert-dismissible .close {
+        position: absolute;
+        right: initial;
+        padding: 0;
+    }
+    .alert-dismissible .close:hover {
+        color: $light
+    }
+}

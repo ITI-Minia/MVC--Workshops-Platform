@@ -1,4 +1,14 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿var home = document.getElementById("home-tab");
+var profile = document.getElementById("profile-tab");
+profile.addEventListener("click", function () {
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("home").style.display = "none";
+    profile.style.borderBottom = "2px solid #e2ad21 ";
+    home.style.borderBottom = "none";
+});
+home.addEventListener("click", function () {
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("home").style.display = "Block";
+    home.style.borderBottom = "2px solid #e2ad21 ";
+    profile.style.borderBottom = "none";
+});

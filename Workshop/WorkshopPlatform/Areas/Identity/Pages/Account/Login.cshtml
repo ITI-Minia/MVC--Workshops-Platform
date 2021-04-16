@@ -2,84 +2,154 @@
 @model LoginModel
 
 @{
+    Layout = null;
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - WorkshopPlatform</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
+
+<body class="login--page">
+
+    @if (TempData["invalid"] != null && (bool)TempData["invalid"] == true)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alert-error">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fa fa-exclamation-circle mr-3"></i>
+                        <div asp-validation-summary="All" id="error" class="invalid-login"></div>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+            </div>
+        </div>
+    }
+
+    <div class="container justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-9 col-lg-7 login--header">
+                @*<h2> Welcome Back </h2>*@
+            </div>
+            <div class="col-11 col-md-9 col-lg-7">
+                <div class="card">
+                    <div class="card-body pl-5 pr-5 pl-sm-0 pr-sm-0">
+                        <form id="account" method="post" asp-route-returnUrl="@Model.ReturnUrl" autocomplete="off">
+                            @*<div class="row justify-content-center">
+                                    <div class="col-sm-9 p-0" id="error">
+                                        <div asp-validation-summary="All" class="invalid-login mb-3 row"></div>
+                                    </div>
+                                </div>*@
+                            <div class="form-group login--form--group row justify-content-center">
+                                <div class="col-sm-9 p-0">
+                                    <input asp-for="Input.Useranme" type="text" class="input" id="email" required>
+                                    <span class="focus-border"></span>
+                                    <label class="pl-2" for="email">email/username</label>
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <div class="col-sm-9 p-0">
+                                    <input asp-for="Input.Password" type="password" class="input" id="password" required>
+                                    <span class="focus-border"></span>
+                                    <label class="pl-2" for="password">password</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-check">
+                                <input asp-for="Input.RememberMe" type="checkbox" class="form-check-input" id="remeber-me">
+                                <label class="form-check-label" for="remeber-me"><small>Remeber me</small></label>
+                            </div>
+                            <div class="row justify-content-center mb-4 mt-4">
+                                <button id="login" type="submit" class="btn btn-primary col-sm-9">Log in</button>
+                            </div>
+
+                            <div class="login--footer">
+                                <span>
+                                    Don't have account? <br class="d-md-none">
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">
+                                        Sign up Now!
+                                    </a>
+                                </span>
+                                <p class="mt-2">
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+                            </div>
+                        </form>
+
+                        <hr />
+                        <div class="row justify-content-center">
+                            <section>
+                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <div>
+                                        <small class="text-muted">Login using:</small>
+                                        <button type="submit" class="btn btn-secondary btn-icon" name="provider" value="@Model.ExternalLogins[1].Name" title="Log in using your @Model.ExternalLogins[1].DisplayName account">
+                                            <span class="fab fa-facebook-f"></span>
+                                        </button>
+                                        <button type="submit" class="btn btn-danger btn-icon" name="provider" value="@Model.ExternalLogins[0].Name" title="Log in using your @Model.ExternalLogins[0].DisplayName account">
+                                            <span class="fab fa-google"></span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </section>
                         </div>
-                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+
+        $(function () {
+
+            hideErrorAlert();
+
+            for (let label of $('.input')) {
+                if (label.value != "") {
+                    $(label).siblings('label').addClass("t");
                 }
             }
-        </section>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+        });
+
+        $('.input').blur(function () {
+            if ($(this).val() == "") {
+                $(this).siblings('label').removeClass("t");
+            } else {
+                $(this).siblings('label').addClass("t");
+            }
+        });
+
+        function hideErrorAlert() {
+            let promise1 = (
+                new Promise((resolve, reject) => {
+                    setTimeout(() => resolve("Welcome !!"), 4000);
+                }))
+                .then(() => $('#alert-error').fadeOut());
+        }
+    </script>
+</body>
+</html>
+@*<p>
+        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+    </p>*@

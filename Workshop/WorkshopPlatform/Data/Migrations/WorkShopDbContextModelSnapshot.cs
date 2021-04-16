@@ -83,6 +83,7 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -119,10 +120,14 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -131,6 +136,9 @@ namespace WorkshopPlatform.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers");
                 });
@@ -162,12 +170,10 @@ namespace WorkshopPlatform.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -204,12 +210,10 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -228,9 +232,6 @@ namespace WorkshopPlatform.Migrations
 
                     b.Property<bool>("Confirmed")
                         .HasColumnType("bit");
-
-                    b.Property<int>("ConfirmedEntityId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
@@ -253,6 +254,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ConfirmationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -274,6 +278,9 @@ namespace WorkshopPlatform.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConfirmationId")
+                        .IsUnique();
+
                     b.HasIndex("WorkShopId");
 
                     b.ToTable("Services");
@@ -293,14 +300,18 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Government")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
@@ -330,6 +341,9 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ConfirmationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Government")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -354,6 +368,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConfirmationId")
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -464,11 +481,19 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.Service", b =>
                 {
+                    b.HasOne("Workshop.Models.Confirmations", "Confirmation")
+                        .WithOne("Service")
+                        .HasForeignKey("Workshop.Models.Service", "ConfirmationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Workshop.Models.WorkShop", "WorkShop")
                         .WithMany("Services")
                         .HasForeignKey("WorkShopId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Confirmation");
 
                     b.Navigation("WorkShop");
                 });
@@ -484,9 +509,17 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.WorkShop", b =>
                 {
+                    b.HasOne("Workshop.Models.Confirmations", "Confirmation")
+                        .WithOne("WorkShop")
+                        .HasForeignKey("Workshop.Models.WorkShop", "ConfirmationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Confirmation");
 
                     b.Navigation("User");
                 });
@@ -506,6 +539,13 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired();
 
                     b.Navigation("UserProfile");
+
+                    b.Navigation("WorkShop");
+                });
+
+            modelBuilder.Entity("Workshop.Models.Confirmations", b =>
+                {
+                    b.Navigation("Service");
 
                     b.Navigation("WorkShop");
                 });

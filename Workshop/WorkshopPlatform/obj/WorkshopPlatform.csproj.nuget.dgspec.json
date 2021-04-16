@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
+    "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
   },
   "projects": {
-    "F:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
+    "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "projectUniqueName": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
         "projectName": "WorkshopPlatform",
-        "projectPath": "F:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
-        "packagesPath": "C:\\Users\\Yomna\\.nuget\\packages\\",
-        "outputPath": "F:\\iti\\MINIA\\MVC--Workshops-Platform-main\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
+        "projectPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "packagesPath": "C:\\Users\\Elamen Soft\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Yomna\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Elamen Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +40,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[5.0.5, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.4, )"
@@ -67,6 +71,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.0.3, )"
             }
           },
           "imports": [
@@ -87,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

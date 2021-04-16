@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Workshop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace WorkshopPlatform.Models
 {
@@ -46,6 +47,15 @@ namespace WorkshopPlatform.Models
                 e.HasIndex(p => p.UserId).IsUnique();
 
             });
+
+            modelBuilder.Entity<IdentityUser>(e =>
+            {
+                e.HasIndex(p => p.UserName).IsUnique();
+                e.Property(p => p.UserName).IsRequired();
+                e.HasIndex(p => p.Email).IsUnique();
+                e.Property(p => p.Email).IsRequired();
+            });
+
             base.OnModelCreating(modelBuilder);
         }
     }

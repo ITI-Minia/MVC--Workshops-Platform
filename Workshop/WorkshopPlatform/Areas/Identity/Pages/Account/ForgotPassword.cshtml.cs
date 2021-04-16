@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using MimeKit;
 
 namespace WorkshopPlatform.Areas.Identity.Pages.Account
 {
@@ -18,11 +21,14 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private IWebHostEnvironment _env;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender
+            , IWebHostEnvironment env)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _env = env;
         }
 
         [BindProperty]
@@ -30,8 +36,9 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Email filed is required")]
             [EmailAddress]
+            [BindProperty]
             public string Email { get; set; }
         }
 
@@ -46,20 +53,40 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please 
+                // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
                     pageHandler: null,
-                    values: new { area = "Identity", code },
+                    values: new { area = "Identity", code, email = user.Email },
                     protocol: Request.Scheme);
 
+                var pathToFile = _env.WebRootPath
+                  + Path.DirectorySeparatorChar.ToString()
+                  + "Templates"
+                  + Path.DirectorySeparatorChar.ToString()
+                  + "EmailTemplate"
+                  + Path.DirectorySeparatorChar.ToString()
+                  + "ResetPasswordEmail.html";
+
+                var builder = new BodyBuilder();
+
+                using (StreamReader SourceReader = System.IO.File.OpenText(pathToFile))
+                {
+                    builder.HtmlBody = SourceReader.ReadToEnd();
+                }
+
+                //use string.Format(format item, dynamic values as parameters) In our case, {x}
+                //values in Templates are to replace by dynamic values.
+                string messageBody = string.Format(builder.HtmlBody,
+                    HtmlEncoder.Default.Encode(callbackUrl));
+
                 await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    Input.Email, "Reset Password", messageBody);
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

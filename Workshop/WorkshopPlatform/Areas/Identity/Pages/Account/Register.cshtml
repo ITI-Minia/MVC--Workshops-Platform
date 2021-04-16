@@ -1,67 +1,211 @@
 ﻿@page
 @model RegisterModel
 @{
+    Layout = null;
     ViewData["Title"] = "Register";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<h1>@ViewData["Title"]</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - WorkshopPlatform</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to register.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
+<body class="signup--page">
+    <div class="container mt-5">
+
+        <div class="d-flex justify-content-center">
+            <div class="d-none alert alert-danger alert-dismissible" role="alert" id="alert-error">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fa fa-exclamation-circle mr-3"></i>
+                        There are items that require your attention
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-@section Scripts {
+        <div class="row">
+            <div class="col-lg-6 d-none d-lg-block left--side">
+                <div id="carousel" class="carousel slide justify-content-center" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <i class="fa fa-circle active" data-target="#carousel" data-slide-to="0"></i>
+                        <i class="fa fa-circle" data-target="#carousel" data-slide-to="1"> </i>
+                        <i class="fa fa-circle" data-target="#carousel" data-slide-to="2"></i>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div id="img-1" class="carousel-item active">
+                            <img class="" src="~/imgs/signup (1).png" alt="First slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4> Maintenance Your Car In <br> <span>Your Place</span> </h4>
+                            </div>
+                        </div>
+                        <div id="img-2" class="carousel-item">
+                            <img class="" src="~/imgs/signup (4).png" alt="Second slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4> Don’t worry we are <br> <span>Always</span> here <span>!</span> </h4>
+                            </div>
+                        </div>
+                        <div id="img-3" class="carousel-item">
+                            <img class="" src="~/imgs/signup (5).png" alt="Third slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4> <span>Find </span> All You Need</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 bg-light right--side">
+                <div class="content m-5">
+                    <a asp-page="Register" class="main--link d-block mb-4">
+                        <h1 class="h3 header">Sign Up</h1>
+                        <hr class="header--border">
+                    </a>
+                    <div>
+                        <div class="signup--form">
+                            <form id="signupForm" method="post" autocomplete="new-password" asp-route-returnUrl="@Model.ReturnUrl">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" asp-for="UsernameInput" placeholder="username" id='username' title="Enter username">
+                                        <span asp-validation-for="UsernameInput" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" asp-for="Input.FirstName" id="first-name" class="delete--padding" placeholder="First name" required>
+                                        <span asp-validation-for="Input.FirstName" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" asp-for="Input.LastName" id="last-name" class="delete--padding" placeholder="Last name" required>
+                                        <span asp-validation-for="Input.LastName" class="fa fa-times error--icon icon-half" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-envelope"></i>
+                                        <input asp-for="EmailInput" type="email" id="email" placeholder="Email" required>
+                                        <span asp-validation-for="EmailInput" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-phone"></i>
+                                        <input type="tel" asp-for="Input.Phone" id="phone" placeholder="phone number" required>
+                                        <span asp-validation-for="Input.Phone" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-lock"></i>
+                                        <input type="password" asp-for="Input.Password" id="password1" required placeholder="Enter Password">
+                                        <span asp-validation-for="Input.Password" class="fa fa-times error--icon icon-half" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" asp-for="Input.ConfirmPassword" id="password2" class="delete--padding" placeholder="Repeat Passowrd" required>
+                                        <span asp-validation-for="Input.ConfirmPassword" class="fa fa-times error--icon icon-half" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-4 mb-4">
+                                    <button type="submit" id="signup" class="btn btn-primary btn-rounded col-sm-11 btn-lg">Register</button>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="form-link">
+                                        <small class="text-muted">Already a member? <a asp-page="Login">sign in</a></small>
+                                    </div>
+                                </div>
+                            </form>
+                            <hr />
+                            <div class="row justify-content-center">
+                                <section>
+                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                        <div>
+                                            <small class="text-muted">Sign up using:</small>
+                                            <button type="submit" class="btn btn-secondary btn-icon" name="provider" value="@Model.ExternalLogins[1].Name" title="Log in using your @Model.ExternalLogins[1].DisplayName account">
+                                                <span class="fab fa-facebook-f"></span>
+                                            </button>
+                                            <button type="submit" class="btn btn-danger btn-icon" name="provider" value="@Model.ExternalLogins[0].Name" title="Log in using your @Model.ExternalLogins[0].DisplayName account">
+                                                <span class="fab fa-google"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <partial name="_ValidationScriptsPartial" />
-}
+
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        // remove icon when focus
+        $('input').focus(function () {
+            $(this).prev().fadeOut()
+        });
+
+        //get back icon and validate input when blur
+        $('input').blur(function () {
+            $(this).prev().fadeIn();
+        });
+
+        $('.error--icon').on('DOMSubtreeModified', function () {
+            if ($(this).prev().hasClass('input-validation-error') && $(this).html() != "") {
+                var inner = $(this).children('span');
+                $(this).attr('data-original-title', inner.text())
+                    .html("");
+            }
+        });
+
+        $('#signup').click(function () {
+
+            $('#signupForm input').each(function () {
+
+                if ($(this).hasClass('input-validation-error')) {
+
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 4500);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                    return;
+                }
+            })
+        });
+    </script>
+</body>
+</html>
