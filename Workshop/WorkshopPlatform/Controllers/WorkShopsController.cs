@@ -94,13 +94,13 @@ namespace WorkshopPlatform.Controllers
             {
                 var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
                 id = id.ToLower();
-                //var w = await( from w in workShopDbContext)
+               // var w = await( from w in _context.WorkShops)
                 var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(id) ||
                                                                            ws.Rate.ToString().Contains(id) ||
                                                                            ws.Address.ToLower().Contains(id) ||
                                                                            ws.City.ToLower().Contains(id) ||
                                                                            ws.Government.ToLower().Contains(id)/*||*/
-                                                                           /*ws.User.PhoneNumber.ToString().Contains(id)*/).ToListAsync();
+                                                                          /* ws.User.PhoneNumber.ToString().Contains(id)*/).ToListAsync();
                 if (workShop == null)
                 {
                     return NotFound();
