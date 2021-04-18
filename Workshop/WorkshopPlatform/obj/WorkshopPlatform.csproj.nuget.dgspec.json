@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
+    "F:\\iti\\MINIA\\mn,\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
   },
   "projects": {
-    "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
+    "F:\\iti\\MINIA\\mn,\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "projectUniqueName": "F:\\iti\\MINIA\\mn,\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
         "projectName": "WorkshopPlatform",
-        "projectPath": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
-        "packagesPath": "C:\\Users\\Mai-AbdEltwab\\.nuget\\packages\\",
-        "outputPath": "G:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
+        "projectPath": "F:\\iti\\MINIA\\mn,\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "packagesPath": "C:\\Users\\Yomna\\.nuget\\packages\\",
+        "outputPath": "F:\\iti\\MINIA\\mn,\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mai-AbdEltwab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yomna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
