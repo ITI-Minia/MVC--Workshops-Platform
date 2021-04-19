@@ -585,3 +585,4 @@ F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs

@@ -64,6 +64,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             [Required]
             [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
             public string Government { get; set; }
+            public string Image { get; set; }
+
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -77,8 +79,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             var fName = userProfile.FirstName;
             var lName = userProfile.LastName;
             var brand = userProfile.CarBrand;
-            var model = userProfile.CarModel;                    
-
+            var model = userProfile.CarModel;
+            var img = userProfile.Image;
             Username = userName;
 
             Input = new InputModel
@@ -89,7 +91,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 FirstName = fName,
                 LastName = lName,
                 CarBrand = brand,
-                CarModel=model
+                CarModel = model,
+                 Image = img,
             };
         }
 
@@ -127,7 +130,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             var lName = userprofile.LastName;
             var brand = userprofile.CarBrand;
             var model = userprofile.CarModel;
-
+            var img = userprofile.Image;
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -163,6 +166,10 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             if (Input.CarModel != model)
             {
                 userprofile.CarModel = Input.CarModel;
+            }
+            if (Input.Image != img)
+            {
+                userprofile.Image = Input.Image;
             }
             _context.SaveChanges();
             await _signInManager.RefreshSignInAsync(user);
