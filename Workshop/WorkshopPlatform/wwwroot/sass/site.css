@@ -1030,8 +1030,8 @@ html {
   font-family: Roboto, sans-serif;
   background: #fff;
   border-radius: 0.25rem;
-  -webkit-box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.1);
-          box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.1);
+  -webkit-box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.02);
+          box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.02);
   max-width: 37.5rem;
   border-radius: 1.563rem;
   position: absolute;
@@ -1123,6 +1123,7 @@ html {
   border-radius: 1.563rem;
   border: 1px solid;
   margin: -8px;
+  color: #D89216;
 }
 
 .workShops .card .rate {
