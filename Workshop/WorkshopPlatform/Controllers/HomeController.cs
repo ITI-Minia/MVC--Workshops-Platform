@@ -15,14 +15,10 @@ namespace WorkshopPlatform.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -40,6 +36,7 @@ namespace WorkshopPlatform.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
         public IActionResult TopRated()
         {
             return View();
