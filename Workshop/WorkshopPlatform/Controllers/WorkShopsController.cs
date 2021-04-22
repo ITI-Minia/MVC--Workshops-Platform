@@ -33,16 +33,83 @@ namespace WorkshopPlatform.Controllers
             return View(await workShopDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Emergacy(string City, string Government)
+        public async Task<IActionResult> Emergacy(string City, string Government , string Street)
         {
             var workShopDbContext = _context.WorkShops.Include(w => w.User);
 
-            if (Government != "" && Government != null)
+
+            if (Street != "" && Street != null)
+            {
+                Street = Street.ToLower();
+                var workShop = await workShopDbContext.Where(ws => ws.Address.ToLower().Contains(Street) && ws.Government.ToLower().Contains(Government) && ws.City.ToLower().Contains(City)).ToListAsync();
+                if(workShop.Count!=0)
+                return View(workShop);
+                else
+                {
+                    if (Government != "" && Government != null)
+                    {
+                        Government = Government.ToLower();
+                        workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(Government)).ToListAsync();
+                        if (workShop.Count != 0)
+                          return View(workShop);
+                        else
+                        {
+                            if (City != "" && City != null)
+                            {
+                                City = City.ToLower();
+                                workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                                if (workShop.Count != 0)
+                                    return View(workShop);
+                                else
+                                    return View(await workShopDbContext.ToListAsync());
+                            }
+                            else
+                                return View(await workShopDbContext.ToListAsync());
+                        }
+                    }
+                    else
+                    {
+                        if (City != "" && City != null)
+                        {
+                            City = City.ToLower();
+                            workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                            if (workShop.Count != 0)
+                                return View(workShop);
+                            else
+                                return View(await workShopDbContext.ToListAsync());
+                        }
+                        else
+                            return View(await workShopDbContext.ToListAsync());
+                    }
+
+                }
+            }
+
+
+            else if (Government != "" && Government != null)
             {
                 Government = Government.ToLower();
                 var workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(Government)).ToListAsync();
-                return View(workShop);
+
+                if (workShop.Count != 0)
+                    return View(workShop);
+                else
+                {
+                    if (City != "" && City != null)
+                    {
+                        City = City.ToLower();
+                        workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                        if (workShop.Count != 0)
+                            return View(workShop);
+                        else
+                            return View(await workShopDbContext.ToListAsync());
+                    }
+                    else
+                        return View(await workShopDbContext.ToListAsync());
+                }
             }
+
+
             else if (City != "" && City != null)
             {
                 City = City.ToLower();
