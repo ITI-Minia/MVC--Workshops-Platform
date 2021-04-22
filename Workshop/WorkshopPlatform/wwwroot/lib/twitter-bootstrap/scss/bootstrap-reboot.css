@@ -29,7 +29,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #171616;
   text-align: left;
   background-color: #fff;
 }
@@ -124,13 +124,13 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #E2AD21;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #a17b15;
   text-decoration: underline;
 }
 
