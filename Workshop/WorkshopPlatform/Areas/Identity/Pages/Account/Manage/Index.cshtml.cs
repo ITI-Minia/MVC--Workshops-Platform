@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,16 +18,20 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly WorkShopDbContext _context;
+        [Obsolete]
+        private readonly IHostingEnvironment hosting;
 
-
+        [Obsolete]
         public IndexModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            WorkShopDbContext context)
+            WorkShopDbContext context,
+            IHostingEnvironment hosting)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            this.hosting = hosting;
         }
 
         public string Username { get; set; }
@@ -35,15 +42,17 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
 
         [BindProperty]
         public InputModel Input { get; set; }
+        public string Image { get; set; }
 
+        public IFormFile File { get; set; }
+
+        public bool imgFlag=false;
         public class InputModel
         {
             [Phone]
             [Required]
             [RegularExpression(@"^(012||011||015||010)\d{8}$", ErrorMessage = "Invalid phone number")]
             [Display(Name = "Phone number")] public string PhoneNumber { get; set; }
-
-
 
             [Required]
             [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
@@ -55,16 +64,9 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Last name")]
             public string LastName { get; set; }
 
-
-            public string CarModel { get; set; }
-            public string CarBrand { get; set; }
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
-            public string City { get; set; }
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
-            public string Government { get; set; }
+       
             public string Image { get; set; }
+
 
         }
 
@@ -73,25 +75,17 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var userid = await _userManager.GetUserIdAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            var userProfile=_context.UserProfiles.Where(u => u.UserId == userid).FirstOrDefault();
-            var government = userProfile.Government;
-            var city = userProfile.City;
+            var userProfile=_context.UserProfiles.Where(u => u.UserId == userid).FirstOrDefault();            
             var fName = userProfile.FirstName;
             var lName = userProfile.LastName;
-            var brand = userProfile.CarBrand;
-            var model = userProfile.CarModel;
             var img = userProfile.Image;
             Username = userName;
-
+            this.Image = img;
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                Government = government,
-                City = city,
                 FirstName = fName,
                 LastName = lName,
-                CarBrand = brand,
-                CarModel = model,
                  Image = img,
             };
         }
@@ -99,14 +93,17 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
+            var userid = _userManager.GetUserId(User);
+            var userprofile = _context.UserProfiles.Where(u => u.UserId == userid).FirstOrDefault();
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }          
+                return NotFound($"Unable to load user with ID '{userid}'.");
+            }             
             await LoadAsync(user);
             return Page();
         }
 
+        [Obsolete]
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -124,12 +121,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            var government = userprofile.Government;
-            var city = userprofile.City;
             var fName = userprofile.FirstName;
-            var lName = userprofile.LastName;
-            var brand = userprofile.CarBrand;
-            var model = userprofile.CarModel;
+            var lName = userprofile.LastName;          
             var img = userprofile.Image;
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -141,10 +134,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if (Input.Government != government)
-            {
-                userprofile.Government = Input.Government;               
-            }
+            
+              
             if (Input.FirstName != fName)
             {
                 userprofile.FirstName = Input.FirstName;
@@ -154,23 +145,58 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             {
                 userprofile.LastName = Input.LastName;
             }
-            if (Input.City != city)
-            {
-                userprofile.City = Input.City;
-            }
 
-            if (Input.CarBrand != brand)
+            string fileName = string.Empty;
+
+            if (File != null)
             {
-                userprofile.CarBrand = Input.CarBrand;
-            }
-            if (Input.CarModel != model)
-            {
-                userprofile.CarModel = Input.CarModel;
-            }
-            if (Input.Image != img)
-            {
-                userprofile.Image = Input.Image;
-            }
+
+                fileName = userid + File.FileName;
+
+                string uploads = Path.Combine(hosting.WebRootPath, "uploads");
+                string Fullpath = Path.Combine(uploads, fileName);
+                string OldImageFile = img;
+                if (OldImageFile != null)
+                {
+                    string OldImgPath = Path.Combine(uploads, OldImageFile);
+
+                    if (Fullpath != OldImgPath)
+                    {
+                        try
+                        {
+                            File.CopyTo(new FileStream(Fullpath, FileMode.Create));
+                            userprofile.Image = fileName;
+                            this.Image = fileName;
+                            _context.SaveChanges();
+                            await _signInManager.RefreshSignInAsync(user);
+                            StatusMessage = "Your profile has been updated";
+                            System.IO.File.Delete(OldImgPath);
+                            return RedirectToPage();
+                        }
+                        catch
+                        {
+                            StatusMessage = "Unexpected error when trying to set Photo.";
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        File.CopyTo(new FileStream(Fullpath, FileMode.Create));
+                        userprofile.Image = fileName;
+                        this.Image = fileName;
+                        _context.SaveChanges();
+                        await _signInManager.RefreshSignInAsync(user);
+                        StatusMessage = "Your profile has been updated";
+                        return RedirectToPage();
+                    }
+                    catch
+                    {
+                        StatusMessage = "Unexpected error when trying to set Photo.";
+                    }
+                }
+            }                      
             _context.SaveChanges();
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

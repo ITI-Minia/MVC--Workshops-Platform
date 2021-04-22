@@ -11049,6 +11049,12 @@ a:focus {
     background-size: cover
 }
 
+.bg-gradient {
+    background-color: #3A3535;
+
+    background-size: cover
+}
+
 .bg-gray-100 {
     background-color: #F4F4F4 !important
 }
@@ -11719,9 +11725,7 @@ a:focus {
     color: #d1d3e2
 }
 
-.sidebar-light .nav-item .nav-link i {
-    color: #d1d3e2
-}
+   
 
 .sidebar-light .nav-item .nav-link:active,
 .sidebar-light .nav-item .nav-link:focus,
@@ -11729,11 +11733,12 @@ a:focus {
     color: #6e707e
 }
 
-.sidebar-light .nav-item .nav-link:active i,
-.sidebar-light .nav-item .nav-link:focus i,
-.sidebar-light .nav-item .nav-link:hover i {
-    color: #6e707e
-}
+    .sidebar-light .nav-item .nav-link:active i,
+    .sidebar-light .nav-item .nav-link:focus i,
+    .sidebar-light .nav-item .nav-link:hover i,
+    .sidebar .nav-item .nav-link:hover i {
+        color: #E2AD21
+    }
 
     .sidebar-light .nav-item .nav-link[data-toggle="collapse"]::after {
         color: #ffffff
