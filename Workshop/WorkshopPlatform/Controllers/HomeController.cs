@@ -25,12 +25,9 @@ namespace WorkshopPlatform.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index(string username)
+        public IActionResult Index()
         {
-            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = _userManager.FindByIdAsync(userID).Result;
-
-            return View(user);
+            return View();
         }
 
         public IActionResult Privacy()

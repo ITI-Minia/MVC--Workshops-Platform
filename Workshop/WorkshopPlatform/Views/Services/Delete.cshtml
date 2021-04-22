@@ -1,0 +1,31 @@
+﻿@model Workshop.ViewModel.ServicesViewModel
+<div class="modal fade delete" id="myDeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            @*Modal Header*@
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Service</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            @*Modal body*@
+            <div class="modal-body">
+                <form method="post" asp-action="Delete">
+                    Are you sure to delete this service
+                    <br />
+                    <br />
+                    <hr />
+                    <div class="form-group" style="">
+                        @*<input type="hidden" id="serviceId" />*@
+                        <input type="hidden" asp-for="Id" />
+
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                        @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
