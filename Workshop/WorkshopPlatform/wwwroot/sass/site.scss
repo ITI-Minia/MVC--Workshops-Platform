@@ -18,13 +18,14 @@
 'components/homepage';
 @import 'components/button';
 @import 'components/card';
+@import 'components/startsRate';
 // 6. Page-specific styles
 @import 'pages/Error';
 @import 'pages/home';
-@import 'pages/SingleWarsha';
+@import 'pages/workshop';
 @import 'pages/singleWarshAdmin';
 @import 'pages/update';
-@import 'pages/WorkShops';
+@import 'pages/workShops';
 @import 'pages/signup';
 @import 'pages/login';
 @import 'pages/profile';
@@ -32,5 +33,7 @@
 @import'pages/emergancy';
 @import 'pages/RegisterConfirmation';
 @import 'pages/resetPasswordPage';
+
+
 // 7. Themes
 @import 'themes/default';
