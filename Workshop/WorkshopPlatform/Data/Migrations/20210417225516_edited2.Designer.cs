@@ -10,8 +10,8 @@ using WorkshopPlatform.Models;
 namespace WorkshopPlatform.Migrations
 {
     [DbContext(typeof(WorkShopDbContext))]
-    [Migration("20210417215659_edited")]
-    partial class edited
+    [Migration("20210417225516_edited2")]
+    partial class edited2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

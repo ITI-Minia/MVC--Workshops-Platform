@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WorkshopPlatform.Migrations
 {
-    public partial class userservices : Migration
+    public partial class Services : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,6 +62,26 @@ namespace WorkshopPlatform.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "WorkshopImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    path = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WorkShopId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkshopImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WorkshopImages_WorkShops_WorkShopId",
+                        column: x => x.WorkShopId,
+                        principalTable: "WorkShops",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cities",
                 columns: table => new
                 {
@@ -96,6 +116,11 @@ namespace WorkshopPlatform.Migrations
                 name: "IX_UserServices_UserId",
                 table: "UserServices",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkshopImages_WorkShopId",
+                table: "WorkshopImages",
+                column: "WorkShopId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -105,6 +130,9 @@ namespace WorkshopPlatform.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserServices");
+
+            migrationBuilder.DropTable(
+                name: "WorkshopImages");
 
             migrationBuilder.DropTable(
                 name: "Governments");
