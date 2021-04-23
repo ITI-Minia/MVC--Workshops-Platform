@@ -12,7 +12,7 @@
     --pink: #e83e8c;
     --red: #dc3545;
     --orange: #e29521;
-    --yellow: #E2AD21;
+    --yellow: #E2AD21 !important !default;
     --green: #1cc88a;
     --teal: #20c9a6;
     --cyan: #36b9cc;
@@ -32,8 +32,8 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
+    --font-family-sans-serif: "'Open Sans', 'Helvetica Neue Light', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !default;";
+     --font-family-monospace: 'Comfortaa'
 }
 
 *,
@@ -4104,18 +4104,18 @@ input[type="button"].btn-block {
     vertical-align: top
 }
 
-.custom-control-label::before {
-    position: absolute;
-    top: .25rem;
-    left: -1.5rem;
-    display: block;
-    width: 1rem;
-    height: 1rem;
-    pointer-events: none;
-    content: "";
-    background-color: #fff;
-    border: #b7b9cc solid 1px
-}
+    .custom-control-label::before {
+        position: absolute;
+        top: .25rem;
+        left: -1.5rem;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        background-color: #fff;
+        border: #ffffff solid 1px
+    }
 
 .custom-control-label::after {
     position: absolute;
@@ -4176,18 +4176,18 @@ input[type="button"].btn-block {
     border-radius: .5rem
 }
 
-.custom-switch .custom-control-label::after {
-    top: calc(.25rem + 2px);
-    left: calc(-2.25rem + 2px);
-    width: calc(1rem - 4px);
-    height: calc(1rem - 4px);
-    background-color: #b7b9cc;
-    border-radius: .5rem;
-    -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-    transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
-}
+    .custom-switch .custom-control-label::after {
+        top: calc(.25rem + 2px);
+        left: calc(-2.25rem + 2px);
+        width: calc(1rem - 4px);
+        height: calc(1rem - 4px);
+        background-color: #ffffff;
+        border-radius: .5rem;
+        -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+        transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out
+    }
 
 @media (prefers-reduced-motion: reduce) {
     .custom-switch .custom-control-label::after {
@@ -4488,7 +4488,7 @@ input[type="button"].btn-block {
 }
 
 .custom-range:disabled::-webkit-slider-thumb {
-    background-color: #b7b9cc
+    background-color: #ffffff
 }
 
 .custom-range:disabled::-webkit-slider-runnable-track {
@@ -4496,7 +4496,7 @@ input[type="button"].btn-block {
 }
 
 .custom-range:disabled::-moz-range-thumb {
-    background-color: #b7b9cc
+    background-color: #ffffff
 }
 
 .custom-range:disabled::-moz-range-track {
@@ -4504,7 +4504,7 @@ input[type="button"].btn-block {
 }
 
 .custom-range:disabled::-ms-thumb {
-    background-color: #b7b9cc
+    background-color: #ffffff
 }
 
 .custom-control-label::before,
@@ -10806,7 +10806,7 @@ a.text-dark:focus {
     }
     pre,
     blockquote {
-        border: 1px solid #b7b9cc;
+        border: 1px solid #ffffff;
         page-break-inside: avoid
     }
     thead {
@@ -11049,6 +11049,12 @@ a:focus {
     background-size: cover
 }
 
+.bg-gradient {
+    background-color: #3A3535;
+
+    background-size: cover
+}
+
 .bg-gray-100 {
     background-color: #F4F4F4 !important
 }
@@ -11066,7 +11072,7 @@ a:focus {
 }
 
 .bg-gray-500 {
-    background-color: #b7b9cc !important
+    background-color: #ffffff !important
 }
 
 .bg-gray-600 {
@@ -11114,7 +11120,7 @@ a:focus {
 }
 
 .text-gray-500 {
-    color: #b7b9cc !important
+    color: #ffffff !important
 }
 
 .text-gray-600 {
@@ -11230,11 +11236,11 @@ a:focus {
     font-size: .85rem
 }
 
-.dropdown .dropdown-menu .dropdown-header {
-    font-weight: 800;
-    font-size: 0.65rem;
-    color: #b7b9cc
-}
+    .dropdown .dropdown-menu .dropdown-header {
+        font-weight: 800;
+        font-size: 0.65rem;
+        color: #ffffff
+    }
 
 .dropdown.no-arrow .dropdown-toggle::after {
     display: none
@@ -11415,9 +11421,9 @@ a:focus {
     color: #d1d3e2
 }
 
-.topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-    color: #b7b9cc
-}
+    .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
+        color: #ffffff
+    }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:active {
     color: #858796
@@ -11474,20 +11480,20 @@ a:focus {
 .sidebar .nav-item .collapsing .collapse-inner {
     padding: .5rem 0;
     min-width: 10rem;
-    font-size: .85rem;
+    font-size: 1.1rem !important;
     margin: 0 0 1rem 0
 }
 
-.sidebar .nav-item .collapse .collapse-inner .collapse-header,
-.sidebar .nav-item .collapsing .collapse-inner .collapse-header {
-    margin: 0;
-    white-space: nowrap;
-    padding: .5rem 1.5rem;
-    text-transform: uppercase;
-    font-weight: 800;
-    font-size: 0.65rem;
-    color: #b7b9cc
-}
+    .sidebar .nav-item .collapse .collapse-inner .collapse-header,
+    .sidebar .nav-item .collapsing .collapse-inner .collapse-header {
+        margin: 0;
+        white-space: nowrap;
+        padding: .5rem 1.5rem;
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 1.1rem!important;
+        color: #858796
+    }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
@@ -11583,7 +11589,7 @@ a:focus {
 
 @media (min-width: 768px) {
     .sidebar {
-        width: 14rem !important
+        width: 100% !important
     }
     .sidebar .nav-item .collapse {
         position: relative;
@@ -11615,7 +11621,7 @@ a:focus {
         width: 14rem
     }
     .sidebar .nav-item .nav-link i {
-        font-size: 0.85rem;
+        font-size: 1.1rem !important;
         margin-right: 0.25rem
     }
     .sidebar .nav-item .nav-link span {
@@ -11683,7 +11689,7 @@ a:focus {
         width: 6.5rem
     }
     .sidebar.toggled .nav-item .nav-link span {
-        font-size: 0.65rem;
+        font-size: 1.1rem !important;
         display: block
     }
     .sidebar.toggled .nav-item .nav-link i {
@@ -11704,7 +11710,7 @@ a:focus {
 }
 
 .sidebar-light .sidebar-brand {
-    color: #6e707e
+    color: #ffffff
 }
 
 .sidebar-light hr.sidebar-divider {
@@ -11712,16 +11718,14 @@ a:focus {
 }
 
 .sidebar-light .sidebar-heading {
-    color: #b7b9cc
+    color: #ffffff
 }
 
 .sidebar-light .nav-item .nav-link {
-    color: #858796
-}
-
-.sidebar-light .nav-item .nav-link i {
     color: #d1d3e2
 }
+
+   
 
 .sidebar-light .nav-item .nav-link:active,
 .sidebar-light .nav-item .nav-link:focus,
@@ -11729,15 +11733,16 @@ a:focus {
     color: #6e707e
 }
 
-.sidebar-light .nav-item .nav-link:active i,
-.sidebar-light .nav-item .nav-link:focus i,
-.sidebar-light .nav-item .nav-link:hover i {
-    color: #6e707e
-}
+    .sidebar-light .nav-item .nav-link:active i,
+    .sidebar-light .nav-item .nav-link:focus i,
+    .sidebar-light .nav-item .nav-link:hover i,
+    .sidebar .nav-item .nav-link:hover i {
+        color: #E2AD21
+    }
 
-.sidebar-light .nav-item .nav-link[data-toggle="collapse"]::after {
-    color: #b7b9cc
-}
+    .sidebar-light .nav-item .nav-link[data-toggle="collapse"]::after {
+        color: #ffffff
+    }
 
 .sidebar-light .nav-item.active .nav-link {
     color: #6e707e
@@ -11751,16 +11756,16 @@ a:focus {
     background-color: #d3d3d3
 }
 
-.sidebar-light #sidebarToggle::after {
-    color: #b7b9cc
-}
+    .sidebar-light #sidebarToggle::after {
+        color: #ffffff
+    }
 
 .sidebar-light #sidebarToggle:hover {
     background-color: #dddfeb
 }
 
 .sidebar-dark .sidebar-brand {
-    color: #fff
+    color: #fff;
 }
 
 .sidebar-dark hr.sidebar-divider {
@@ -12390,6 +12395,11 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
+.sidebar-light .nav-item .nav-link {
+    color: #ffff !important;
+}
+.newitem{
+    font-size:1.1rem !important;
 
-
-/*# sourceMappingURL=sb-admin-2.min.css.map */
+}
+  /*# sourceMappingURL=sb-admin-2.min.css.map */
