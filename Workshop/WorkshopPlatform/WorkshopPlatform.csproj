@@ -30,6 +30,11 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="Views\Services\Delete.cshtml" />
+    <None Include="Views\Services\Details.cshtml" />
+    <None Include="Views\Services\DisplayServices.cshtml" />
+    <None Include="Views\Services\Edit.cshtml" />
+    <None Include="Views\Services\Index.cshtml" />
     <None Include="wwwroot\Templates\EmailTemplate\RegisterConfirmationEmail.html" />
     <None Include="wwwroot\Templates\EmailTemplate\ResetPasswordEmail.html" />
   </ItemGroup>
