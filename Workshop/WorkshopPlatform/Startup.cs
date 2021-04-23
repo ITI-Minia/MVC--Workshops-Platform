@@ -45,6 +45,8 @@ namespace WorkshopPlatform
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
             })
                 .AddDefaultTokenProviders()
                 .AddDefaultUI()

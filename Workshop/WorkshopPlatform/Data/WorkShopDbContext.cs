@@ -20,7 +20,11 @@ namespace WorkshopPlatform.Models
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<WorkShop> WorkShops { get; set; }
         public DbSet<WorkshopRate> WorkshopRates { get; set; }
-        public DbSet<WorkshopServices> workshopServices { get; set; }
+        public DbSet<WorkshopServices> WorkshopServices { get; set; }
+        public DbSet<WorkshopImages> WorkshopImages { get; set; }
+        public DbSet<UserServices> UserServices { get; set; }
+        public DbSet<Government> Governments { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,7 +49,6 @@ namespace WorkshopPlatform.Models
             modelBuilder.Entity<WorkShop>(e =>
             {
                 e.HasIndex(p => p.UserId).IsUnique();
-
             });
 
             modelBuilder.Entity<IdentityUser>(e =>
@@ -54,6 +57,10 @@ namespace WorkshopPlatform.Models
                 e.Property(p => p.UserName).IsRequired();
                 e.HasIndex(p => p.Email).IsUnique();
                 e.Property(p => p.Email).IsRequired();
+            });
+            modelBuilder.Entity<UserServices>(e =>
+            {
+                e.HasIndex("ServiceId", "UserId").IsUnique();
             });
 
             base.OnModelCreating(modelBuilder);

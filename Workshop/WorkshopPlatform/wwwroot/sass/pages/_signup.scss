@@ -6,62 +6,60 @@
     & {
         background-color: $dark;
         background-size: cover;
+        padding-top: 1em;
     }
-
-    &::after {
-        content: "";
-        position: absolute;
-        background: url('/imgs/sigup-background.jpg');
-        background-size: cover;
-        opacity: 0.2;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: -1;
-    }
-
+    // &::after {
+    //     content: "";
+    //     position: absolute;
+    //     background: url('/imgs/sigup-background.jpg');
+    //     background-size: cover;
+    //     opacity: 0.2;
+    //     top: 0;
+    //     left: 0;
+    //     bottom: 0;
+    //     right: 0;
+    //     z-index: -1;
+    // }
     .header--border {
-        width: 4rem;
+        width: 2.5rem;
         margin: 0px;
+        margin-top: 0.5em;
         border-bottom: 2px solid $gray-200;
         border-top: 0;
     }
-
     @media (min-width: 992px) {
         .right--side {
             border-radius: 0 0.4rem 0.4rem 0;
         }
     }
-
     @media (min-width: 576px) and (max-width:991) {
         .right--side {
             border-radius: 0.4rem;
         }
     }
-
     @media (max-width: 575.98px) {
         .right--side {
             border-radius: 0;
         }
-
         container {
             width: 70%;
             margin: auto;
         }
     }
-
+    @media (min-width: 992px) {
+        .right--side--left {
+            border-radius: 0.4rem 0 0 0.4rem;
+        }
+    }
     .content {
         a.main--link:hover {
             text-decoration: none;
         }
     }
-
     .signup--form {
         td {
             position: relative;
         }
-
         i,
         .error--icon {
             color: $primary;
@@ -69,22 +67,22 @@
             bottom: 1.6rem;
             font-size: 16px;
         }
-
+        .fa-chevron-right {
+            color: white;
+            position: static;
+        }
         .error--icon {
             display: none;
             color: $danger;
             padding-top: 10px;
             margin-left: -20px;
         }
-
         .error--icon.field-validation-error {
             display: inline;
         }
-
         .col-sm-6 input.delete--padding {
             padding-left: 0rem;
         }
-
         input {
             & {
                 display: inline-block;
@@ -99,11 +97,9 @@
                 color: $dark;
                 font-size: 18px;
             }
-
             &:active {
                 border-bottom: 1rem solid $danger;
             }
-
             &:focus {
                 border-bottom: 1px solid;
                 border-image-slice: 1;
@@ -111,7 +107,6 @@
                 padding-left: 0.5rem;
                 animation: moveGradient 3s ease alternate infinite;
             }
-
             &:-webkit-autofill,
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
@@ -119,77 +114,66 @@
                 -webkit-box-shadow: 0 0 0 1.8rem $light inset !important;
                 box-shadow: 0 0 0 1.8rem $light inset !important;
             }
-
             @keyframes moveGradient {
                 0% {
                     background-position: 0% 50%;
                 }
-
                 50% {
                     background-position: 100% 50%;
                 }
-
                 100% {
                     background-position: 0% 50%;
                 }
             }
-
             &.input-validation-error {
                 border-color: $danger;
             }
         }
-
         .btn-primary {
             color: $text-light;
             font-family: $header-font-stack;
             letter-spacing: 1px;
         }
     }
-
     .left--side {
-        background-color: hsla(0, 2%, 9%, 0.827);
+        background-color: $light;
         border-radius: 0.4rem 0 0 0.4rem;
-
         .carousel-indicators {
             bottom: 10px;
             opacity: 0.7;
         }
-
         .carousel-indicators i {
             width: 15px;
             height: 25px;
             margin-right: 20px;
-            color: $text-light;
+            color: $text-dark;
             font-size: 13px;
         }
-
         .carousel-indicators .active {
             background-color: transparent;
             color: $primary;
         }
-
         .carousel-caption {
-            color: $text-light;
+            color: $text-dark;
             text-align: center;
         }
-
         .carousel-caption span {
             font-family: $header-font-stack;
             color: $primary;
             font-size: 1.3em;
         }
-
         .carousel-item {
             padding: 1rem;
             margin-bottom: 2rem;
         }
-
         img {
             height: 470px;
             margin-bottom: 1.5rem;
         }
     }
-
+    .left--side--right {
+        border-radius: 0 0.4rem 0.4rem 0;
+    }
     .alert-dismissible {
         position: absolute;
         z-index: 1;
@@ -202,21 +186,32 @@
         border-radius: 0;
         text-align: center;
     }
-
     .alert-dismissible .close {
         position: absolute;
         right: initial;
         padding: 0;
     }
-
     .alert-dismissible .close:hover {
         color: $light
     }
-
     .btn-icon {
         border-radius: 60px;
         width: 40px;
         height: 40px;
         text-align: center;
+    }
+    .btn-right {
+        border-top-left-radius: 2em;
+        border-bottom-left-radius: 2em;
+        margin-right: -0.5em;
+        color: white;
+    }
+    .btn-left {
+        border-top-right-radius: 2em;
+        border-bottom-right-radius: 2em;
+    }
+    .signup-btns {
+        margin-top: 0em;
+        margin-right: 1.5em;
     }
 }

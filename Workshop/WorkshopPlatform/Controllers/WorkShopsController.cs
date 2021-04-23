@@ -175,7 +175,7 @@ namespace WorkshopPlatform.Controllers
             }
         }
 
-        // GET: WorkShops/Details/5
+        [Route("workshop/{id}")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -184,9 +184,12 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops
-
                 .Include(w => w.User)
+                .Include(w => w.WorkshopRates)
+                .Include(w => w.Services)
+                .Include(w => w.Images)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (workShop == null)
             {
                 return NotFound();
@@ -195,10 +198,19 @@ namespace WorkshopPlatform.Controllers
             return View(workShop);
         }
 
+        public IActionResult ServicesPartial(ICollection<Service> services)
+        {
+            if (services == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView(services);
+        }
+
         // GET: WorkShops/Create
         public IActionResult Create()
         {
-            ViewData["ConfirmationId"] = new SelectList(_context.Confirmations, "Id", "Id");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
@@ -308,42 +320,9 @@ namespace WorkshopPlatform.Controllers
             return _context.WorkShops.Any(e => e.Id == id);
         }
 
-        public IActionResult Workshopcollector(int id)
-        {
-            dynamic dy = new ExpandoObject();
-            dy.aboutwarsha = Workshop(id);
-            dy.WarshaRate = WorkshopRating(id);
-            dy.warshaservices = WorkshopService(id);
-
-            return View(dy);
-        }
-
-        public List<WorkShop> Workshop(int? id)
-        {
-            List<WorkShop> workShopDbContext = _context.WorkShops.Include(w => w.User).Where(w => w.Id == id).ToList();
-            return workShopDbContext;
-        }
-
-        public List<Service> WorkshopService(int? id)
-        {
-            List<Service> workShopDbContext = _context.Services.Where(w => w.WorkShopId == id).ToList();
-            ViewBag.servcount = 0;
-
-            return workShopDbContext;
-        }
-
-        public List<WorkshopRate> WorkshopRating(int? id)
-        {
-            List<WorkshopRate> workShopRatingDbContext = _context.WorkshopRates.Include(w => w.UserProfile).Include(w => w.UserProfile.User).Where(w => w.WorkShopId == id).ToList();
-            ViewBag.active = "active";
-            ViewBag.itemcount = 0;
-
-            return workShopRatingDbContext;
-        }
-
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Userrate(WorkshopRate WorkshopRate)
+        public async Task<IActionResult> UserRate(WorkshopRate WorkshopRate)
         {
             try
             {
@@ -357,11 +336,11 @@ namespace WorkshopPlatform.Controllers
 
                 _context.Add(WorkshopRate);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Workshopcollector));
+                return RedirectToAction(nameof(Details));
             }
             catch (Exception)
             {
-                return RedirectToAction(nameof(Workshopcollector));
+                return RedirectToAction(nameof(Details));
             }
         }
     }
