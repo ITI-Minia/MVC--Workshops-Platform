@@ -1,0 +1,212 @@
+﻿@page
+@model WorkshopPlatform.Areas.Identity.Pages.Account.WorkshopRegisterModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - WorkshopPlatform</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
+
+<body class="signup--page">
+
+    <div class="float-right signup-btns">
+        <a asp-page="Register" class="btn btn-info btn-right" title="Sign up as user">
+            <i class="bi bi-person-fill"></i>
+        </a>
+        <a asp-page="WorkshopRegister" class="btn btn-secondary btn-left" title="Sign up as workshop">
+            <i class="bi bi-tools"></i>
+        </a>
+    </div>
+
+    <div class="container mt-5">
+
+        <div class="d-flex justify-content-center">
+            <div class="d-none alert alert-danger alert-dismissible" role="alert" id="alert-error">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fa fa-exclamation-circle mr-3"></i>
+                        There are items that require your attention
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row shadow">
+            <div class="col-lg-6 col-sm-12 bg-white right--side right--side--left">
+                <div class="content m-5">
+
+                    <div class="mb-4">
+                        <a asp-page="WorkshopRegister" class="main--link">
+                            <span class="h4 header">Sign Up</span>
+                        </a>
+                        <hr class="header--border">
+                    </div>
+                    <div>
+                        <div class="signup--form">
+                            <form id="signupForm" method="post" autocomplete="new-password" asp-route-returnUrl="@Model.ReturnUrl">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" asp-for="UsernameInput" placeholder="username" id='username' title="Enter username">
+                                        <span asp-validation-for="UsernameInput" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-wrench"></i>
+                                        <input type="text" asp-for="Input.Name" placeholder="workshop name" id='username' title="Enter username">
+                                        <span asp-validation-for="Input.Name" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-envelope"></i>
+                                        <input asp-for="EmailInput" type="email" id="email" placeholder="email" required>
+                                        <span asp-validation-for="EmailInput" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-phone"></i>
+                                        <input type="tel" asp-for="Input.Phone" id="phone" placeholder="phone number" required>
+                                        <span asp-validation-for="Input.Phone" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <i class="fa fa-lock"></i>
+                                        <input type="password" asp-for="Input.Password" id="password1" required placeholder="Enter Password">
+                                        <span asp-validation-for="Input.Password" class="fa fa-times error--icon icon-half" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" asp-for="Input.ConfirmPassword" id="password2" class="delete--padding" placeholder="Repeat Passowrd" required>
+                                        <span asp-validation-for="Input.ConfirmPassword" class="fa fa-times error--icon icon-half" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-4 mb-4">
+                                    <button type="submit" id="signup" class="btn btn-primary btn-rounded col-sm-11 btn-lg">
+                                        Sign up
+                                    </button>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="form-link">
+                                        <small class="text-muted">Already member? <a asp-page="Login" class="main--link">Sign in</a></small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-none d-lg-block left--side left--side--right ">
+                <div id="carousel" class="carousel slide justify-content-center" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <i class="fa fa-circle active" data-target="#carousel" data-slide-to="0"></i>
+                        <i class="fa fa-circle" data-target="#carousel" data-slide-to="1"> </i>
+                        <i class="fa fa-circle" data-target="#carousel" data-slide-to="2"></i>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div id="img-1" class="carousel-item active">
+                            <div class="row justify-content-center">
+                                <img src="~/imgs/undraw_Safe_re_kiil.svg" alt="First slide" width="320">
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4> Manage your services <span>Online</span> </h4>
+                            </div>
+                        </div>
+                        <div id="img-2" class="carousel-item">
+                            <div class="row justify-content-center">
+                                <img src="~/imgs/undraw_manage_chats_ylx0.svg" alt="Second slide" width="400">
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4> Contact with your  <span>Customers</span> </h4>
+                            </div>
+                        </div>
+                        <div id="img-3" class="carousel-item">
+                            <div class="row justify-content-center">
+                                <img src="~/imgs/undraw_Credit_card_payments_re_qboh.svg" alt="Third slide" width="350">
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h4>Online <span>Payment</span> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        // remove icon when focus
+        $('input').focus(function () {
+            $(this).prev().fadeOut()
+        });
+
+        //get back icon and validate input when blur
+        $('input').blur(function () {
+            $(this).prev().fadeIn();
+        });
+
+        $('.error--icon').on('DOMSubtreeModified', function () {
+            if ($(this).prev().hasClass('input-validation-error') && $(this).html() != "") {
+                var inner = $(this).children('span');
+                $(this).attr('data-original-title', inner.text())
+                    .html("");
+            }
+        });
+
+        $('#signup').click(function () {
+
+            $('#signupForm input').each(function () {
+
+                if ($(this).hasClass('input-validation-error')) {
+
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 4500);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                    return;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

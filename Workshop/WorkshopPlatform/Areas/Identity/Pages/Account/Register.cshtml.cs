@@ -30,7 +30,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly WorkShopDbContext _context;
-        private IWebHostEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -80,15 +80,15 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
         {
             public string Username { get; set; }
 
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
-            [Display(Name = "First name")]
-            public string FirstName { get; set; }
+            //[Required]
+            //[RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
+            //[Display(Name = "First name")]
+            //public string FirstName { get; set; }
 
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
-            [Display(Name = "Last name")]
-            public string LastName { get; set; }
+            //[Required]
+            //[RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
+            //[Display(Name = "Last name")]
+            //public string LastName { get; set; }
 
             public string Email { get; set; }
 
@@ -99,7 +99,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
-            [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long with one (digit, upper and lower case letter).")]
+            //[RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long with one (digit, upper and lower case letter).")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -152,8 +152,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
                     _context.UserProfiles.Add(new UserProfile
                     {
-                        FirstName = Input.FirstName,
-                        LastName = Input.LastName,
+                        //FirstName = Input.FirstName,
+                        //LastName = Input.LastName,
                         UserId = user.Id
                     });
 
@@ -192,7 +192,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
                     //use string.Format(format item, dynamic values as parameters) In our case, {x}
                     //values in Templates are to replace by dynamic values.
-                    string messageBody = string.Format(builder.HtmlBody, Input.FirstName,
+                    string messageBody = string.Format(builder.HtmlBody, "",
                         HtmlEncoder.Default.Encode(callbackUrl));
 
                     await _emailSender.SendEmailAsync(user.Email, "Confirm your email", messageBody);

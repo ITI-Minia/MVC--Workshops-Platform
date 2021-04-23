@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkshopPlatform.Models;
 
 namespace Workshop.Models
 {
@@ -22,7 +23,6 @@ namespace Workshop.Models
         [Required]
         public string Name { get; set; }
 
-     
         public string Image { get; set; }
         public string Logo { get; set; }
 
@@ -45,8 +45,9 @@ namespace Workshop.Models
         public string UserId { get; set; }
 
         public virtual IdentityUser User { get; set; }
-     
+
         public virtual ICollection<Service> Services { get; set; }
         public virtual ICollection<WorkshopRate> WorkshopRates { get; set; }
+        public virtual ICollection<WorkshopImages> Images { get; set; }
     }
 }
