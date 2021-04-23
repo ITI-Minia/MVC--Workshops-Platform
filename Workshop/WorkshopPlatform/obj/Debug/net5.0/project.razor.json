@@ -15629,6 +15629,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\_Layout1.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout1.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml",
       "FileKind": "mvc"
@@ -15681,6 +15686,11 @@
     {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\ServicesPartial.cshtml",
+      "TargetPath": "Views\\WorkShops\\ServicesPartial.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15744,8 +15754,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\userprofile\\Index.cshtml",
-      "TargetPath": "Views\\userprofile\\Index.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\UserProfile\\Index.cshtml",
+      "TargetPath": "Views\\UserProfile\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15784,11 +15794,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\workshopcollector.cshtml",
-      "TargetPath": "Views\\WorkShops\\workshopcollector.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Delete.cshtml",
       "TargetPath": "Views\\WorkShops\\Delete.cshtml",
       "FileKind": "mvc"
@@ -15806,6 +15811,11 @@
     {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\WorkshopRegister.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\WorkshopRegister.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -86,7 +86,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
                 //use string.Format(format item, dynamic values as parameters) In our case, {x}
                 //values in Templates are to replace by dynamic values.
-                string messageBody = string.Format(builder.HtmlBody, profile.FirstName,
+                string messageBody = string.Format(builder.HtmlBody, "",
                     HtmlEncoder.Default.Encode(callbackUrl));
 
                 await _sender.SendEmailAsync(user.Email, "Confirm your email", messageBody);
