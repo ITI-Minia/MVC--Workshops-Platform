@@ -1,0 +1,91 @@
+﻿@model Workshop.ViewModel.WorkshopViewModel
+
+@{
+    ViewData["Title"] = "setting";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<section>
+    <div class="container">
+        @{ if (TempData["Done"] != null)
+            {
+                <div class="alert alert-primary alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    @TempData["Done"]
+                </div>
+            }
+        }
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="WorkshopSetting" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label" style="color: #E2AD21"></label>
+                        <input asp-for="Name" class="form-control" style="width:70%" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label" style="color: #E2AD21"></label>
+                        <input asp-for="Address" class="form-control" style="width:70%" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label" style="color: #E2AD21"></label>
+                        <input asp-for="City" class="form-control" style="width:70%" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Government" class="control-label" style="color: #E2AD21"></label>
+                        <input asp-for="Government" class="form-control" style="width:70%" />
+                        <span asp-validation-for="Government" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <img src="~/imgs/@Model.ImageUrl" style="width:124px" class="img-thumbnail" />
+                        <label asp-for="Imagepath" class="control-label" style="color: #E2AD21">Workshop Image</label>
+                        <div class="custom-file">
+
+                            <input asp-for="Imagepath" class="form-control custom-file-input" style="width:70%" />
+                            <label class="custom-file-label" style="width:70%">Choose Image ...</label>
+                        </div>
+
+                    </div>
+                    <div class="form-group ">
+                        <img src="~/imgs/@Model.LogoeUrl" style="width:124px" class="img-thumbnail" />
+
+                        <label asp-for="Logopath" class="control-label" style="color: #E2AD21">Workshop Logo</label>
+                        <div class="custom-file">
+
+                            <input asp-for="Logopath" class="form-control custom-file-input" style="width:70%" />
+                            <label class="custom-file-label" style="width:70%">Choose Logo ...</label>
+                        </div>
+
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="Rate" class="control-label"></label>
+                        <input asp-for="Rate" class="form-control" />
+                        <span asp-validation-for="Rate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="Verified" class="control-label"></label>
+                        <input asp-for="Verified" class="form-control" />
+                        <span asp-validation-for="Verified" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" hidden>
+                        <label asp-for="UserId" class="control-label"></label>
+                        <input asp-for="UserId" class="form-control" />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
