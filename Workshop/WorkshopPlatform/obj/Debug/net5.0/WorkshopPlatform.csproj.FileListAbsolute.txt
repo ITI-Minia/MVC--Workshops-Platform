@@ -527,7 +527,6 @@ F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.GeneratedMSBuildEditorConfig.editorconfig
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.AssemblyInfoInputs.cache
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.AssemblyInfo.cs
@@ -593,3 +592,13 @@ F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Create.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Delete.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Details.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\DisplayServices.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Edit.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Index.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\WorkshopSetting.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\RequestedServices.cshtml.g.cs
+F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\GetRate.cshtml.g.cs

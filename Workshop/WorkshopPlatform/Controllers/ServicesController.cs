@@ -268,6 +268,49 @@ namespace WorkshopPlatform.Controllers
             ViewBag.services = _context.Services.Where(w => w.WorkShop.Id == workshop.Id).ToList();
             return View();
         }
+
+
+        public async Task<IActionResult>RequestedServices()
+        {
+            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var services = await _context.UserServices
+                 .Include(w => w.User)
+                 .Include(w => w.Service)
+                 .Where(w => w.User.Id == userID).ToListAsync();
+            var model=await _context.UserServices.Where(w=>w.Finished==false)                          
+                 .Where(w => w.User.Id == userID).ToListAsync();
+            ViewBag.Historyservices = services.Where(w => w.Finished == true);
+            var requested = services.Where(w => w.Finished == false);
+            ViewBag.services = requested;
+         
+            return View(model);
+        }
+        public async Task<IActionResult> GetRate()
+        {
+            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var workshop = await _context.WorkShops
+                 .Include(w => w.User)
+                 .Include(w => w.WorkshopRates)
+                 .FirstOrDefaultAsync(w => w.User.Id == userID);
+            var model = await _context.UserServices.Where(w => w.Finished == false)
+                 .Where(w => w.User.Id == userID).ToListAsync();
+            
+                var data= _context.WorkshopRates.Include(w=>w.UserProfile).Include(w=>w.WorkShop).Where(w => w.WorkShop.Id == workshop.Id).ToList();
+            ViewBag.Rates = data;
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(UserServices data)
+        {
+
+            var x = data;
+            return RedirectToAction(nameof(RequestedServices));
+        }
+
+
+
         public async Task<IActionResult> WorkshopSetting()
         {
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);

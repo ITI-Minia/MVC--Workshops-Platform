@@ -1,0 +1,221 @@
+﻿@model List<UserServices>
+@{
+    ViewData["Title"] = "RequestedServices";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                @{ if (TempData["Done"] != null)
+                    {
+                        <div class="alert alert-primary alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            @TempData["Done"]
+                        </div>
+                    }
+
+                }
+                <h2> Requested Services </h2><br />
+                <!-- DataTales Example -->
+                                             <div class="card shadow mb-4">
+
+                                                 <div class="card-body">
+                                                     <div class="table-responsive">
+                                                         <form method="post" asp-action="Update">
+
+                                                             <table class="table table-bordered" id="mytable" width="100%" cellspacing="0">
+                                                                 <thead>
+                                                                     <tr>
+                                                                         <th>Service Title</th>
+                                                                         <th>User Name</th>
+                                                                         <th>Date</th>
+                                                                         <th>Finish</th>
+                                                                     </tr>
+                                                                 </thead>
+
+                                                                 <tbody>
+                                                                     @{ var i = 0;
+                                                                         @foreach (var item in ViewBag.services)
+                                                                     {
+                                                                             
+                                                                         <tr>
+                                                                             <td>
+                                                                                 @item.Service.Title
+                                                                             </td>
+                                                                             <td>
+                                                                                 @item.User.UserName
+                                                                             </td>
+                                                                             <td>
+                                                                                 @item.Date
+                                                                             </td>
+
+                                                                             <td >
+
+                                                                                 Finished <input type="checkbox" name="Finished"  asp-for="@Model[i].Finished"  value="Finished" />
+                                                                             </td>
+                                                                             @i++;
+                                                                         </tr>
+                                                                     }
+                                                                         }
+                                                                 </tbody>
+                                                             </table>
+                                                             <div class="pagination-container">
+                                                                 <nav>
+                                                                     <ul class="pagination"></ul>
+                                                                 </nav>
+                                                             </div>
+                                                             <button  type="submit" class="btn btn-primary" style="color:white;">Update</button>
+
+                                                             
+                                                         </form>
+                                                     </div>
+                                                 </div>
+                                                 
+                                             </div>
+               
+
+                <h2> History </h2><br />
+                <!-- DataTales Example -->
+                <div class="card shadow mb-4">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="mytable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Title</th>
+                                            <th>User Name</th>
+                                            <th>Date</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in ViewBag.Historyservices)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.Service.Title
+                                                </td>
+                                                <td>
+                                                    @item.User.UserName
+                                                </td>
+                                                <td>
+                                                    @item.Date
+                                                </td>
+
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            <div class="pagination-container">
+                                <nav>
+                                    <ul class="pagination"></ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+
+
+@*update*@
+
+<div class="modal fade updateModal" id="myUpdateModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            @*Modal Header*@
+            <div class="modal-header">
+                <h4 class="modal-title">Update Service</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            @*Modal body*@
+            <div class="modal-body">
+                @*<form asp-action="Edit" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="form-group">
+                        <label asp-for="Finished" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                   
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </form>*@
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    @section Scripts {
+        <script>
+
+            function update(id) {
+                //var ide = id;
+
+                $.ajax({
+                    type: "Get",
+                    url: "/Services/Edit",
+                    data: { id },
+                    dataType: "html",
+                    success: function (res) {
+                        //var qqq = $(this).closest('.modal');
+                        $("#myUpdateModal").html(res);
+                        //$(".modal").modal();
+                        $(".updateModal").modal("show");
+                    }
+                });
+            }
+           
+        </script>
+    }
+
