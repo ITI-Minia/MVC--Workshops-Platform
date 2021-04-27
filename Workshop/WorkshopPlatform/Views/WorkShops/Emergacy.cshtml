@@ -16,7 +16,8 @@
 </head>
 
 <body>
-    <br /><br />
+    <br />
+   
     <div class="container emergancy workShops " id="workShops">
         <div class="input-group searchContent">
             <div class="form-outline search">
@@ -26,19 +27,30 @@
                 </form>
             </div>
         </div>
+        <h2 class="row container " style="margin-left: 20px !important; margin-bottom: 1.5rem;"> Nearest WorkShops</h2>
+
         @{
             int i = 0;
 
             int j = 0;
+            string img = "";
+            string icon = "";
+            string address;
             @for (i = 0; i < Model.Count(); i++)
             {
                 <div class="row container justify-content-center">
                     <div class="col-md-12 WshopTd">
                         <div class='card' style=' max-width: 90% !important;'>
-                            <div class='logo' style="background-image: @Model.ElementAt(i).Logo">
+                            @{img = "url('/imgs/" + @Model.ElementAt(i).Image + "')";
+                                icon = "url('/imgs/" + @Model.ElementAt(i).Logo + "')";
+                                if (!string.IsNullOrEmpty(Model.ElementAt(i).Address) && Model.ElementAt(i).Address.Length >= 65)
+                                    address = Model.ElementAt(i).Address.Substring(0, 65) + "...";
+                                else
+                                    address = Model.ElementAt(i).Address;}
+                            <div class='logo' style="background-image: @icon">
                             </div>
                             <div class='card-text'>
-                                <div class='portada' style=' background-image: @Model.ElementAt(i).Image'>   </div>
+                                <div class='portada' style=' background-image: @img'>   </div>
                                 <div class='title-total'>
                                     <div class='title'>
                                         @for (j = 0; j < Model.ElementAt(i).Rate; j++)
@@ -58,7 +70,9 @@
                                             <h2>
                                                 @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                                             </h2>
-                                            <div class='address'><i class='fas fa-building icolor'> </i> &nbsp;  @Html.DisplayFor(modelItem => Model.ElementAt(i).Address) </div>
+                                            <div class='address'>
+                                                <i class='fas fa-building icolor'> </i> &nbsp; @Html.DisplayFor(modelItem => Model.ElementAt(i).City) -  @Html.DisplayFor(modelItem => Model.ElementAt(i).Government) ,  @address
+                                            </div>
                                             <div class='phone'> <i class='fas  fa-mobile-alt icolor'> </i> &nbsp; @Html.DisplayFor(modelItem => Model.ElementAt(i).User.PhoneNumber) </div>
                                         </div> <div class='col-sm-6 rcorner'>
                                             <br>
@@ -73,15 +87,15 @@
                                         </div>
                                     </div>
 
-                                   
-                                    
+
+
                                     <div class='actions mt-auto btn'>
                                         <a asp-action="workshopcollector" class='wsbtn btn' asp-route-id=@Model.ElementAt(i).Id><div>Show more</div></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                
+                    </div>
                 </div>
                 <br />
             }
