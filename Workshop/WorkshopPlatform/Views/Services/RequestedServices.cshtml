@@ -1,4 +1,4 @@
-﻿@model List<UserServices>
+﻿@model List<WorkshopPlatform.ViewModels.UserServicesViewModel>
 @{
     ViewData["Title"] = "RequestedServices";
     Layout = "~/Views/Shared/_Layout1.cshtml";
@@ -44,29 +44,32 @@
                                                                  </thead>
 
                                                                  <tbody>
-                                                                     @{ var i = 0;
-                                                                         @foreach (var item in ViewBag.services)
-                                                                     {
-                                                                             
-                                                                         <tr>
-                                                                             <td>
-                                                                                 @item.Service.Title
-                                                                             </td>
-                                                                             <td>
-                                                                                 @item.User.UserName
-                                                                             </td>
-                                                                             <td>
-                                                                                 @item.Date
-                                                                             </td>
+                                                                 @{var i = 0;
+                                                                         @foreach(var item in Model)
+                                                                         {
+                                                                             <tr>
+                                                                                 <td>
+                                                                                     <input  name="data[@i].Id" asp-for="@item.Id" value="@item.Id" style="display:none" />
+                                                                                     @item.Title
+                                                                                 </td>
+                                                                                 <td>
+                                                                                     @item.UserName
+                                                                                 </td>
+                                                                                 <td>
+                                                                                     @item.Date
+                                                                                 </td>
 
-                                                                             <td >
+                                                                                 <td>
 
-                                                                                 Finished <input type="checkbox" name="Finished"  asp-for="@Model[i].Finished"  value="Finished" />
-                                                                             </td>
-                                                                             @i++;
-                                                                         </tr>
-                                                                     }
+                                                                                     Finished <input type="checkbox" name="data[@i].Finished" asp-for="@item.Finished" />
+                                                                                 </td>
+
+                                                                             </tr>
+                                                                             i++;
                                                                          }
+                                                                    
+                                                                     }
+                                                                     
                                                                  </tbody>
                                                              </table>
                                                              <div class="pagination-container">
@@ -74,9 +77,8 @@
                                                                      <ul class="pagination"></ul>
                                                                  </nav>
                                                              </div>
-                                                             <button  type="submit" class="btn btn-primary" style="color:white;">Update</button>
-
-                                                             
+                                                             <button formmethod="post"  type="submit" class="btn btn-primary" style="color:white;">Update</button>
+                                          
                                                          </form>
                                                      </div>
                                                  </div>
@@ -147,53 +149,6 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-
-
-@*update*@
-
-<div class="modal fade updateModal" id="myUpdateModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            @*Modal Header*@
-            <div class="modal-header">
-                <h4 class="modal-title">Update Service</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            @*Modal body*@
-            <div class="modal-body">
-                @*<form asp-action="Edit" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="Id" />
-
-                    <div class="form-group">
-                        <label asp-for="Finished" class="control-label"></label>
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Price" class="control-label"></label>
-                        <input asp-for="Price" class="form-control" />
-                        <span asp-validation-for="Price" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                   
-
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-primary" />
-                    </div>
-                </form>*@
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
     @section Scripts {

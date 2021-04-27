@@ -17,17 +17,14 @@ namespace WorkshopPlatform.ViewModels
 
         [Required]
         public string Title { get; set; }
+        [Required]
+        public string UserName { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
 
         [Required]
         public bool Finished { get; set; }
-
-        [ForeignKey("WorkShop")]
-        public int WorkShopId { get; set; }
-
-        public virtual WorkShop WorkShop { get; set; }
     }
 }
 

@@ -14,6 +14,8 @@ using System.Security.Claims;
 using Workshop.ViewModel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using WorkshopPlatform.ViewModels;
+
 namespace WorkshopPlatform.Controllers
 {
     public class ServicesController : Controller
@@ -272,16 +274,30 @@ namespace WorkshopPlatform.Controllers
 
         public async Task<IActionResult>RequestedServices()
         {
+            var model = new List<UserServicesViewModel>();
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var services = await _context.UserServices
                  .Include(w => w.User)
                  .Include(w => w.Service)
                  .Where(w => w.User.Id == userID).ToListAsync();
-            var model=await _context.UserServices.Where(w=>w.Finished==false)                          
-                 .Where(w => w.User.Id == userID).ToListAsync();
+      
             ViewBag.Historyservices = services.Where(w => w.Finished == true);
             var requested = services.Where(w => w.Finished == false);
             ViewBag.services = requested;
+
+            foreach (var item in requested)
+            {
+                var x = new UserServicesViewModel
+                {
+                    Id = item.Id,
+                    Finished = item.Finished,
+                    Date = item.Date,
+                    Title = item.Service.Title,
+                    UserName = item.User.UserName
+                };
+                model.Add(x);
+            }
+          
          
             return View(model);
         }
@@ -302,10 +318,15 @@ namespace WorkshopPlatform.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(UserServices data)
+        public async Task<IActionResult> Update(List<UserServicesViewModel> data)
         {
+            foreach (var item in data)
+            {
+                var US = _context.UserServices.Find(item.Id);
+                US.Finished = item.Finished;
+            }
 
-            var x = data;
+            _context.SaveChanges();
             return RedirectToAction(nameof(RequestedServices));
         }
 
