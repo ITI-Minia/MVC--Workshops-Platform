@@ -6,7 +6,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css");
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
 body {
   background-color: #F4F4F4;
 }
@@ -1142,6 +1141,84 @@ html {
   background-size: cover;
 }
 
+.half-stars-rate {
+  /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+  /* make hover effect work properly in IE */
+  /* hide radio inputs */
+  /* set icon padding and size */
+  /* add padding and positioning to half star labels */
+  /* set default star color */
+  /* set color of none icon when unchecked */
+  /* if none icon is checked, make it red */
+  /* if any input is checked, make its following siblings grey */
+  /* make all stars orange on rating group hover */
+  /* make hovered input's following siblings grey on hover */
+  /* make none icon grey on rating group hover */
+  /* make none icon red on hover */
+}
+
+.half-stars-rate .rating-group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.half-stars-rate .rating__icon {
+  pointer-events: none;
+}
+
+.half-stars-rate .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+.half-stars-rate .rating__label {
+  cursor: pointer;
+  /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+  padding: 0 0.1em;
+  font-size: 1rem;
+}
+
+.half-stars-rate .rating__label--half {
+  padding-right: 0;
+  margin-right: -1.2em;
+  z-index: 2;
+}
+
+.half-stars-rate .rating__icon--star {
+  color: #E2AD21;
+}
+
+.half-stars-rate .rating__icon--none {
+  color: #eee;
+}
+
+.half-stars-rate .rating__input--none:checked + .rating__label .rating__icon--none {
+  color: #dc3545;
+}
+
+.half-stars-rate .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+
+.half-stars-rate .rating-group:hover .rating__label .rating__icon--star,
+.half-stars-rate .rating-group:hover .rating__label--half .rating__icon--star {
+  color: #E2AD21;
+}
+
+.half-stars-rate .rating__input:hover ~ .rating__label .rating__icon--star,
+.half-stars-rate .rating__input:hover ~ .rating__label--half .rating__icon--star {
+  color: #ddd;
+}
+
+.half-stars-rate .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+  color: #eee;
+}
+
+.half-stars-rate .rating__input--none:hover + .rating__label .rating__icon--none {
+  color: #dc3545;
+}
+
 .errorImage {
   width: 10rem;
 }
@@ -1150,200 +1227,310 @@ html {
   color: #E2AD21;
 }
 
-/***
-    * Main theme colors
-    ***/
-.singleWarsha {
-  color: #171616;
-  background-color: #F4F4F4;
+.workshop--page .container {
+  max-width: 1250px;
+  margin: 30px auto 30px;
+  padding: 0 !important;
+  width: 90%;
+  background-color: #fff;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.searchDiv {
-  background-color: #ffffff;
+.workshop--page header {
+  background: #eee;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #171616;
+  height: 250px;
 }
 
-.searchDiv .warshacart {
-  border-left: 6px solid black;
-  height: 30px;
-}
-
-.Warshacircle {
-  height: 15px !important;
-  width: 15px !important;
-  border-radius: 100% !important;
-  cursor: pointer !important;
-  background-color: #2748BA !important;
-}
-
-.Warshacircle.active {
-  background-color: #f79f24 !important;
-}
-
-.warshaMain {
-  color: #171616;
-  background-color: #F4F4F4;
-}
-
-.warshaSlideShow {
-  margin-bottom: 50px;
-}
-
-.review {
+.workshop--page header i {
   position: relative;
-  /*styling star rating*/
+  cursor: pointer;
+  right: -96%;
+  top: 25px;
+  font-size: 18px !important;
+  color: #fff;
 }
 
-.review .overlay {
+@media (max-width: 800px) {
+  .workshop--page header {
+    height: 150px;
+  }
+  .workshop--page header i {
+    right: -90%;
+  }
+}
+
+.workshop--page main {
+  padding: 20px 20px 0px 20px;
+}
+
+.workshop--page .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.workshop--page .photo {
+  width: 200px;
+  height: 200px;
+  margin-top: -120px;
+  border-radius: 100px;
+  border: 4px solid #F4F4F4;
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
+}
+
+.workshop--page .photo:hover {
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.workshop--page .active-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  opacity: 1;
-  background: #f79f24;
+  right: calc(50% - 70px);
+  top: 75px;
+  background-color: #FFC107;
+  border: 3px solid #fff;
 }
 
-.review .warshaMain {
-  color: #171616;
+@media (max-width: 990px) {
+  .workshop--page .active {
+    right: calc(50% - 60px);
+    top: 50px;
+  }
+}
+
+.workshop--page .name {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 18pt;
+  color: #E2AD21;
+}
+
+.workshop--page .info {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-size: 11pt;
+  color: #6c757d;
+}
+
+.workshop--page .stats {
+  width: 80%;
+  margin-top: 25px;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ededed;
+}
+
+.workshop--page .contacts {
+  width: 80%;
+  display: block;
+  padding-top: 35px;
+  padding-bottom: 40px;
+  font-size: 12pt;
+  border-bottom: 1px solid #ededed;
+  color: #999999;
+}
+
+.workshop--page .contacts i {
+  padding-right: 10px;
+  color: #d3d3d3;
+}
+
+.workshop--page .number-stat {
+  padding: 0px;
+  font-size: 14pt;
+  font-weight: bold;
+  color: #6c757d;
+}
+
+.workshop--page .desc-stat {
+  margin-top: -15px;
+  font-size: 10pt;
+  color: #bbb;
+}
+
+.workshop--page .images {
+  width: 80%;
+  text-align: center;
+  margin-top: 25px;
+  margin: 25px 40px;
+  padding-bottom: 25px;
+  font-size: 10pt;
+  color: #bbb;
+  border-bottom: 1px solid #ededed;
+}
+
+.workshop--page .images a {
+  margin-top: -1em;
+  margin-bottom: 0.5em;
+}
+
+.workshop--page .images a:hover {
+  text-decoration: none;
+}
+
+.workshop--page .images .img-row {
+  margin-left: -1.5em;
+}
+
+.workshop--page .images img {
+  display: inline-block;
+  border: 3px solid #fcfcfc;
+}
+
+.workshop--page .images img:hover {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25), 0 3px 3px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+
+.workshop--page .right {
+  padding: 0 25px 0 25px !important;
+}
+
+.workshop--page .nav {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.workshop--page .nav li {
+  margin: 40px 30px 0 10px;
+  cursor: pointer;
+  font-size: 13pt;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #888;
+}
+
+.workshop--page .nav li a {
+  color: #888;
+}
+
+.workshop--page .nav li:hover,
+.workshop--page .nav li .active {
+  color: #E2AD21;
+  border-bottom: 2px solid #E2AD21;
+}
+
+.workshop--page .nav li:hover {
   background-color: #F4F4F4;
 }
 
-.review #txtArea {
-  height: 6.25rem;
-  width: 100%;
-  padding: 1rem;
+.workshop--page .follow {
+  position: absolute;
+  right: 8%;
+  top: 35px;
+  font-size: 11pt;
+  background-color: #E2AD21;
+  color: #fff;
+  padding: 8px 15px;
+  cursor: pointer;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  font-weight: 400;
 }
 
-.review .warshaModalName {
+.workshop--page .follow:hover {
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 990px) {
+  .workshop--page .nav {
+    display: none;
+  }
+  .workshop--page .follow {
+    width: 50%;
+    margin-left: 25%;
+    display: block;
+    position: unset;
+    text-align: center;
+  }
+}
+
+.workshop--page #services .col-3 {
+  padding: 0;
+}
+
+.workshop--page #services .price {
+  border: 1px solid #2748BA;
+}
+
+.workshop--page #services .desc {
+  color: #999;
+}
+
+.workshop--page #services .desc button {
+  background-color: transparent;
+  color: #2748BA;
+  border: none;
+}
+
+.workshop--page #services .desc button:hover {
+  color: #171616;
+}
+
+.workshop--page #services .cart-btn {
+  position: relative;
+  bottom: 10px;
+  left: 1em;
+}
+
+.workshop--page #services .cart-btn button {
+  background-color: transparent;
+  color: #E2AD21;
+  border: none;
+}
+
+.workshop--page #services .cart-btn button:hover {
   color: #2748BA;
 }
 
-.review .rating {
-  border: none;
-  float: left;
+.workshop--page #services .card {
+  border-radius: 0px;
+  border: 1px solid #F4F4F4;
 }
 
-.review .rating > input {
+.workshop--page #services .card-body {
+  padding: 0em;
+  height: 150px;
+}
+
+.workshop--page #services .card-body:hover {
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.workshop--page #services .moreText {
   display: none;
 }
 
-.review .rating > label:before {
-  content: '\f005';
-  font-family: FontAwesome;
-  font-size: 1.5rem;
-  display: inline-block;
-  cursor: pointer;
+.workshop--page .pagination a {
+  border: none;
 }
 
-.review .rating > .half:before {
-  content: '\f089';
-  position: absolute;
-  cursor: pointer;
-}
-
-.review .rating > label {
-  color: #F4F4F4;
-  float: right;
-  cursor: pointer;
-}
-
-.review .rating > input:checked ~ label,
-.review .rating:not(:checked) > label:hover,
-.review .rating:not(:checked) > label:hover ~ label {
-  color: #2748BA;
-}
-
-.review .rating > input:checked + label:hover,
-.review .rating > input:checked ~ label:hover,
-.review .rating > label:hover ~ input:checked ~ label,
-.review .rating > input:checked ~ label:hover ~ label {
-  color: #2748BA;
-}
-
-.services .serviceName {
-  font-size: medium;
-}
-
-.services .price {
-  color: #2748BA;
-}
-
-.services .priceImage {
-  width: 300px;
-  height: 200px;
-}
-
-.services .AddToCard:hover {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
-}
-
-.clientFeedback .feedback {
-  text-align: center;
-  margin: auto;
-}
-
-.clientFeedback .commentIconBackground {
-  width: 30px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: #f79f24;
-  margin: auto;
-}
-
-.clientFeedback .commentIcon {
-  color: #ffffff;
-}
-
-.clientFeedback .userInfo {
-  text-align: left;
-  display: inline-block;
-}
-
-.clientFeedback .userName {
-  color: #2748BA;
-}
-
-.clientFeedback .date {
-  font-size: medium;
-}
-
-.clientFeedback .clientImage {
-  width: 75px;
-  height: 70px;
-}
-
-.clientFeedback .userComment {
-  font-size: medium;
-  text-align: left;
-}
-
-.warshaimg,
-.blog-img,
-.user-img {
-  width: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-@media (min-width: 992px) {
-  .review .overlay {
-    width: 50%;
-  }
-  .WarshaCurosal {
-    padding-right: 100px;
-    padding-left: 100px;
-  }
-  .clientFeedbackCard {
-    max-width: 35%;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .review .overlay {
-    opacity: .9;
-  }
+.workshop--page .pagination a:hover {
+  background-color: transparent;
 }
 
 .aboutUS {
@@ -1465,24 +1652,13 @@ html {
 .signup--page {
   background-color: #171616;
   background-size: cover;
-}
-
-.signup--page::after {
-  content: "";
-  position: absolute;
-  background: url("/imgs/sigup-background.jpg");
-  background-size: cover;
-  opacity: 0.2;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
+  padding-top: 1em;
 }
 
 .signup--page .header--border {
-  width: 4rem;
+  width: 2.5rem;
   margin: 0px;
+  margin-top: 0.5em;
   border-bottom: 2px solid #d3d3d3;
   border-top: 0;
 }
@@ -1509,6 +1685,12 @@ html {
   }
 }
 
+@media (min-width: 992px) {
+  .signup--page .right--side--left {
+    border-radius: 0.4rem 0 0 0.4rem;
+  }
+}
+
 .signup--page .content a.main--link:hover {
   text-decoration: none;
 }
@@ -1523,6 +1705,11 @@ html {
   position: absolute;
   bottom: 1.6rem;
   font-size: 16px;
+}
+
+.signup--page .signup--form .fa-chevron-right {
+  color: white;
+  position: static;
 }
 
 .signup--page .signup--form .error--icon {
@@ -1607,7 +1794,7 @@ html {
 }
 
 .signup--page .left--side {
-  background-color: rgba(23, 22, 22, 0.827);
+  background-color: #F4F4F4;
   border-radius: 0.4rem 0 0 0.4rem;
 }
 
@@ -1620,7 +1807,7 @@ html {
   width: 15px;
   height: 25px;
   margin-right: 20px;
-  color: #ffffff;
+  color: #171616;
   font-size: 13px;
 }
 
@@ -1630,7 +1817,7 @@ html {
 }
 
 .signup--page .left--side .carousel-caption {
-  color: #ffffff;
+  color: #171616;
   text-align: center;
 }
 
@@ -1648,6 +1835,10 @@ html {
 .signup--page .left--side img {
   height: 470px;
   margin-bottom: 1.5rem;
+}
+
+.signup--page .left--side--right {
+  border-radius: 0 0.4rem 0.4rem 0;
 }
 
 .signup--page .alert-dismissible {
@@ -1678,6 +1869,23 @@ html {
   width: 40px;
   height: 40px;
   text-align: center;
+}
+
+.signup--page .btn-right {
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  margin-right: -0.5em;
+  color: white;
+}
+
+.signup--page .btn-left {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.signup--page .signup-btns {
+  margin-top: 0em;
+  margin-right: 1.5em;
 }
 
 /***********************************
@@ -2107,7 +2315,7 @@ html {
 }
 
 .register-confirm-page #email-img {
-  width: 500px;
+  width: 450px;
 }
 
 .register-confirm-page #verified-img {

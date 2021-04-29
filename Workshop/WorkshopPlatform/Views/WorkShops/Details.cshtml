@@ -1,80 +1,420 @@
-﻿@model Workshop.Models.WorkShop
+﻿@using Workshop.Models;
+
+@model Workshop.Models.WorkShop
 
 @{
-    ViewData["Title"] = "Details";
+    var images = Model.Images.ToList();
+    ViewBag.Title = "WorkShop";
 }
+<div class="workshop--page">
 
-<h1>Details</h1>
+    @if (Model.Rate != 0)
+    {
+        <input type="hidden" value="@Model.Rate" id="rate">
+    }
 
-<div>
-    <h4>WorkShop</h4>
-    <hr />
-    @*@Html.Partial("AboutWarsha.cshtml",Model)*@
+    <div class="container">
+        @if (Model.Image != null)
+        {
+            <header style="background-image: url('/Upload/images/@Model.Image')">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </header>
+        }
+        else
+        {
+            <header>
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </header>
+        }
+        <main>
+            <div class="row align-items-start">
+                <div class="left col-lg-4">
+                    <div class="photo-left">
+                        @if (Model.Logo != null)
+                        {
+                            <img class="photo" src="/Upload/images/@Model.Logo" />
+                        }
+                        else
+                        {
+                            <img class="photo" src="/imgs/Workshop-logo-default.png" />
+                        }
+                        @*<div class="active"></div>*@
+                    </div>
+                    <h4 class="name">@Model.Name</h4>
+                    <p class="info">@@@Model.User.UserName</p>
 
+                    <div class="row">
+                        <div class="half-stars-rate">
+                            <div class="rating-group mr-2">
+                                <label aria-label="0 stars" class="rating__label" id="r-0">&nbsp;</label>
+                                <label aria-label="0.5 stars" class="rating__label rating__label--half" for="r-05">
+                                    @if (Model.Rate >= 0.5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                    }
+                                </label>
+                                <label aria-label="1 star" class="rating__label" id="r-10">
+                                    @if (Model.Rate >= 1)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                    }
+                                </label>
+                                <label aria-label="1.5 stars" class="rating__label rating__label--half" id="r-15">
+                                    @if (Model.Rate >= 1.5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                    }
+                                </label>
+                                <label aria-label="2 stars" class="rating__label" id="r-20">
+                                    @if (Model.Rate >= 2)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                    }
+                                </label>
+                                <label aria-label="2.5 stars" class="rating__label rating__label--half" id="r-25">
+                                    @if (Model.Rate >= 2.5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                    }
+                                </label>
+                                <label aria-label="3 stars" class="rating__label" id="r-30">
+                                    @if (Model.Rate >= 3)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                    }
+                                </label>
+                                <label aria-label="3.5 stars" class="rating__label rating__label--half" id="r-35">
+                                    @if (Model.Rate >= 3.5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                    }
+                                </label>
+                                <label aria-label="4 stars" class="rating__label" id="r-40">
+                                    @if (Model.Rate >= 4)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                    }
+                                </label>
+                                <label aria-label="4.5 stars" class="rating__label rating__label--half" id="r-45">
+                                    @if (Model.Rate >= 4.5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                    }
+                                </label>
+                                <label aria-label="5 stars" class="rating__label" id="r-50">
+                                    @if (Model.Rate >= 5)
+                                    {
+                                        <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                    }
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts row justify-content-center">
+                        <span>
+                            <span class="text-secondary">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                            (+20) @Model.User.PhoneNumber.Substring(1, 3)
+                            @Model.User.PhoneNumber.Substring(4, 3)
+                            @Model.User.PhoneNumber.Substring(7)
+                        </span> <br>
+                        <span>
+                            <span class="text-secondary">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </span>
+                            @Model.Address - @Model.City - @Model.Government
+                        </span> <br>
+                        <span>
+                            <span class="text-secondary">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            @Model.User.Email
+                        </span> <br>
+                    </div>
+                    <div class="stats row justify-content-center">
+                        <div class="stat col-xs-6" style="padding-right: 50px;">
+                            <p class="number-stat">@Model.Services.Where(s => s.Verified == true).ToList().Count</p>
+                            <p class="desc-stat">Services</p>
+                        </div>
+                        <div class="stat col-xs-6">
+                            <p class="number-stat">@Model.WorkshopRates.Count</p>
+                            <p class="desc-stat">Rates</p>
+                        </div>
+                    </div>
 
-    @*@Html.Partial("AboutWarsha.cshtml")*@
+                    <div class="images row">
+                        <a href="#" class="d-block w-100 text-right" id="galleryLink">
+                            show all <i class="fa fa-angle-double-right"></i>
+                        </a>
 
-    <dl class="row">
-        <dt class="col-sm-2">
-            @*<partial name="AboutWarsha.cshtml" />*@
+                        @if (Model.Images.Count == 0)
+                        {
+                            <div class="row justify-content-center w-100 py-5" style="color:#aaa">
+                                There is no images yet
+                            </div>
+                        }
+                        else
+                        {
+                            @for (int i = 0; i < images.Count; i = i + 2)
+                            {
+                                <div class="row img-row mb-2">
+                                    <div class="col-12 col-md-6">
+                                        <img src="/Upload/images/@images[i].path" alt="@images[i].path" height="100" width="150">
+                                    </div>
 
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Image)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Logo)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Logo)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Verified)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Verified)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.City)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.City)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Government)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Government)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Rate)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Rate)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.User)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.User.Id)
-            </dd>
+                                    @if (i + 1 < images.Count)
+                                    {
+                                        <div class="col-12 col-md-6">
+                                            <img src="/Upload/images/@images[i+1].path" alt="@images[i+1].path" height="100" width="150">
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="right col-lg-8">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services"
+                               aria-selected="true" class="nav-link active" onclick="services()">
+                                services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false" class="nav-link">Gallery</a>
+                        </li>
+                    </ul>
+                    <span type="button" class="follow">Follow</span>
+                    <div class="row gallery">
+                    </div>
+                    <div id="tabContent" class="tab-content col-12">
+                        <div id="services" role="tabpanel" aria-labelledby="services-tab" class="tab-pane fade px-4 py-5 show active">
+                            @if (Model.Services.Count == 0)
+                            {
+                                <div class="row justify-content-center small py-5" style="color:#aaa">
+                                    There is no services yet
+                                </div>
+                            }
+                            else
+                            {
+                                @foreach (var service in Model.Services)
+                                {
 
-        </dl>
+                                    @if (service.Verified == true)
+                                    {
+                                        <div class="row mb-4">
+                                            <div class="card col-12">
+                                                <div class="card-body row" id="card-@service.Id" style="height:150px">
+                                                    <div class="col-3 h-100">
+                                                        @if (service.Image != null)
+                                                        {
+                                                            <img src="/Upload/images/@service.Image" class="h-100 w-100">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="/imgs/car-service.jpg" class="h-100 w-100">
+                                                        }
+                                                    </div>
+                                                    <div class="col-9 pl-3 pt-3">
+
+                                                        <span class="text-primary h5">@service.Title</span>
+
+                                                        <span class="text-muted">
+                                                            <span class="price">
+                                                                @service.Price
+                                                            </span><span class="small">EGP</span>
+                                                        </span><br>
+
+                                                        <div class="mb-3 small desc" id="@service.Id">
+                                                            @if (service.Description == null || service.Description.Length <= 170)
+                                                            {
+                                                                @service.Description
+                                                            }
+                                                            else
+                                                            {
+                                                                @service.Description.Substring(0, 170)
+                                                                <span class="points">...</span>
+
+                                                                <span class="moreText">
+                                                                    @service.Description.Substring(170)
+                                                                </span>
+
+                                                                <button href="#" class="pl-2 textButton" onclick="toggleText(@service.Id)">
+                                                                    Show More
+                                                                </button>
+
+                                                            }
+                                                        </div>
+                                                        <div class="cart-btn float-right">
+                                                            <button class="col-6 col-md-1">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                                @if (Model.Services.Count > 3)
+                                {
+                                    <nav aria-label="Page navigation">
+                                        <input type="hidden" id="service-index" value="0">
+                                        <ul class="pagination row justify-content-end">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#services" onclick="services(false)">
+                                                    <i class="fa fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#services" onclick="services()">
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                }
+                            }
+                        </div>
+                        <div id="gallery" role="tabpanel" aria-labelledby="gallery-tab" class="tab-pane px-4 py-5 fade">
+                            @if (Model.Images.Count != 0)
+                            {
+                                <div class="row justify-content-center small py-5" style="color:#aaa">
+                                    There is no images yet
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            services();
+        });
+
+        $('#galleryLink').click(function () {
+            $('#gallery-tab').addClass('active');
+            $('#services-tab').removeClass('active');
+
+            $('#services').removeClass(['show', 'active']);
+            $('#gallery').addClass(['show', 'active']);
+        });
+
+        function toggleText(id) {
+
+            // Get all the elements from the page
+            var points = $(`#${id} .points`)[0];
+
+            var showMoreText = $(`#${id} .moreText`)[0];
+
+            var buttonText = $(`#${id} .textButton`)[0];
+
+            if (points.style.display === "none") {
+
+                var len = $(`#${id}`)[0].clientHeight;
+
+                showMoreText.style.display = "none";
+                points.style.display = "inline";
+                buttonText.innerHTML = "Show More";
+
+                len -= $(`#${id}`)[0].clientHeight;
+
+                var cardLen = $(`#card-${id}`)[0].clientHeight - len;
+
+                document.getElementById(`card-${id}`).style.height = cardLen + 'px';
+            }
+
+            else {
+                var len = $(`#${id}`)[0].clientHeight;
+
+                showMoreText.style.display = "inline";
+                points.style.display = "none";
+                buttonText.innerHTML = "Show Less";
+
+                len = $(`#${id}`)[0].clientHeight - len;
+
+                var cardLen = $(`#card-${id}`)[0].clientHeight + len;
+
+                document.getElementById(`card-${id}`).style.height = cardLen + 'px';
+            }
+        }
+
+        function services(next = true) {
+
+            var index = eval($('#service-index').val())
+            var count = eval($('#services .card').length);
+            var services = $('#services .card');
+
+            if (!next) {
+                index -= 3;
+            }
+
+            if (count > 3) {
+                for (i = index + 3; i < count; i++) {
+                    $(services[i]).addClass('d-none');
+                }
+                for (i = 0; i < index; i++) {
+                    $(services[i]).addClass('d-none');
+                }
+                for (i = index; i < index + 3; i++) {
+                    $(services[i]).removeClass('d-none');
+                }
+            }
+
+            if (next) {
+                index += 3;
+            }
+
+            $('#service-index').val(index);
+        }
+    </script>
+}

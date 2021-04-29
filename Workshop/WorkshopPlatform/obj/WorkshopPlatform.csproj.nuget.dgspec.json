@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
+    "E:\\Information technology institute\\Server Side Technologies\\MVC Project\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
+    "E:\\Information technology institute\\Server Side Technologies\\MVC Project\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "projectUniqueName": "E:\\Information technology institute\\Server Side Technologies\\MVC Project\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
         "projectName": "WorkshopPlatform",
-        "projectPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
-        "packagesPath": "C:\\Users\\Elamen Soft\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elamen Soft\\Documents\\GitHub\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
+        "projectPath": "E:\\Information technology institute\\Server Side Technologies\\MVC Project\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\WorkshopPlatform.csproj",
+        "packagesPath": "C:\\Users\\Abraam Samir\\.nuget\\packages\\",
+        "outputPath": "E:\\Information technology institute\\Server Side Technologies\\MVC Project\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Elamen Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abraam Samir\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +25,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "net5.0": {
@@ -95,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
