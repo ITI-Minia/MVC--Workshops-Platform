@@ -5,6 +5,7 @@
 }
 
 
+
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -25,57 +26,60 @@
                     }
 
                 }
-                <h2> Requested Services </h2><br />
+            
+
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
 
                     <div class="card-body">
                         <div class="table-responsive">
-                                <table class="table table-bordered" id="mytable" width="100%" cellspacing="0">
-                                    <thead>
+                            <table class="table table-bordered" id="mytable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+
+                                        <th>UserName</th>
+                                        <th>Date</th>
+                                        <th>Review</th>
+                                        <th>Rate</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in ViewBag.Rates)
+                                    {
+
                                         <tr>
+                                            <td>
+                                                @item.UserProfile.FirstName @item.UserProfile.LastName
+                                            </td>
+                                            <td>
+                                                @item.Date
+                                            </td>
+                                            <td>
+                                                @item.Review
+                                            </td>
 
-                                            <th>UserName</th>
-                                            <th>Date</th>
-                                            <th>Review</th>
-                                            <th>Rate</th>
-
+                                            <td>
+                                                @item.Rate
+                                            </td>
                                         </tr>
-                                    </thead>
+                                    }
 
-                                    <tbody>
-                                        @foreach (var item in ViewBag.Rates)
-                                        {
+                                </tbody>
+                            </table>
+                            <div class="pagination-container">
+                                <nav>
+                                    <ul class="pagination"></ul>
+                                </nav>
+                            </div>
 
-                                            <tr>
-                                                <td>
-                                                    @item.UserProfile.FirstName @item.UserProfile.LastName
-                                                </td>
-                                                <td>
-                                                    @item.Date
-                                                </td>
-                                                <td>
-                                                    @item.Review
-                                                </td>
-
-                                                <td>
-                                                    @item.Rate
-                                                </td>
-                                            </tr>
-                                        }
-
-                                    </tbody>
-                                </table>
-                                <div class="pagination-container">
-                                    <nav>
-                                        <ul class="pagination"></ul>
-                                    </nav>
-                                </div>
-                           
                         </div>
                     </div>
 
                 </div>
+
+
 
 
 
@@ -85,7 +89,7 @@
         </div>
         <!-- End of Main Content -->
 
-
+       
 
     </div>
     <!-- End of Content Wrapper -->
@@ -93,14 +97,13 @@
 </div>
 <!-- End of Page Wrapper -->
 <!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+
 
 
 
 @section Scripts {
-    
+
+
 }
 
 
