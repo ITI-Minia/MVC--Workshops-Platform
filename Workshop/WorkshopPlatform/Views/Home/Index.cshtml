@@ -166,7 +166,9 @@
                                         workshop.
                                     </li>
                                     <div style="text-align: center; margin-top: 10px">
-                                        <button class="btn emergancy--btn">requist rebair</button>
+                                        <a asp-controller="Workshops" asp-action="Index">
+                                            <button class="btn emergancy--btn">requist rebair</button>
+                                        </a>
                                     </div>
                                 </ul>
                             </div>
@@ -306,7 +308,7 @@
                     getCity([lat, lang]);
                 }
 
-                mymap.on("click", preventDefault(), onMapClick);
+                mymap.on("click", onMapClick);
             });
 
             $("#close_map").click(function () {
