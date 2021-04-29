@@ -5,6 +5,8 @@
         border-radius: 0.25rem;
         box-shadow: 0rem 10.875rem 5rem rgba(36, 37, 68, 0.02);
         max-width: 37.5rem;
+        min-width: 37.5rem;
+        min-height: 230px;
         border-radius: 1.563rem;
         position: absolute;
         align-items: center;
@@ -48,11 +50,13 @@
             display: grid;
             grid-template-columns: 1fr 2fr;
             width: 100%;
+            min-height: 230px;
+            min-width: 37.5rem;
         }
 
         .title-total {
-            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
-            min-height: 270;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;       
+            max-height: 200;
         }
 
         .portada {
@@ -81,7 +85,7 @@
 
         .wsbtn {
             position: absolute;
-            right: 1.5rem;
+            right: 1rem;
             bottom: 1.5rem;
             border-radius: 1.563rem;
             border: 1px solid;

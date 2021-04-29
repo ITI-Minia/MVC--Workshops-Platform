@@ -14,6 +14,8 @@ using System.Security.Claims;
 using Workshop.ViewModel;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using WorkshopPlatform.ViewModels;
+
 namespace WorkshopPlatform.Controllers
 {
     public class ServicesController : Controller
@@ -268,6 +270,68 @@ namespace WorkshopPlatform.Controllers
             ViewBag.services = _context.Services.Where(w => w.WorkShop.Id == workshop.Id).ToList();
             return View();
         }
+
+
+        public async Task<IActionResult>RequestedServices()
+        {
+            var model = new List<UserServicesViewModel>();
+            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var services = await _context.UserServices
+                 .Include(w => w.User)
+                 .Include(w => w.Service)
+                 .Where(w => w.User.Id == userID).ToListAsync();
+      
+            ViewBag.Historyservices = services.Where(w => w.Finished == true);
+            var requested = services.Where(w => w.Finished == false);
+            ViewBag.services = requested;
+
+            foreach (var item in requested)
+            {
+                var x = new UserServicesViewModel
+                {
+                    Id = item.Id,
+                    Finished = item.Finished,
+                    Date = item.Date,
+                    Title = item.Service.Title,
+                    UserName = item.User.UserName
+                };
+                model.Add(x);
+            }
+          
+         
+            return View(model);
+        }
+        public async Task<IActionResult> GetRate()
+        {
+            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var workshop = await _context.WorkShops
+                 .Include(w => w.User)
+                 .Include(w => w.WorkshopRates)
+                 .FirstOrDefaultAsync(w => w.User.Id == userID);
+            var model = await _context.UserServices.Where(w => w.Finished == false)
+                 .Where(w => w.User.Id == userID).ToListAsync();
+            
+                var data= _context.WorkshopRates.Include(w=>w.UserProfile).Include(w=>w.WorkShop).Where(w => w.WorkShop.Id == workshop.Id).ToList();
+            ViewBag.Rates = data;
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(List<UserServicesViewModel> data)
+        {
+            foreach (var item in data)
+            {
+                var US = _context.UserServices.Find(item.Id);
+                US.Finished = item.Finished;
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(RequestedServices));
+        }
+
+
+
         public async Task<IActionResult> WorkshopSetting()
         {
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
