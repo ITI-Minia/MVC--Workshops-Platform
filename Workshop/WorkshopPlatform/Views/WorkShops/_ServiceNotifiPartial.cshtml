@@ -1,0 +1,33 @@
+﻿@model List<WorkshopPlatform.Models.UserServices>
+
+@if (Model.Count == 0)
+{
+    <div class="row justify-content-center p-5" id="service-empty">
+        You have no items in your shopping cart.
+    </div>
+}
+else
+{
+    @for (int i = 0; i < Model.Count && i < 3; i++)
+    {
+        <a class="dropdown-item d-flex align-items-center p-3"
+           asp-controller="WorkShops" asp-action="Details" asp-route-id="@Model[i].Service.WorkShop.Id">
+            <div class="mr-3">
+                <div class="">
+                    @if (Model[i].Service.WorkShop.Image == null)
+                    {
+                        <img src="/imgs/Workshop-logo-default.png" alt="workshop logo">
+                    }
+                    else
+                    {
+                        <img src="/Upload/images/@Model[i].Service.WorkShop.Image" alt="workshop logo">
+                    }
+                </div>
+            </div>
+            <div>
+                <div class="small date">@Model[i].Date.ToShortDateString()</div>
+                <span class="font-weight-bold">You have order <b>@Model[i].Service.Title</b> </span>
+            </div>
+        </a>
+    }
+}

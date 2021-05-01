@@ -3,31 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WorkshopPlatform</title>
+    <title>@ViewData["Title"] - Warsha</title>
     <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/css/site.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WorkshopPlatform</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+    <header class="main--header">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow">
+
+            <div class="website--logo nav-item">
+                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Warsha</a>
             </div>
+            @*<div class="ml-lg-5 ml-md-2 d-none d-md-block nav-item nav-item-link">
+                    <a class="nav-link" asp-controller="WorkShops" asp-action="Index">workshops</a>
+                </div>*@
+            <!-- Topbar Search -->
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-4 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input id="search-input" type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            @await Component.InvokeAsync("NavHeader")
         </nav>
     </header>
     <div class="container-fluid">
@@ -36,12 +39,80 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - WorkshopPlatform - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="footer--logo--icon">
+                            <h1 class="website--logo">Warsha</h1>
+                            <div class="footer--icons">
+                                <a href="#" target="_blanck"><i class="fab fa-facebook-square"></i></a>
+                                <a href="#" target="_blanck">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" target="_blanck">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer--links">
+                            <div class="footer--frist--links">
+                                <ul class="footer--frist--links--items">
+                                    <li class="footer--frist--links--item">
+                                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="footer--frist--links--item">
+                                        <a href="#">Services </a>
+                                        <br />
+                                        <p class="sub--link sub"><a href="#">Emergancy</a></p>
+                                        <p class="sub--link"><a asp-controller="WorkShops" asp-action="Index">Workshops</a></p>
+                                    </li>
+                                    <li class="sub">
+                                        <a href="#">About us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer--second--links">
+                                <ul class="footer--frist--links--items">
+                                    <li class="footer--frist--links--item">
+                                        <a href="#">Contact</a>
+                                    </li>
+                                    <li class="footer--frist--links--item">
+                                        <a asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="cointainer">
+                            <div class="footer--contact">
+                                <p>
+                                    <a href="tel:19611" style="margin-left:10px;">
+                                        <i class="fas fa-phone-alt icon"></i> 19611 - 01140293248
+                                    </a>
+                                </p>
+                                <p>
+                                    <a href="mailto:Warsha@hotmail.com">
+                                        <i class="far fa-envelope icon"></i>
+                                        Warsha@hotmail.com
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - WorkshopPlatform - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/Core/popper.min.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -19,6 +19,7 @@
 @import 'components/button';
 @import 'components/card';
 @import 'components/startsRate';
+@import 'components/alert';
 // 6. Page-specific styles
 @import 'pages/Error';
 @import 'pages/home';
@@ -33,7 +34,6 @@
 @import'pages/emergancy';
 @import 'pages/RegisterConfirmation';
 @import 'pages/resetPasswordPage';
-
-
+@import 'pages/dashboard';
 // 7. Themes
 @import 'themes/default';

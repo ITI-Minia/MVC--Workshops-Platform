@@ -1,3 +1,59 @@
-// -----------------------------------------------------------------------------
-// This file contains all styles related to the header of the site/application.
-// -----------------------------------------------------------------------------
+.main--header {
+    .nav-item-link {
+        a {
+            font-size: 17px;
+            padding-top: 3px;
+            color: $gray-400;
+            &:hover {
+                border-bottom: 3px solid $primary;
+            }
+        }
+    }
+    .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
+        color: $gray-500;
+    }
+    .navbar-search {
+        #search-input {
+            border-radius: 30px;
+            &:active {
+                border-color: transparent;
+            }
+        }
+        button {
+            background-color: transparent;
+            position: relative;
+            border: none;
+            right: 40px;
+            z-index: 5;
+            &:hover {
+                color: $secondary;
+            }
+        }
+    }
+    #login-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .btn-primary {
+            height: 30px;
+            color: $white;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
+    }
+    .dropdown-item {
+        font-family: Arial, Helvetica, sans-serif;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .date {
+            color: $gray-700;
+        }
+    }
+}
+
+.website--logo {
+    font-family: $secondary-font;
+}

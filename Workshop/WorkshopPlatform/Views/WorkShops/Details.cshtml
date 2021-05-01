@@ -1,9 +1,10 @@
 ﻿@using Workshop.Models;
 
 @model Workshop.Models.WorkShop
-
 @{
     var images = Model.Images.ToList();
+    var Services = Model.Services.Where(s => s.Verified).ToList();
+    var reviews = (List<WorkshopRate>)ViewData["reviews"];
     ViewBag.Title = "WorkShop";
 }
 <div class="workshop--page">
@@ -16,14 +17,32 @@
     <div class="container">
         @if (Model.Image != null)
         {
-            <header style="background-image: url('/Upload/images/@Model.Image')">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+            <header id="imge-header" style="background-image: url('/Upload/images/@Model.Image')">
+                @if (ViewBag.WorkshopOwner == true)
+                {
+                    <div class="row justify-content-end">
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle identifyingClass" href="#" id="image-dropdown" data-id="1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="image-dropdown">
+                                <a href=# data-target="#updateImageModal" data-toggle="modal" class="dropdown-item" data-id="1">upload photo</a>
+                                <button class="dropdown-item" onclick="removeImage(@Model.Id)" id="remove">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                }
             </header>
         }
         else
         {
             <header>
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                @if (ViewBag.WorkshopOwner == true)
+                {
+                    <div class="row">
+                        <i class="fa fa-camera" aria-hidden="true"></i>
+                    </div>
+                }
             </header>
         }
         <main>
@@ -40,7 +59,9 @@
                         }
                         @*<div class="active"></div>*@
                     </div>
-                    <h4 class="name">@Model.Name</h4>
+                    <a asp-action="Details" asp-route-id="@Model.Id" class="name">
+                        <h4>@Model.Name</h4>
+                    </a>
                     <p class="info">@@@Model.User.UserName</p>
 
                     <div class="row">
@@ -178,17 +199,25 @@
                             <p class="desc-stat">Services</p>
                         </div>
                         <div class="stat col-xs-6">
-                            <p class="number-stat">@Model.WorkshopRates.Count</p>
+                            @if (Model.WorkshopRates == null)
+                            {
+                                <p class="number-stat">0</p>
+
+                            }
+                            else
+                            {
+                                <p class="number-stat">@Model.WorkshopRates.Count</p>
+                            }
                             <p class="desc-stat">Rates</p>
                         </div>
                     </div>
 
-                    <div class="images row">
+                    <div class="images justify-content-center row">
                         <a href="#" class="d-block w-100 text-right" id="galleryLink">
                             show all <i class="fa fa-angle-double-right"></i>
                         </a>
 
-                        @if (Model.Images.Count == 0)
+                        @if (images.Count == 0)
                         {
                             <div class="row justify-content-center w-100 py-5" style="color:#aaa">
                                 There is no images yet
@@ -196,16 +225,16 @@
                         }
                         else
                         {
-                            @for (int i = 0; i < images.Count; i = i + 2)
+                            @for (int i = 0; i < images.Count && i < 4; i = i + 2)
                             {
-                                <div class="row img-row mb-2">
-                                    <div class="col-12 col-md-6">
+                                <div class="row img-row justify-content-center mb-2">
+                                    <div class="col-6">
                                         <img src="/Upload/images/@images[i].path" alt="@images[i].path" height="100" width="150">
                                     </div>
 
-                                    @if (i + 1 < images.Count)
+                                    @if (i + 1 < images.Count && i < 4)
                                     {
-                                        <div class="col-12 col-md-6">
+                                        <div class="col-6">
                                             <img src="/Upload/images/@images[i+1].path" alt="@images[i+1].path" height="100" width="150">
                                         </div>
                                     }
@@ -214,8 +243,8 @@
                         }
                     </div>
                 </div>
-                <div class="right col-lg-8">
-                    <ul class="nav">
+                <div class="right-page col-lg-8">
+                    <ul class="nav" id="workshopTab">
                         <li class="nav-item">
                             <a id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services"
                                aria-selected="true" class="nav-link active" onclick="services()">
@@ -223,198 +252,122 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false" class="nav-link">Gallery</a>
+                            <a id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+                               aria-selected="false" class="nav-link">
+                                Reviews
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery"
+                               aria-selected="false" class="nav-link">
+                                Gallery
+                            </a>
                         </li>
                     </ul>
-                    <span type="button" class="follow">Follow</span>
+                    <span type="button" class="follow">Message</span>
                     <div class="row gallery">
                     </div>
                     <div id="tabContent" class="tab-content col-12">
                         <div id="services" role="tabpanel" aria-labelledby="services-tab" class="tab-pane fade px-4 py-5 show active">
-                            @if (Model.Services.Count == 0)
-                            {
-                                <div class="row justify-content-center small py-5" style="color:#aaa">
-                                    There is no services yet
-                                </div>
-                            }
-                            else
-                            {
-                                @foreach (var service in Model.Services)
-                                {
-
-                                    @if (service.Verified == true)
-                                    {
-                                        <div class="row mb-4">
-                                            <div class="card col-12">
-                                                <div class="card-body row" id="card-@service.Id" style="height:150px">
-                                                    <div class="col-3 h-100">
-                                                        @if (service.Image != null)
-                                                        {
-                                                            <img src="/Upload/images/@service.Image" class="h-100 w-100">
-                                                        }
-                                                        else
-                                                        {
-                                                            <img src="/imgs/car-service.jpg" class="h-100 w-100">
-                                                        }
-                                                    </div>
-                                                    <div class="col-9 pl-3 pt-3">
-
-                                                        <span class="text-primary h5">@service.Title</span>
-
-                                                        <span class="text-muted">
-                                                            <span class="price">
-                                                                @service.Price
-                                                            </span><span class="small">EGP</span>
-                                                        </span><br>
-
-                                                        <div class="mb-3 small desc" id="@service.Id">
-                                                            @if (service.Description == null || service.Description.Length <= 170)
-                                                            {
-                                                                @service.Description
-                                                            }
-                                                            else
-                                                            {
-                                                                @service.Description.Substring(0, 170)
-                                                                <span class="points">...</span>
-
-                                                                <span class="moreText">
-                                                                    @service.Description.Substring(170)
-                                                                </span>
-
-                                                                <button href="#" class="pl-2 textButton" onclick="toggleText(@service.Id)">
-                                                                    Show More
-                                                                </button>
-
-                                                            }
-                                                        </div>
-                                                        <div class="cart-btn float-right">
-                                                            <button class="col-6 col-md-1">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                }
-
-                                @if (Model.Services.Count > 3)
-                                {
-                                    <nav aria-label="Page navigation">
-                                        <input type="hidden" id="service-index" value="0">
-                                        <ul class="pagination row justify-content-end">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#services" onclick="services(false)">
-                                                    <i class="fa fa-chevron-left"></i>
-                                                </a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#services" onclick="services()">
-                                                    <i class="fa fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                }
-                            }
+                            @await Html.PartialAsync("_ServicesPartial", Services, ViewData)
                         </div>
                         <div id="gallery" role="tabpanel" aria-labelledby="gallery-tab" class="tab-pane px-4 py-5 fade">
-                            @if (Model.Images.Count != 0)
+                            @if (images.Count == 0)
                             {
                                 <div class="row justify-content-center small py-5" style="color:#aaa">
                                     There is no images yet
                                 </div>
                             }
+                            else
+                            {
+                                for (int i = 0; i < images.Count; i = i + 2)
+                                {
+                                    <div class="row mb-5 images-row justify-content-center">
+                                        <div class="col-12 col-md-6">
+                                            <button class="image--btn" onclick="imageModal(this)" type="button" data-toggle="modal" data-target="#imageModal">
+                                                <img src="~/Upload/images/@images[i].path" alt="@images[i].path" id="img-@images[i].Id">
+                                            </button>
+                                        </div>
+                                        @if (i + 1 < images.Count && images[i + 1] != null)
+                                        {
+                                            <div class="col-12 col-md-6">
+                                                <button class="image--btn" onclick="imageModal(this)" type="button" data-toggle="modal" data-target="#imageModal">
+                                                    <img src="~/Upload/images/@images[i+1].path" alt="@images[i+1].path" id="img-@images[i+1].Id">
+                                                </button>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            }
+
+                            @if (images.Count > 6)
+                            {
+                                <nav aria-label="row Page navigation">
+                                    <input type="hidden" id="image-index" value="3">
+                                    <ul class="pagination row justify-content-center">
+                                        <li class="page-item">
+                                            <button class="prev" id="prev3" onclick="gallery(-1)">
+                                                <i class="fa fa-chevron-left"></i>
+                                            </button>
+                                        </li>
+                                        <li class="page-item">
+                                            <button class="next" id="next3" onclick="gallery(1)">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            }
+                        </div>
+                        <div id="reviews" role="tabpanel" aria-labelledby="reviews-tab" class="tab-pane px-4 py-5 fade">
+                            @await Html.PartialAsync("_ReviewsPartial", reviews)
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="row justify-content-center modal-dialog" role="document">
+            <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <img id="modal-img" src="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- popup panel (Modal) to change image-->
+    <div class="main-modal">
+        <div class="modal fade" id="updateImageModal" tabindex="-1" role="dialog" aria-labelledby="updateImageModalLabel">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="updateImageModalLabel">Change your cover photo</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" asp-controller="WorhShops" asp-action="SaveImage" enctype="multipart/form-data">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div class="modal-footer mt-4">
+                                <button id="close-modal" type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                                <button type="submit" class="btn btn-primary" id="changePhoto" onclick="">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 @section Scripts {
-
-    <script>
-
-        $(function () {
-            services();
-        });
-
-        $('#galleryLink').click(function () {
-            $('#gallery-tab').addClass('active');
-            $('#services-tab').removeClass('active');
-
-            $('#services').removeClass(['show', 'active']);
-            $('#gallery').addClass(['show', 'active']);
-        });
-
-        function toggleText(id) {
-
-            // Get all the elements from the page
-            var points = $(`#${id} .points`)[0];
-
-            var showMoreText = $(`#${id} .moreText`)[0];
-
-            var buttonText = $(`#${id} .textButton`)[0];
-
-            if (points.style.display === "none") {
-
-                var len = $(`#${id}`)[0].clientHeight;
-
-                showMoreText.style.display = "none";
-                points.style.display = "inline";
-                buttonText.innerHTML = "Show More";
-
-                len -= $(`#${id}`)[0].clientHeight;
-
-                var cardLen = $(`#card-${id}`)[0].clientHeight - len;
-
-                document.getElementById(`card-${id}`).style.height = cardLen + 'px';
-            }
-
-            else {
-                var len = $(`#${id}`)[0].clientHeight;
-
-                showMoreText.style.display = "inline";
-                points.style.display = "none";
-                buttonText.innerHTML = "Show Less";
-
-                len = $(`#${id}`)[0].clientHeight - len;
-
-                var cardLen = $(`#card-${id}`)[0].clientHeight + len;
-
-                document.getElementById(`card-${id}`).style.height = cardLen + 'px';
-            }
-        }
-
-        function services(next = true) {
-
-            var index = eval($('#service-index').val())
-            var count = eval($('#services .card').length);
-            var services = $('#services .card');
-
-            if (!next) {
-                index -= 3;
-            }
-
-            if (count > 3) {
-                for (i = index + 3; i < count; i++) {
-                    $(services[i]).addClass('d-none');
-                }
-                for (i = 0; i < index; i++) {
-                    $(services[i]).addClass('d-none');
-                }
-                for (i = index; i < index + 3; i++) {
-                    $(services[i]).removeClass('d-none');
-                }
-            }
-
-            if (next) {
-                index += 3;
-            }
-
-            $('#service-index').val(index);
-        }
-    </script>
+    <script src="/js/workshop.js"></script>
 }

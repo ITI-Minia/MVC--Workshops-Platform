@@ -41,6 +41,8 @@ namespace Workshop.Models
         [Range(0, 5)]
         public double Rate { get; set; }
 
+        public DateTime JoinedIn { get; set; } = DateTime.Now;
+
         [ForeignKey("User")]
         public string UserId { get; set; }
 

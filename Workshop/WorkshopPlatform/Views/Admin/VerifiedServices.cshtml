@@ -1,0 +1,91 @@
+﻿@model List<Workshop.Models.Service>
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Verified Services";
+}
+
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <h1 class="text-info title-4 text-secondary mb-4">Verified Services</h1>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2 dt-responsive nowrap" id="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>Title</th>
+                                <th>Workshop</th>
+                                <th>Description</th>
+                                <th>img</th>
+                                <th>Add in</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr class="tr-shadow">
+                                    <td>
+                                        <label class="au-checkbox">
+                                            <input type="checkbox">
+                                            <span class="au-checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <span class="block-email">@s.Title</span>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="WorkShops" asp-action="Details" asp-route-id="@s.WorkShop.Id">
+                                            @s.WorkShop.Name
+                                        </a>
+                                    </td>
+                                    <td class="desc">
+                                        @s.Description.Substring(0, 20) ...
+                                    </td>
+                                    <td>
+                                        @if (@s.Image == null)
+                                        {
+                                            <img src="~/imgs/car-service.jpg" width="50" height="50">
+                                        }
+                                        else
+                                        {
+                                            <img src="/Upload/images/@s.Image" width="50" height="50">
+                                        }
+                                    </td>
+                                    <td>@s.AddedIn</td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END DATA TABLE -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#collapse2').addClass('show');
+            $('#collapse1').removeClass('show');
+        });
+
+        $('#table').dataTable({
+        });
+    </script>
+}

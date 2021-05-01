@@ -7,13 +7,16 @@ using WorkshopPlatform.Models;
 
 namespace WorkshopPlatform.Controllers
 {
-    public class userprofileController : Controller
+    public class UserprofileController : Controller
     {
         private readonly WorkShopDbContext _context;
-        public userprofileController(WorkShopDbContext context)
+
+        public UserprofileController(WorkShopDbContext context)
         {
             _context = context;
         }
+
+        [Route("profile/{username}")]
         public IActionResult Index(string username)
         {
             var user = _context.Users.Where(u => u.UserName == username).FirstOrDefault();

@@ -1,0 +1,136 @@
+﻿@model List<Workshop.Models.Service>
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "Confirm Services";
+}
+
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="d-flex justify-content-center custom-alert">
+                    <div class="d-none alert alert-warning alert-dismissible w-75" role="alert" id="alert-error">
+                        <div class="row">
+                            <div class="col-11">
+                                <i class="fa fa-exclamation-circle mr-3"></i>
+                                Service "<span id="s-name"></span>" confirmed successfully
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="text-info title-4 text-secondary mb-4">Service - Need confirmation</h1>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2 dt-responsive nowrap" id="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>Title</th>
+                                <th>Workshop</th>
+                                <th>Description</th>
+                                <th>img</th>
+                                <th>Add in</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr class="tr-shadow" id="@s.Id">
+                                    <td>
+                                        <label class="au-checkbox">
+                                            <input type="checkbox">
+                                            <span class="au-checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <span class="block-email">@s.Title</span>
+                                    </td>
+                                    <td><a asp-controller="WorkShops" asp-action="Details" asp-route-id="@s.WorkShop.Id">@s.WorkShop.Name</a></td>
+
+                                    <td class="desc">@s.Description.Substring(0, 20) ...</td>
+                                    <td>
+                                        @if (@s.Image == null)
+                                        {
+                                            <img src="~/imgs/car-service.jpg" width="50" height="50">
+                                        }
+                                        else
+                                        {
+                                            <img src="/Upload/images/@s.Image" width="50" height="50">
+                                        }
+                                    </td>
+                                    <td>@s.AddedIn</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="confirm(@s.Id)">verify</button>
+                                    </td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END DATA TABLE -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#collapse2').addClass('show');
+            $('#collapse1').removeClass('show');
+        });
+
+        $('#table').dataTable({
+        });
+
+        function confirm(id) {
+            $.ajax({
+                type: "GET",
+                url: `/Admin/ConfirmService/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $(`#${id}`).remove();
+
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+                    $('#s-name').html(response);
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 4500);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    </script>
+}

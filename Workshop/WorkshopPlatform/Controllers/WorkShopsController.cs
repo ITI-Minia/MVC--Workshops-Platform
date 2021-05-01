@@ -16,13 +16,17 @@ namespace WorkshopPlatform.Controllers
 {
     public class WorkShopsController : Controller
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly WorkShopDbContext _context;
 
-        public WorkShopsController(WorkShopDbContext context)
+        public WorkShopsController(WorkShopDbContext context,
+            IHttpContextAccessor httpContextAccessor,
+            UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _httpContext = httpContextAccessor;
+            _userManager = userManager;
         }
 
         // GET: WorkShops
@@ -33,17 +37,16 @@ namespace WorkshopPlatform.Controllers
             return View(await workShopDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Emergacy(string City, string Government , string Street)
+        public async Task<IActionResult> Emergacy(string City, string Government, string Street)
         {
             var workShopDbContext = _context.WorkShops.Include(w => w.User);
-
 
             if (Street != "" && Street != null)
             {
                 Street = Street.ToLower();
                 var workShop = await workShopDbContext.Where(ws => ws.Address.ToLower().Contains(Street) && ws.Government.ToLower().Contains(Government) && ws.City.ToLower().Contains(City)).ToListAsync();
-                if(workShop.Count!=0)
-                return View(workShop);
+                if (workShop.Count != 0)
+                    return View(workShop);
                 else
                 {
                     if (Government != "" && Government != null)
@@ -51,7 +54,7 @@ namespace WorkshopPlatform.Controllers
                         Government = Government.ToLower();
                         workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(Government)).ToListAsync();
                         if (workShop.Count != 0)
-                          return View(workShop);
+                            return View(workShop);
                         else
                         {
                             if (City != "" && City != null)
@@ -81,11 +84,8 @@ namespace WorkshopPlatform.Controllers
                         else
                             return View(await workShopDbContext.ToListAsync());
                     }
-
                 }
             }
-
-
             else if (Government != "" && Government != null)
             {
                 Government = Government.ToLower();
@@ -108,8 +108,6 @@ namespace WorkshopPlatform.Controllers
                         return View(await workShopDbContext.ToListAsync());
                 }
             }
-
-
             else if (City != "" && City != null)
             {
                 City = City.ToLower();
@@ -176,6 +174,7 @@ namespace WorkshopPlatform.Controllers
         }
 
         [Route("workshop/{id}")]
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -185,7 +184,6 @@ namespace WorkshopPlatform.Controllers
 
             var workShop = await _context.WorkShops
                 .Include(w => w.User)
-                .Include(w => w.WorkshopRates)
                 .Include(w => w.Services)
                 .Include(w => w.Images)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -195,45 +193,105 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
+            var reviews = await _context.WorkshopRates.Where(r => r.WorkShopId == id)
+                                                      .Include(r => r.UserProfile)
+                                                      .Include(r => r.UserProfile.User)
+                                                      .OrderByDescending(r => r.Date)
+                                                      .ToListAsync();
+
+            ViewData["reviews"] = reviews;
+
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            bool WorkshopOwner = false;  //for clients
+
+            if (workShop.UserId == userID)
+            {
+                WorkshopOwner = true; //for workshop owner
+            }
+
+            //services that user in current session had orderd
+            var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)
+                                                          .ToListAsync();
+
+            ViewBag.WorkshopOwner = WorkshopOwner;
+            ViewData["UserServices"] = userServices;
+
             return View(workShop);
         }
 
-        public IActionResult ServicesPartial(ICollection<Service> services)
+        [HttpGet]
+        public async Task<IActionResult> AddUserService(int? id)
         {
-            if (services == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            return PartialView(services);
-        }
+            var service = await _context.Services.FindAsync(id);
 
-        // GET: WorkShops/Create
-        public IActionResult Create()
-        {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            return View();
-        }
-
-        // POST: WorkShops/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Image,Logo,Verified,Address,City,Government,Rate,UserId,ConfirmationId")] WorkShop workShop)
-        {
-            if (ModelState.IsValid)
+            if (service == null)
             {
-                _context.Add(workShop);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
-            return View(workShop);
+
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            await _context.UserServices.AddAsync(
+              new UserServices
+              {
+                  UserId = userID,
+                  ServiceId = service.Id,
+                  Date = DateTime.Now,
+                  Finished = false
+              });
+
+            _context.SaveChanges();
+
+            var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)
+                                                         .Include(s => s.Service)
+                                                         .Include(s => s.Service.WorkShop)
+                                                         .OrderByDescending(s => s.Date)
+                                                         .ToListAsync();
+
+            return PartialView("_ServiceNotifiPartial", userServices);
         }
 
-        // GET: WorkShops/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        public async Task<IActionResult> RemoveUserService(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var service = await _context.UserServices.Where(s => s.ServiceId == id)
+                .Where(s => s.UserId == userID)
+                .OrderByDescending(s => s.Date)
+                .FirstOrDefaultAsync();
+
+            if (service == null)
+            {
+                return NotFound();
+            }
+
+            _context.UserServices.Remove(service);
+
+            _context.SaveChanges();
+
+            var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)
+                                                       .Include(s => s.Service)
+                                                       .Include(s => s.Service.WorkShop)
+                                                       .OrderByDescending(s => s.Date)
+                                                       .ToListAsync();
+
+            return PartialView("_ServiceNotifiPartial", userServices);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveImage(int? id)
         {
             if (id == null)
             {
@@ -241,83 +299,17 @@ namespace WorkshopPlatform.Controllers
             }
 
             var workShop = await _context.WorkShops.FindAsync(id);
-            if (workShop == null)
-            {
-                return NotFound();
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
-            return View(workShop);
-        }
 
-        // POST: WorkShops/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Image,Logo,Verified,Address,City,Government,Rate,UserId,ConfirmationId")] WorkShop workShop)
-        {
-            if (id != workShop.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(workShop);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!WorkShopExists(workShop.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", workShop.UserId);
-            return View(workShop);
-        }
-
-        // GET: WorkShops/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var workShop = await _context.WorkShops
-                .Include(w => w.User)
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (workShop == null)
             {
                 return NotFound();
             }
 
-            return View(workShop);
-        }
+            workShop.Image = null;
 
-        // POST: WorkShops/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var workShop = await _context.WorkShops.FindAsync(id);
-            _context.WorkShops.Remove(workShop);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            _context.SaveChanges();
 
-        private bool WorkShopExists(int id)
-        {
-            return _context.WorkShops.Any(e => e.Id == id);
+            return Content("");
         }
 
         [HttpPost]
@@ -327,7 +319,7 @@ namespace WorkshopPlatform.Controllers
             try
             {
                 WorkshopRate.Date = DateTime.Now;
-                var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 //var user = _userManager.FindByIdAsync(userID).Result;
                 int UId = int.Parse(userID);
                 var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
