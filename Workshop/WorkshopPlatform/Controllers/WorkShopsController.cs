@@ -313,6 +313,28 @@ namespace WorkshopPlatform.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> SaveImage(IFormFile id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workShop = await _context.WorkShops.FindAsync(id);
+
+            if (workShop == null)
+            {
+                return NotFound();
+            }
+
+            workShop.Image = null;
+
+            _context.SaveChanges();
+
+            return Content("");
+        }
+
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRate(WorkshopRate WorkshopRate)
         {
