@@ -107,8 +107,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             {
                 userprofile.Government = Input.Government;
             }
-
-
             if (Input.City != city)
             {
                 userprofile.City = Input.City;
@@ -123,7 +121,9 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 userprofile.CarModel = Input.CarModel;
             }        
             _context.SaveChanges();
+
             await _signInManager.RefreshSignInAsync(user);
+            TempData["Done"] = "Updated Sucessfully";
             StatusMessage = "Your data has been updated";
             return RedirectToPage();
         } 

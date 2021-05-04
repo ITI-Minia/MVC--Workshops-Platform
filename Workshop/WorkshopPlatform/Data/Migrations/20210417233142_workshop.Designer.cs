@@ -10,8 +10,8 @@ using WorkshopPlatform.Models;
 namespace WorkshopPlatform.Migrations
 {
     [DbContext(typeof(WorkShopDbContext))]
-    [Migration("20210423140932_user-services")]
-    partial class userservices
+    [Migration("20210417233142_workshop")]
+    partial class workshop
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -418,94 +418,7 @@ namespace WorkshopPlatform.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkshopServices");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GovernmentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GovernmentId");
-
-                    b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.Government", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Governments");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Finished")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("ServiceId", "UserId")
-                        .IsUnique();
-
-                    b.ToTable("UserServices");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.WorkshopImages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("WorkShopId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WorkShopId");
-
-                    b.ToTable("WorkshopImages");
+                    b.ToTable("workshopServices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -607,47 +520,6 @@ namespace WorkshopPlatform.Migrations
                     b.Navigation("WorkShop");
                 });
 
-            modelBuilder.Entity("WorkshopPlatform.Models.City", b =>
-                {
-                    b.HasOne("WorkshopPlatform.Models.Government", "Government")
-                        .WithMany()
-                        .HasForeignKey("GovernmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Government");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>
-                {
-                    b.HasOne("Workshop.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Service");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("WorkshopPlatform.Models.WorkshopImages", b =>
-                {
-                    b.HasOne("Workshop.Models.WorkShop", "WorkShop")
-                        .WithMany("Images")
-                        .HasForeignKey("WorkShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkShop");
-                });
-
             modelBuilder.Entity("Workshop.Models.UserProfile", b =>
                 {
                     b.Navigation("WorkshopRates");
@@ -655,8 +527,6 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.WorkShop", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("Services");
 
                     b.Navigation("WorkshopRates");

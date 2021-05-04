@@ -62,11 +62,8 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             [Required]
             [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
             [Display(Name = "Last name")]
-            public string LastName { get; set; }
-
-       
+            public string LastName { get; set; }       
             public string Image { get; set; }
-
 
         }
 
@@ -159,7 +156,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 if (OldImageFile != null)
                 {
                     string OldImgPath = Path.Combine(uploads, OldImageFile);
-
                     if (Fullpath != OldImgPath)
                     {
                         try
