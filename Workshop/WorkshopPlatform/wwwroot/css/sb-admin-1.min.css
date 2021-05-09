@@ -11049,15 +11049,6 @@ a:focus {
     background-size: cover
 }
 
-<<<<<<< HEAD
-=======
-.bg-gradient {
-    background-color: #3A3535;
-
-    background-size: cover
-}
-
->>>>>>> main
 .bg-gray-100 {
     background-color: #F4F4F4 !important
 }
@@ -11483,11 +11474,7 @@ a:focus {
 .sidebar .nav-item .collapsing .collapse-inner {
     padding: .5rem 0;
     min-width: 10rem;
-<<<<<<< HEAD
     font-size: .85rem;
-=======
-    font-size: 1.1rem !important;
->>>>>>> main
     margin: 0 0 1rem 0
 }
 
@@ -11498,11 +11485,7 @@ a:focus {
         padding: .5rem 1.5rem;
         text-transform: uppercase;
         font-weight: 800;
-<<<<<<< HEAD
         font-size: 0.65rem;
-=======
-        font-size: 1.1rem!important;
->>>>>>> main
         color: #858796
     }
 
@@ -11600,11 +11583,7 @@ a:focus {
 
 @media (min-width: 768px) {
     .sidebar {
-<<<<<<< HEAD
         width: 14rem !important
-=======
-        width: 100% !important
->>>>>>> main
     }
     .sidebar .nav-item .collapse {
         position: relative;
@@ -11636,11 +11615,7 @@ a:focus {
         width: 14rem
     }
     .sidebar .nav-item .nav-link i {
-<<<<<<< HEAD
         font-size: 0.85rem;
-=======
-        font-size: 1.1rem !important;
->>>>>>> main
         margin-right: 0.25rem
     }
     .sidebar .nav-item .nav-link span {
@@ -11708,11 +11683,7 @@ a:focus {
         width: 6.5rem
     }
     .sidebar.toggled .nav-item .nav-link span {
-<<<<<<< HEAD
         font-size: 0.65rem;
-=======
-        font-size: 1.1rem !important;
->>>>>>> main
         display: block
     }
     .sidebar.toggled .nav-item .nav-link i {
@@ -11748,13 +11719,9 @@ a:focus {
     color: #d1d3e2
 }
 
-<<<<<<< HEAD
 .sidebar-light .nav-item .nav-link i {
     color: #d1d3e2
 }
-=======
-   
->>>>>>> main
 
 .sidebar-light .nav-item .nav-link:active,
 .sidebar-light .nav-item .nav-link:focus,
@@ -11762,20 +11729,11 @@ a:focus {
     color: #6e707e
 }
 
-<<<<<<< HEAD
 .sidebar-light .nav-item .nav-link:active i,
 .sidebar-light .nav-item .nav-link:focus i,
 .sidebar-light .nav-item .nav-link:hover i {
     color: #6e707e
 }
-=======
-    .sidebar-light .nav-item .nav-link:active i,
-    .sidebar-light .nav-item .nav-link:focus i,
-    .sidebar-light .nav-item .nav-link:hover i,
-    .sidebar .nav-item .nav-link:hover i {
-        color: #E2AD21
-    }
->>>>>>> main
 
     .sidebar-light .nav-item .nav-link[data-toggle="collapse"]::after {
         color: #ffffff
@@ -12432,17 +12390,6 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
-<<<<<<< HEAD
 
 
 /*# sourceMappingURL=sb-admin-2.min.css.map */
-=======
-.sidebar-light .nav-item .nav-link {
-    color: #ffff !important;
-}
-.newitem{
-    font-size:1.1rem !important;
-
-}
-  /*# sourceMappingURL=sb-admin-2.min.css.map */
->>>>>>> main
