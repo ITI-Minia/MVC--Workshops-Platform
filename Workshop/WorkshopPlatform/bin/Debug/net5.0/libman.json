@@ -5,6 +5,15 @@
     {
       "library": "twitter-bootstrap@4.6.0",
       "destination": "wwwroot/lib/twitter-bootstrap/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "@aspnet/signalr@latest",
+      "destination": "wwwroot/lib/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js"
+      ]
     }
   ]
 }

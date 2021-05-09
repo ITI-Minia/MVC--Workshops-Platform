@@ -7,6 +7,9 @@
 html {
     scroll-behavior: smooth;
 }
+img.leaflet-marker-icon {
+    width: auto !important;
+}
 
 .header--home {
     .header--main {
