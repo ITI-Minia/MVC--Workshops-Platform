@@ -208,5 +208,20 @@ function removeImage(id) {
     });
 }
 
-function updateImage() {
+function removeLogo(id) {
+    $.ajax({
+        type: "GET",
+        url: `/WorkShops/RemoveLogo/${id}`,
+        contentType: "application/json; charset=utf-8",
+        dataType: "html",
+        success: function (response) {
+            $('#logo').attr('src', '/imgs/Workshop-logo-default.png');
+        },
+        failure: function (response) {
+            alert(response.responseText);
+        },
+        error: function (response) {
+            alert(response.responseText);
+        }
+    });
 }

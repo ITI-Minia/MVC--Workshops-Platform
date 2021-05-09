@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="main--header">
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow justify-content-between">
 
             <div class="website--logo nav-item">
                 <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Warsha</a>
@@ -18,17 +18,6 @@
             @*<div class="ml-lg-5 ml-md-2 d-none d-md-block nav-item nav-item-link">
                     <a class="nav-link" asp-controller="WorkShops" asp-action="Index">workshops</a>
                 </div>*@
-            <!-- Topbar Search -->
-            <form class="d-none d-sm-inline-block form-inline mr-auto ml-4 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group">
-                    <input id="search-input" type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
 
             @await Component.InvokeAsync("NavHeader")
         </nav>

@@ -1,72 +1,112 @@
-﻿@page
+﻿@page "/settings/general"
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
-    ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
     <div class="col-md-12">
         <form id="profile-form" method="post" enctype="multipart/form-data">
-            <div class="col-md-6" style="float:right">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
-                <div class="d-flex justify-content-center">
-                    <div class="mb-1  file-field" style="text-align:center">
-                        <br />
-                        @if (Model.Image!=null)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="setting-form">
+                <div class="row image-row mb-5">
+                    <div class="col-12 pb-3 col-sm-4 col-lg-2 pb-sm-0 pl-5">
+                        @if (Model.Image != null)
                         {
-                            <img src="~/uploads/@Model.Input.Image"
-                                 class="rounded-circle z-depth-1-half avatar-pic" style="max-width: 220px;max-height: 300px;" alt="example placeholder avatar">
+                            <img id="profileImage" src="~/Upload/images/@Model.Image" class="rounded-circle avatar-pic" alt="profile image">
                         }
                         else
                         {
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                                 class="rounded-circle z-depth-1-half avatar-pic" style="width: 220px;" alt="example placeholder avatar">
+                            <img id="profileImage" src="~/imgs/undraw_male_avatar_323b.svg" class="rounded-circle avatar-pic" alt="profile image">
                         }
-                        <br /><br />
-                        <label class="btn" asp-for="File">Add Profile photo</label><br />
-                        <div class="d-flex form-group">
-                            <input asp-for="File" name="file" type="file" class="form-control-file" style="width: 300px; " />
+                    </div>
+                    <br class="d-block d-sm-none">
+                    <div class="align-self-center pl-4">
+                        <div class="form-group">
+                            <input asp-for="ImageFile" type="file" id="ImageFile" class="form-control-file d-none" />
+                            <label class="" asp-for="ImageFile">
+                                <span class="btn btn-primary btn-rounded text-white">
+                                    Upload photo
+                                </span>
+                            </label>
                         </div>
                     </div>
-
+                    <div class="align-self-center pl-3">
+                        <div class="form-group">
+                            <input asp-for="RemoveImage" id="RemoveImage" class="d-none" />
+                            <button type="button" onclick="removeImage()" class="btn btn-light btn-outline-secondary btn-rounded">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <br />
+                <div class="form-group row pl-lg-5 pr-lg-5">
+                    <label asp-for="Username" class="col-12 col-md-2"></label>
+                    <input asp-for="Username" class="col-12 col-md-10 form-control" disabled />
+                </div>
+                <div class="form-group pl-lg-5 pr-lg-5">
+                    <div class="row">
+                        <label asp-for="Input.FirstName" class="col-12 col-md-2"></label>
+                        <input asp-for="Input.FirstName" class="col-12 col-md-10 form-control" />
+                    </div>  <div class="row">
+                        <div class="d-none d-md-block col-2"></div>
+                        <div class="col-12 col-md-10">
+                            <span asp-validation-for="Input.FirstName" class="small text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group pl-lg-5 pr-lg-5">
+                    <div class="row">
+                        <label asp-for="Input.LastName" class="col-12 col-md-2"></label>
+                        <input asp-for="Input.LastName" class="col-12 col-md-10 form-control" />
+                    </div>  <div class="row">
+                        <div class="d-none d-md-block col-2"></div>
+                        <div class="col-12 col-md-10">
+                            <span asp-validation-for="Input.LastName" class="small text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group pl-lg-5 pr-lg-5">
+                    <div class="row">
+                        <label asp-for="Input.PhoneNumber" class="col-12 col-md-2"></label>
+                        <input asp-for="Input.PhoneNumber" class="col-12 col-md-10 form-control" />
+                    </div>  <div class="row">
+                        <div class="d-none d-md-block col-2"></div>
+                        <div class="col-12 col-md-10">
+                            <span asp-validation-for="Input.PhoneNumber" class="small text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row pl-lg-5 pr-lg-5 justify-content-end">
+                    <button id="update-profile-button" type="submit" class="btn btn-primary btn-rounded">Save</button>
+                </div>
             </div>
-            <div class="col-md-6">
-
-                <div class="form-group">
-                    <label asp-for="Username"></label>
-                    <input asp-for="Username" class="form-control" disabled />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.FirstName"></label>
-                    <input asp-for="Input.FirstName" class="form-control" />
-                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.LastName"></label>
-                    <input asp-for="Input.LastName" class="form-control" />
-                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.PhoneNumber"></label>
-                    <input asp-for="Input.PhoneNumber" class="form-control" />
-                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-                </div>
-              
-                <br />
-
-                <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>
-            </div>
-
-
         </form>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profileImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#ImageFile").change(function () {
+            readURL(this);
+        });
+
+        function removeImage() {
+            $("#ImageFile")[0].value = "";
+            $("#RemoveImage")[0].value = "true";
+            $('#profileImage').attr('src', '/imgs/undraw_male_avatar_323b.svg');
+        }
+    </script>
 }

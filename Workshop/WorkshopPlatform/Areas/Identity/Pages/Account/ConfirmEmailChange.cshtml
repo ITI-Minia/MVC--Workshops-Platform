@@ -1,0 +1,18 @@
+﻿@page
+@model ConfirmEmailChangeModel
+@{
+    ViewData["Title"] = "Confirm email change";
+}
+
+<div class="register-confirm-page">
+    <div class="row justify-content-center">
+        <div class="col-12 pt-5" style="margin-bottom: 8em;">
+            <div class="text-center p-3">
+                <img id="verified-img" src="~/imgs/undraw_Checklist__re_2w7v.svg" alt="Verified">
+                <div class="mt-5 mb-3 text-muted">
+                    <h1 class="h4"> @Model.StatusMessage </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

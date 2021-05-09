@@ -386,7 +386,6 @@ G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPl
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\_ServicesPartial.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\_ReviewsPartial.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\Components\NavHeader\_LoginPartial.cshtml.g.cs
@@ -397,3 +396,18 @@ G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPl
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\NeedConfirmWorkshops.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\VerifiedServices.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\NeedConfirmServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Create.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Delete.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Details.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\DisplayServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Edit.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\GetRate.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Index.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\RequestedServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\WorkshopSetting.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Email.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml.g.cs

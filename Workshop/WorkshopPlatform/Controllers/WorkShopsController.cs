@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Workshop.Models;
 using WorkshopPlatform.Models;
 using System.Dynamic;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WorkshopPlatform.Controllers
 {
@@ -19,14 +21,17 @@ namespace WorkshopPlatform.Controllers
         private readonly IHttpContextAccessor _httpContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly WorkShopDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public WorkShopsController(WorkShopDbContext context,
             IHttpContextAccessor httpContextAccessor,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _httpContext = httpContextAccessor;
             _userManager = userManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: WorkShops
@@ -118,9 +123,9 @@ namespace WorkshopPlatform.Controllers
                 return View(await workShopDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Search(string id)
+        public async Task<IActionResult> Search(string search)
         {
-            if (id == "" || id == null)
+            if (search == "" || search == null)
             {
                 var workShopDbContext = _context.WorkShops;
 
@@ -129,12 +134,12 @@ namespace WorkshopPlatform.Controllers
             else
             {
                 var workShopDbContext = _context.WorkShops.ToList();
-                id = id.ToLower();
-                var workShop = await _context.WorkShops.Where(ws => ws.Name.ToLower().Contains(id) ||
-                                                                           ws.Rate.ToString().Contains(id) ||
-                                                                           ws.Address.ToLower().Contains(id) ||
-                                                                           ws.City.ToLower().Contains(id) ||
-                                                                           ws.Government.ToLower().Contains(id)).ToListAsync();
+                search = search.ToLower();
+                var workShop = await _context.WorkShops.Where(ws => ws.Name.ToLower().Contains(search) ||
+                                                                           ws.Rate.ToString().Contains(search) ||
+                                                                           ws.Address.ToLower().Contains(search) ||
+                                                                           ws.City.ToLower().Contains(search) ||
+                                                                           ws.Government.ToLower().Contains(search)).ToListAsync();
                 if (workShop == null)
                 {
                     return NotFound();
@@ -142,13 +147,14 @@ namespace WorkshopPlatform.Controllers
                 ViewBag.SearchData = workShop;
                 ViewBag.SearchCount = workShop.Count();
                 ViewBag.flag = 1;
+                ViewBag.searchText = search;
                 return View("Index", workShop);
             }
         }
 
-        public async Task<IActionResult> SearchEmergacy(string id)
+        public async Task<IActionResult> SearchEmergacy(string search)
         {
-            if (id == "" || id == null)
+            if (search == "" || search == null)
             {
                 var workShopDbContext = _context.WorkShops.Include(w => w.User);
 
@@ -157,18 +163,21 @@ namespace WorkshopPlatform.Controllers
             else
             {
                 var workShopDbContext = _context.WorkShops.Include(w => w.User).ToList();
-                id = id.ToLower();
+                search = search.ToLower();
                 // var w = await( from w in _context.WorkShops)
-                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(id) ||
-                                                                           ws.Rate.ToString().Contains(id) ||
-                                                                           ws.Address.ToLower().Contains(id) ||
-                                                                           ws.City.ToLower().Contains(id) ||
-                                                                           ws.Government.ToLower().Contains(id)/*||*/
+                var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(search) ||
+                                                                           ws.Rate.ToString().Contains(search) ||
+                                                                           ws.Address.ToLower().Contains(search) ||
+                                                                           ws.City.ToLower().Contains(search) ||
+                                                                           ws.Government.ToLower().Contains(search)/*||*/
                                                                           /* ws.User.PhoneNumber.ToString().Contains(id)*/).ToListAsync();
                 if (workShop == null)
                 {
                     return NotFound();
                 }
+
+                ViewBag.searchText = search;
+
                 return View("Emergacy", workShop);
             }
         }
@@ -211,7 +220,9 @@ namespace WorkshopPlatform.Controllers
             }
 
             //services that user in current session had orderd
-            var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)
+            var userServices = await _context.UserServices.Where(s => s.UserId == userID &&
+                                                          s.Service.WorkShopId == workShop.Id
+                                                          && s.Finished == false)
                                                           .ToListAsync();
 
             ViewBag.WorkshopOwner = WorkshopOwner;
@@ -305,6 +316,11 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
+            if (workShop.Image != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+                System.IO.File.Delete(Path.Combine(uploadsFolder, workShop.Image));
+            }
             workShop.Image = null;
 
             _context.SaveChanges();
@@ -313,7 +329,7 @@ namespace WorkshopPlatform.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveImage(IFormFile id)
+        public async Task<IActionResult> SaveImage(int? id, IFormFile image)
         {
             if (id == null)
             {
@@ -327,11 +343,88 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            workShop.Image = null;
+            string uniqueFileName = null;
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+
+            if (image != null)
+            {
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                image.CopyTo(fileStream);
+            }
+            if (workShop.Image != null)
+            {
+                System.IO.File.Delete(Path.Combine(uploadsFolder, workShop.Image));
+            }
+            workShop.Image = uniqueFileName;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = workShop.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveLogo(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workShop = await _context.WorkShops.FindAsync(id);
+
+            if (workShop == null)
+            {
+                return NotFound();
+            }
+
+            if (workShop.Logo != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+                System.IO.File.Delete(Path.Combine(uploadsFolder, workShop.Logo));
+            }
+            workShop.Logo = null;
 
             _context.SaveChanges();
 
             return Content("");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveLogo(int? id, IFormFile image)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workShop = await _context.WorkShops.FindAsync(id);
+
+            if (workShop == null)
+            {
+                return NotFound();
+            }
+
+            string uniqueFileName = null;
+            string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+
+            if (image != null)
+            {
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                image.CopyTo(fileStream);
+            }
+            if (workShop.Logo != null)
+            {
+                System.IO.File.Delete(Path.Combine(uploadsFolder, workShop.Logo));
+            }
+            workShop.Logo = uniqueFileName;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", new { id = workShop.Id });
         }
 
         [HttpPost]

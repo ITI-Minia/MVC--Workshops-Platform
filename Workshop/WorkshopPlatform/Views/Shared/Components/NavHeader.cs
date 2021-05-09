@@ -24,7 +24,7 @@ namespace WorkshopPlatform.Views.Shared.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var profile = _context.UserProfiles.Where(u => u.UserId == userID).FirstOrDefault();
+            var profile = _context.UserProfiles.Where(u => u.UserId == userID).Include(p => p.User).FirstOrDefault();
 
             //services that user in current session had orderd
             var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)

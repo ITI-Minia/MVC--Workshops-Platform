@@ -1,0 +1,91 @@
+.setting-layout {
+    .col-md-setting.col-md-3 {
+        max-width: 22%;
+    }
+    .sidebar {
+        background-color: hsla(0, 0%, 100%, 0.774);
+        border-radius: 9px;
+        padding: 12px 14px 0px;
+        width: 17.5rem !important;
+        min-height: 300px;
+        .nav-item {
+            font-size: 1rem;
+            .nav-link {
+                color: #999;
+                width: 100%;
+                &.active {
+                    background-color: $light;
+                    border-radius: 9px;
+                    color: $primary;
+                }
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+    .setting-card {
+        border: none;
+        box-shadow: 0 0.1875rem 0.375rem rgba(33, 37, 41, 0.05);
+        .setting-form {
+            .image-row {
+                .avatar-pic {
+                    width: 100px;
+                    height: 100px;
+                }
+                label {
+                    display: inline;
+                    margin-bottom: 0;
+                }
+            }
+            label {
+                color: #999;
+                font-size: 1rem;
+            }
+            input {
+                border-radius: 20px;
+            }
+            button[type='submit'] {
+                padding: 6px 35px;
+            }
+            .input-group-append {
+                position: relative;
+                right: 50px;
+                margin-right: -38px;
+            }
+        }
+        #email-form {
+            #change-email-button {
+                margin-right: 13px;
+            }
+        }
+        .page-title {
+            padding-left: 33px;
+            margin-bottom: 48px;
+        }
+    }
+    .alert-dismissible {
+        border-radius: 40px;
+        margin: -70px auto 2rem;
+        padding: 6px 27px;
+        font-size: 17px;
+        border-color: white;
+        @media (min-width: 992px) {
+            & {
+                width: 70%;
+            }
+        }
+        @media (max-width: 991px) {
+            & {
+                width: 100%;
+            }
+        }
+        &.alert-success {
+            background-color: hsla(36, 77%, 51%, 0.774);
+            color: white;
+        }
+        .close {
+            top: -5px;
+        }
+    }
+}

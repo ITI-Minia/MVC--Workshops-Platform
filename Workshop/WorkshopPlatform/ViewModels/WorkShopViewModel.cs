@@ -11,19 +11,20 @@ namespace Workshop.ViewModel
 {
     public class WorkshopViewModel
     {
-       
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
-        [Display(Name ="Workshop Imag")]
+
+        [Display(Name = "Workshop Imag")]
         public IFormFile Imagepath { get; set; }
+
         public string ImageUrl { get; set; }
+
         [Display(Name = "Workshop Logo")]
         public IFormFile Logopath { get; set; }
+
         public string LogoeUrl { get; set; }
 
         [Required]
@@ -45,6 +46,5 @@ namespace Workshop.ViewModel
         public string UserId { get; set; }
 
         public virtual IdentityUser User { get; set; }
-
-  }
+    }
 }
