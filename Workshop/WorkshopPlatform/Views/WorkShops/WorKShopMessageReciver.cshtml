@@ -1,0 +1,77 @@
+﻿@model Workshop.Models.Messages
+
+@if (ViewBag.Messages != null)
+{
+
+
+
+    <div class="chat-banner" id="PostMessage">
+        <div>
+            <span id="chat-pic">
+                <img id="pic" src="~/imgs/person.png" />
+            </span>
+        </div>
+        <div><i class='fas fa-info'></i></div>
+    </div>
+    <div class="chat" style="width:100%">
+        @foreach (var item in ViewBag.Messages)
+        {
+            @if (item.UserId == ViewBag.WorkShopUserId)
+            {
+                <div class="col-12">
+
+                    <div class="chat chat-right sender" >
+                        <div class="chat-body">
+                            <div class="chat-bubble">
+                                <div class="chat-content">
+                                    <p> @item.Text</p>
+
+                                    <span class="chat-time"> @item.When</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+            else
+            {
+                <div class="col-12" style="display:flex;justify-content:flex-end">
+                    <div class="chat chat-left receiver" >
+                        <div class="chat-body">
+                            <div class="chat-bubble">
+                                <div class="chat-content">
+                                    <p>@item.Text</p>
+
+
+                                    <span class="chat-time"> @item.When</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+  
+
+        <div class="WorkShopchat-footer">
+            <form asp-action="WorKShopMessageReciver"
+                  data-ajax-begin="clearInputField" data-ajax-complete=""
+                  data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
+                  data-ajax="true" data-ajax-method="POST">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="text" asp-for="Text" class="form-control send-input" id="messageText" placeholder="type something" />
+
+
+                <input type="submit" value="Send" class="btn btn-primary" id="submitButton" onclick="" style="margin:auto;display:inline-block" />
+                <input type="hidden" asp-for="UserId" name="UserId" />
+            </form>
+        </div>
+   
+
+}
+
+

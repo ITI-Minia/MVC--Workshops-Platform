@@ -450,5 +450,127 @@ namespace WorkshopPlatform.Controllers
                 return RedirectToAction(nameof(Details));
             }
         }
+        public async Task<IActionResult> WorKShopMessageReciver(string SenderName)
+        {
+            if (SenderName==null)
+            {
+                return View();   
+            }
+            else
+            { 
+            
+            var GetSender = _context.Users.Where(u => u.UserName == SenderName).FirstOrDefault();
+            var GetSenderId = GetSender.Id;
+
+
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                ViewBag.WorkShopUserId = userID;
+            var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+            var CurrentUserName = CurrentUser.UserName;
+            ViewBag.UserName = SenderName;
+            var Chatting = _context.Chats.Where(c => c.Receiver == userID && c.Sender == GetSenderId).FirstOrDefault();
+            var ChattingId = Chatting.Id;
+            ViewBag.Messages = await _context.Messages.Where(m => m.ChatId == ChattingId).ToListAsync();
+                Messages messages = new Messages()
+                { UserId= GetSenderId };
+                return PartialView(messages);
+
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> WorKShopMessageReciver(Messages messages)
+        {
+        
+            var SenderId = messages.UserId;
+            
+            var WorkShopUserID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var CurrentUser = _context.Users.Where(n => n.Id == WorkShopUserID).FirstOrDefault();
+            
+            var Chatting = _context.Chats.Where(c => c.Receiver == WorkShopUserID && c.Sender == SenderId).FirstOrDefault();
+
+            messages.ChatId = Chatting.Id;
+            messages.UserId = WorkShopUserID;
+            messages.Id = 0;
+            await _context.AddAsync(messages);
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        public IActionResult Message(int? id)
+        {
+
+            
+            
+                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.ClientID = userID;
+                ViewBag.SendersName = _context.Chats.Where(c => c.Receiver == userID).Include(c => c.UserSender);
+            
+            @ViewBag.Id = 0;
+
+           
+            if (id !=null)
+            {
+                var WorkShopUser = _context.WorkShops.Where(w => w.Id == id).FirstOrDefault();
+                //workshopuserId
+                var UserId = WorkShopUser.UserId;
+                ViewBag.UserId = UserId;
+
+                var User = _context.Users.Where(u => u.Id == UserId).FirstOrDefault();
+                var WorkShopUserName = User.UserName;
+                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+                var CurrentUserName = CurrentUser.UserName;
+                ViewBag.UserName = CurrentUser.UserName;
+
+                var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+                Messages messages = new Messages()
+                { Id=(int)id};
+
+                if (Chatting == null)
+                {
+                    Chat chat = new Chat()
+                    {
+                        Sender = userID,
+                        Receiver = UserId
+                    };
+                    _context.Add(chat);
+                    _context.SaveChanges();
+                    return RedirectToAction("Message", new { id = id });
+                }
+                else
+                {
+
+                    var ChattingId = Chatting.Id;
+                    var Recivers = Chatting.Receiver;
+                    
+                    ViewBag.Messages = _context.Messages.Where(m => m.ChatId == ChattingId).ToList();
+             
+                    return View();
+
+                }
+            }
+
+            return View();
+          
+        }
+        [HttpPost]
+        public async Task<IActionResult> Message(Messages messages)
+        {
+            
+            
+                var WorkShopUser = _context.WorkShops.Where(w => w.Id == messages.Id).FirstOrDefault();
+                var UserId = WorkShopUser.UserId;
+               
+                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+                var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+
+                messages.ChatId = Chatting.Id;
+                messages.UserId = userID;
+                messages.Id = 0;
+                await _context.AddAsync(messages);
+                await _context.SaveChangesAsync();
+                return Ok();
+        }
+           
     }
 }

@@ -20,6 +20,7 @@ namespace WorkshopPlatform.Controllers
 {
     public class ServicesController : Controller
     {
+        
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly WorkShopDbContext _context;
@@ -33,6 +34,7 @@ namespace WorkshopPlatform.Controllers
             this.hosting = hosting;
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
+
         }
 
         // GET: Services
@@ -86,11 +88,16 @@ namespace WorkshopPlatform.Controllers
                      .Include(w => w.Services)
                      .FirstOrDefaultAsync(w => w.User.Id == userID);
                 string ImgaeFileName = string.Empty;
-                ImgaeFileName = servicesViewModel.Imagepath.FileName;
+            ImgaeFileName = servicesViewModel.Imagepath.FileName;
 
-                string uploads = Path.Combine(hosting.WebRootPath, "imgs");
-                string ImageFullPath = Path.Combine(uploads, ImgaeFileName);
-                servicesViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+            string uploads = Path.Combine(hosting.WebRootPath, "imgs");
+            string ImageFullPath = Path.Combine(uploads, ImgaeFileName);
+                FileInfo file = new FileInfo(ImageFullPath);
+                if (file.Exists.Equals(false))
+                {
+                    servicesViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                }
+
                 Service services = new Service()
                 {
                     Title = servicesViewModel.Title,
@@ -99,17 +106,23 @@ namespace WorkshopPlatform.Controllers
                     Verified = servicesViewModel.Verified,
                     Image = ImgaeFileName,
                     WorkShopId = workshop.Id
-                };
-                if (ModelState.IsValid)
-                {
-                    _context.Services.Add(services);
-                    await _context.SaveChangesAsync();
-                    TempData["Done"] = "created Sucessfully";
-                    return RedirectToAction(nameof(DisplayServices));
-                }
-            }
-            catch (Exception)
+            };
+            if (ModelState.IsValid)
             {
+               await _context.Services.AddAsync(services);
+               await _context.SaveChangesAsync();
+                    TempData["Done"] = "created Sucessfully";
+                return RedirectToAction(nameof(DisplayServices));
+            }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return RedirectToAction(nameof(DisplayServices));
+            }
+            catch (Exception e)
+            {
+                TempData["Done"] = "Service Doesn't created Sucessfully";
+
                 return RedirectToAction(nameof(DisplayServices));
             }
             //ViewData["WorkShopId"] = new SelectList(_context.WorkShops, "Id", "Address", service.WorkShopId);
@@ -138,6 +151,7 @@ namespace WorkshopPlatform.Controllers
                 Verified = service.Verified,
                 Price = service.Price,
                 WorkShopId = service.WorkShopId,
+                 
             };
             return PartialView(viewModel);
         }
@@ -153,39 +167,47 @@ namespace WorkshopPlatform.Controllers
 
             try
             {
-                ImgaeFileName = servicesViewModel.Imagepath.FileName;
 
-                string uploads = Path.Combine(hosting.WebRootPath, "imgs");
-                string ImageFullPath = Path.Combine(uploads, ImgaeFileName);
-                string OldImageFile = _context.Services.Find(servicesViewModel.Id).Image;
-                string OldImgPath = Path.Combine(uploads, OldImageFile);
+           
+            ImgaeFileName = servicesViewModel.Imagepath.FileName;
 
-                if (ImageFullPath != OldImgPath)
-                {
+            string uploads = Path.Combine(hosting.WebRootPath, "imgs");
+            string ImageFullPath = Path.Combine(uploads, ImgaeFileName);
+            string OldImageFile = _context.Services.Find(servicesViewModel.Id).Image;
+            string OldImgPath = Path.Combine(uploads, OldImageFile);
+
+            if (ImageFullPath != OldImgPath)    
+            {
+                    FileInfo file = new FileInfo(ImageFullPath);
+                    if (file.Exists.Equals(false))
+                    {
+                        servicesViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                    }
                     //System.IO.File.Delete(OldImgPath);
-                    servicesViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
-                }
-                var servicees = _context.Services.Find(servicesViewModel.Id);
-                servicees.Id = servicesViewModel.Id;
-                servicees.Title = servicesViewModel.Title;
-                servicees.Image = ImgaeFileName;
-                servicees.Verified = servicesViewModel.Verified;
-                servicees.Price = servicesViewModel.Price;
-                servicees.WorkShopId = servicesViewModel.WorkShopId;
-                servicees.Description = servicesViewModel.Description;
+                    //servicesViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+            }
+            var servicees = _context.Services.Find(servicesViewModel.Id);
+            servicees.Id = servicesViewModel.Id;
+            servicees.Title = servicesViewModel.Title;
+            servicees.Image = ImgaeFileName;
+            servicees.Verified = servicesViewModel.Verified;
+            servicees.Price = servicesViewModel.Price;
+            servicees.WorkShopId = servicesViewModel.WorkShopId;
+            servicees.Description = servicesViewModel.Description;
                 _context.Update(servicees);
                 await _context.SaveChangesAsync();
                 TempData["Done"] = "Updated Sucessfully";
             }
             catch (Exception)
             {
-                if (ImgaeFileName == "")
+                if (ImgaeFileName=="")
                 {
                     string uploads = Path.Combine(hosting.WebRootPath, "imgs");
                     string ImageFullPath = Path.Combine(uploads, ImgaeFileName);
                     string OldImageFile = _context.Services.Find(servicesViewModel.Id).Image;
                     string OldImgPath = Path.Combine(uploads, OldImageFile);
 
+                   
                     var servicees = _context.Services.Find(servicesViewModel.Id);
                     servicees.Id = servicesViewModel.Id;
                     servicees.Title = servicesViewModel.Title;
@@ -200,7 +222,7 @@ namespace WorkshopPlatform.Controllers
                 }
                 return RedirectToAction(nameof(DisplayServices));
             }
-
+           
             return RedirectToAction(nameof(DisplayServices));
         }
 
@@ -224,6 +246,7 @@ namespace WorkshopPlatform.Controllers
                 Verified = service.Verified,
                 Price = service.Price,
                 WorkShopId = service.WorkShopId,
+
             };
             if (service == null)
             {
@@ -249,21 +272,32 @@ namespace WorkshopPlatform.Controllers
         {
             return _context.Services.Any(e => e.Id == id);
         }
+      
 
         public async Task<IActionResult> DisplayServices()
         {
-            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            try
+            {
+                var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var workshop = await _context.WorkShops
-                 .Include(w => w.User)
-                 .Include(w => w.WorkshopRates)
-                 .Include(w => w.Services)
-                 .FirstOrDefaultAsync(w => w.User.Id == userID);
-            ViewBag.services = _context.Services.Where(w => w.WorkShop.Id == workshop.Id).ToList();
-            return View();
+                var workshop = await _context.WorkShops
+                     .Include(w => w.User)
+                     .Include(w => w.WorkshopRates)
+                     .Include(w => w.Services)
+                     .FirstOrDefaultAsync(w => w.User.Id == userID);
+                ViewBag.services = _context.Services.Where(w => w.WorkShop.Id == workshop.Id).ToList();
+                return View();
+            }
+            catch (Exception)
+            {
+
+               return NotFound();
+            }
+            
         }
 
-        public async Task<IActionResult> RequestedServices()
+
+        public async Task<IActionResult>RequestedServices()
         {
             var model = new List<UserServicesViewModel>();
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -271,7 +305,7 @@ namespace WorkshopPlatform.Controllers
                  .Include(w => w.User)
                  .Include(w => w.Service)
                  .Where(w => w.User.Id == userID).ToListAsync();
-
+      
             ViewBag.Historyservices = services.Where(w => w.Finished == true);
             var requested = services.Where(w => w.Finished == false);
             ViewBag.services = requested;
@@ -288,10 +322,10 @@ namespace WorkshopPlatform.Controllers
                 };
                 model.Add(x);
             }
-
+          
+         
             return View(model);
         }
-
         public async Task<IActionResult> GetRate()
         {
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -301,16 +335,15 @@ namespace WorkshopPlatform.Controllers
                  .FirstOrDefaultAsync(w => w.User.Id == userID);
             var model = await _context.UserServices.Where(w => w.Finished == false)
                  .Where(w => w.User.Id == userID).ToListAsync();
-
-            var data = _context.WorkshopRates.Include(w => w.UserProfile).Include(w => w.WorkShop).Where(w => w.WorkShop.Id == workshop.Id).ToList();
+            
+                var data= _context.WorkshopRates.Include(w=>w.UserProfile).Include(w=>w.WorkShop).Where(w => w.WorkShop.Id == workshop.Id).ToList();
             ViewBag.Rates = data;
 
             return View(model);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(List<UserServicesViewModel> data)
+        public async Task<IActionResult> Update(List<UserServicesViewModel> data)
         {
             foreach (var item in data)
             {
@@ -322,33 +355,44 @@ namespace WorkshopPlatform.Controllers
             return RedirectToAction(nameof(RequestedServices));
         }
 
+
+
         public async Task<IActionResult> WorkshopSetting()
         {
-            var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var workshop = await _context.WorkShops
-                 .Include(w => w.User)
-                 .Include(w => w.WorkshopRates)
-                 .Include(w => w.Services)
-                 .FirstOrDefaultAsync(w => w.User.Id == userID);
-
-            var viewModel = new WorkshopViewModel
+            try
             {
-                Id = workshop.Id,
-                Name = workshop.Name,
-                ImageUrl = workshop.Image,
-                LogoeUrl = workshop.Logo,
-                Verified = workshop.Verified,
-                Address = workshop.Address,
-                City = workshop.City,
-                Government = workshop.Government,
-                Rate = workshop.Rate,
-                UserId = workshop.UserId,
-                User = workshop.User,
-            };
-            return View(viewModel);
-        }
+                var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                var workshop = await _context.WorkShops
+                     .Include(w => w.User)
+                     .Include(w => w.WorkshopRates)
+                     .Include(w => w.Services)
+                     .FirstOrDefaultAsync(w => w.User.Id == userID);
+
+
+                var viewModel = new WorkshopViewModel
+                {
+                    Id = workshop.Id,
+                    Name = workshop.Name,
+                    ImageUrl = workshop.Image,
+                    LogoeUrl = workshop.Logo,
+                    Verified = workshop.Verified,
+                    Address = workshop.Address,
+                    City = workshop.City,
+                    Government = workshop.Government,
+                    Rate = workshop.Rate,
+                    UserId = workshop.UserId,
+                    User = workshop.User,
+                };
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+
+                return NotFound();
+            }
+            
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult workshopSetting(WorkshopViewModel workshopViewModel)
@@ -372,12 +416,24 @@ namespace WorkshopPlatform.Controllers
                     LogoFullPath = Path.Combine(uploads, LogoFileName);
                     if (ImgaeFileName == LogoFileName)
                     {
-                        workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                        FileInfo file = new FileInfo(ImageFullPath);
+                        if (file.Exists.Equals(false))
+                        {
+                            workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                        }
                     }
                     else
                     {
-                        workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
-                        workshopViewModel.Logopath.CopyTo(new FileStream(LogoFullPath, FileMode.Create));
+                        FileInfo file = new FileInfo(ImageFullPath);
+                        if (file.Exists.Equals(false))
+                        {
+                            workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                        }
+                        FileInfo file2 = new FileInfo(LogoFullPath);
+                        if (file.Exists.Equals(false))
+                        {
+                            workshopViewModel.Logopath.CopyTo(new FileStream(LogoFullPath, FileMode.Create));
+                        }
                     }
                     workshopss.Image = ImgaeFileName;
                     workshopss.Logo = LogoFileName;
@@ -386,25 +442,33 @@ namespace WorkshopPlatform.Controllers
                 {
                     if (workshopViewModel.Imagepath == null)
                     {
-                        workshopss.Image = OldImageFile;
+                        //workshopss.Image = OldImageFile;
                     }
                     else
                     {
                         ImgaeFileName = workshopViewModel.Imagepath.FileName;
                         ImageFullPath = Path.Combine(uploads, ImgaeFileName);
-
-                        workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                        FileInfo file = new FileInfo(ImageFullPath);
+                        if (file.Exists.Equals(false))
+                        {
+                            workshopViewModel.Imagepath.CopyTo(new FileStream(ImageFullPath, FileMode.Create));
+                        }
                         workshopss.Image = ImgaeFileName;
+
                     }
                     if (workshopViewModel.Logopath == null)
                     {
-                        workshopss.Logo = OldLogoFile;
+                        //workshopss.Logo = OldLogoFile;
                     }
                     else
                     {
                         LogoFileName = workshopViewModel.Logopath.FileName;
                         LogoFullPath = Path.Combine(uploads, LogoFileName);
-                        workshopViewModel.Logopath.CopyTo(new FileStream(LogoFullPath, FileMode.Create));
+                        FileInfo file = new FileInfo(LogoFullPath);
+                        if (file.Exists.Equals(false))
+                        {
+                            workshopViewModel.Logopath.CopyTo(new FileStream(LogoFullPath, FileMode.Create));
+                        }
                         workshopss.Logo = LogoFileName;
                     }
                 }
@@ -423,7 +487,9 @@ namespace WorkshopPlatform.Controllers
             }
             catch (Exception)
             {
+
                 return RedirectToAction(nameof(workshopSetting));
+
             }
             return RedirectToAction(nameof(workshopSetting));
         }

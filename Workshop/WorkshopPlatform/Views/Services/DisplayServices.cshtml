@@ -255,7 +255,13 @@
 
 @section Scripts {
     <script>
- 
+        $(document).ready(function () {
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                console.log(fileName);
+            });
+        });
         function update(id) {
             //var ide = id;
 
@@ -265,6 +271,7 @@
                 data: { id },
                 dataType: "html",
                 success: function (res) {
+                    //console.log(res);
                     //var qqq = $(this).closest('.modal');
                     $("#myUpdateModal").html(res);
                     //$(".modal").modal();
