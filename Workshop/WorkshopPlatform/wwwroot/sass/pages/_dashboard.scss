@@ -1,0 +1,19 @@
+.dashboard {
+    .dataTables_info {
+        font-size: 14px;
+        color: $gray-400;
+    }
+    .dataTables_length,
+    .dataTables_filter {
+        font-size: 16px;
+        color: $gray-400;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    table {
+        padding-bottom: 2em;
+    }
+    .pagination {
+        font-size: 15px;
+    }
+}

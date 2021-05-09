@@ -371,17 +371,11 @@ G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPl
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout1.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\UserProfile\Index.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Create.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\CreateService.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Delete.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Details.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Edit.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Emergacy.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Index.cshtml.g.cs
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\ServicesPartial.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorTargetAssemblyInfo.cache
@@ -392,214 +386,29 @@ G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPl
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
 G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
-G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
-C:\Users\Elamen Soft\Documents\GitHub\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Emergacy.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\appsettings.Development.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\appsettings.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\libman.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.StaticWebAssets.xml
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.exe
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.deps.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.runtimeconfig.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.runtimeconfig.dev.json
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ref\WorkshopPlatform.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.Views.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\WorkshopPlatform.Views.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Humanizer.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\MailKit.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.Identity.Client.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\dotnet-aspnet-codegenerator-design.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\MimeKit.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\NETCore.MailKit.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\Newtonsoft.Json.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\BouncyCastle.Crypto.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Composition.AttributedModel.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Composition.Convention.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Composition.Hosting.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Composition.Runtime.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Composition.TypedParts.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Runtime.Caching.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csprojAssemblyReference.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.GeneratedMSBuildEditorConfig.editorconfig
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.AssemblyInfoInputs.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.AssemblyInfo.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csproj.CoreCompileInputs.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.MvcApplicationPartsAssemblyInfo.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.MvcApplicationPartsAssemblyInfo.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorAssemblyInfo.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorAssemblyInfo.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\staticwebassets\WorkshopPlatform.StaticWebAssets.Manifest.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\staticwebassets\WorkshopPlatform.StaticWebAssets.xml
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\scopedcss\bundle\WorkshopPlatform.styles.css
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.TagHelpers.input.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.TagHelpers.output.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorCoreGenerate.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ExternalLogin.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ForgotPassword.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\PersonalData.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_Layout.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPassword.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\WorkshopRegister.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Create.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Delete.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Details.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\DisplayServices.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Edit.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\GetRate.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Index.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\RequestedServices.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\WorkshopSetting.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout1.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\userprofile\Index.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Create.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\CreateService.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Delete.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Details.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Edit.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Emergacy.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Index.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\ServicesPartial.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorTargetAssemblyInfo.cache
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.RazorTargetAssemblyInfo.cs
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.Views.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.csproj.CopyComplete
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\ref\WorkshopPlatform.dll
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.pdb
-F:\iti\MINIA\mn,\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\WorkshopPlatform.genruntimeconfig.cache
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\_ServicesPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\_ReviewsPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\Components\NavHeader\_LoginPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\_ServiceNotifiPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_Layout2.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\VerifiedWorkshops.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\NeedConfirmWorkshops.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\VerifiedServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Admin\NeedConfirmServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Create.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Delete.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Details.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\DisplayServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Edit.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\GetRate.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\Index.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\RequestedServices.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Services\WorkshopSetting.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\Email.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\Message.cshtml.g.cs
+G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\obj\Debug\net5.0\Razor\Views\WorkShops\WorKShopMessageReciver.cshtml.g.cs

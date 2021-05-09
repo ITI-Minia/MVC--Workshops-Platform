@@ -60,10 +60,6 @@ namespace WorkshopPlatform.Models
                 e.HasIndex(p => p.Email).IsUnique();
                 e.Property(p => p.Email).IsRequired();
             });
-            modelBuilder.Entity<UserServices>(e =>
-            {
-                e.HasIndex("ServiceId", "UserId").IsUnique();
-            });
 
             base.OnModelCreating(modelBuilder);
         }

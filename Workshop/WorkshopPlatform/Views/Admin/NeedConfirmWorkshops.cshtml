@@ -1,0 +1,131 @@
+﻿@model List<Workshop.Models.WorkShop>
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "NeedConfirmWorkshops";
+}
+
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-center custom-alert">
+                    <div class="d-none alert alert-warning alert-dismissible w-50" role="alert" id="alert-error">
+                        <div class="row">
+                            <div class="col-11">
+                                <i class="fa fa-exclamation-circle mr-3"></i>
+                                Workshop "<span id="ws-name"></span>" confirmed successfully
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="text-info title-4 text-secondary mb-4">Workshops - Need confirmation</h1>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2 dt-responsive nowrap" id="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>phone</th>
+                                <th>Government</th>
+                                <th>City</th>
+                                <th>Street</th>
+                                <th>Joined in</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ws in Model)
+                            {
+                                <tr class="tr-shadow" id="@ws.Id">
+                                    <td>
+                                        <label class="au-checkbox">
+                                            <input type="checkbox">
+                                            <span class="au-checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td><a asp-controller="WorkShops" asp-action="Details" asp-route-id="@ws.Id">@ws.Name</a></td>
+                                    <td>
+                                        <span class="block-email">@ws.User.Email</span>
+                                    </td>
+                                    <td class="desc">@ws.User.PhoneNumber</td>
+                                    <td>@ws.Government</td>
+                                    <td>@ws.City</td>
+                                    <td>@ws.Address</td>
+                                    <td>@ws.JoinedIn.ToShortDateString()</td>
+                                    <td>
+                                        <button class="btn btn-secondary" onclick="confirm(@ws.Id)">verify</button>
+                                    </td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                <i class="mdi mdi-send" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @*<tr class="spacer"></tr>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $('#table').dataTable({
+        });
+
+        function confirm(id) {
+            $.ajax({
+                type: "GET",
+                url: `/Admin/ConfirmWorkshop/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $(`#${id}`).remove();
+
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+                    $('#ws-name').html(response);
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 4500);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    </script>
+}

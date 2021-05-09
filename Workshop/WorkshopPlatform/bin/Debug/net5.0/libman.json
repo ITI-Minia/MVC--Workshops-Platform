@@ -1,19 +1,31 @@
 {
-  "version": "1.0",
-  "defaultProvider": "cdnjs",
-  "libraries": [
-    {
-      "library": "twitter-bootstrap@4.6.0",
-      "destination": "wwwroot/lib/twitter-bootstrap/"
-    },
-    {
-      "provider": "unpkg",
-      "library": "@aspnet/signalr@latest",
-      "destination": "wwwroot/lib/signalr/",
-      "files": [
-        "dist/browser/signalr.js",
-        "dist/browser/signalr.min.js"
-      ]
-    }
-  ]
+    "version": "1.0",
+    "defaultProvider": "cdnjs",
+    "libraries": [{
+            "library": "twitter-bootstrap@4.6.0",
+            "destination": "wwwroot/lib/twitter-bootstrap/"
+        },
+        {
+            "library": "datatables@1.10.21",
+            "destination": "wwwroot/lib/datatables/"
+        },
+        {
+            "library": "datatables-responsive@2.2.7",
+            "destination": "wwwroot/lib/datatables-responsive/"
+        },
+        {
+            "library": "popper.js@2.9.2",
+            "destination": "wwwroot/lib/popper.js/"
+        },
+        {
+            "provider": "unpkg",
+            "library": "@aspnet/signalr@latest",
+            "destination": "wwwroot/lib/signalr/",
+            "files": [
+                "dist/browser/signalr.js",
+                "dist/browser/signalr.min.js"
+            ]
+        }
+
+    ]
 }

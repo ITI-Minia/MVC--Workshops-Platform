@@ -1,151 +1,365 @@
 ﻿@model Workshop.Models.UserProfile
 @{
-
+    var CurrentServices = ((List<UserServices>)ViewBag.CurrentServices);
+    var PrevServices = ((List<UserServices>)ViewBag.PrevServices);
 }
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    @{ if (Model.Image == null)
+<div class="profile-page">
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4 mb-md-0">
+            <div class="card">
+                <div class="card-body card-info shadow-sm">
+                    @if (ViewBag.ProfileOwner == true)
+                    {
+                        <div class="settings-btn">
+                            <a class="btn" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                                <i class="fas fa-cogs fa-fw mr-2"></i>
+                            </a>
+                        </div>
+                    }
+                    <div class="row justify-content-center">
+                        <div class="profile-img">
+                            @if (Model.Image == null)
+                            {
+                                <img id="profile-img" src="~/imgs/undraw_male_avatar_323b.svg" class="photo" alt="profile photo" />
+                            }
+                            else
+                            {
+                                <img id="profile-img" src="~/Upload/images/@Model.Image" class="photo" alt="profile photo" />
+                            }
+                            @if (ViewBag.ProfileOwner == true)
+                            {
+                                <div class="middle">
+                                    <div class="nav-item dropdown no-arrow">
+                                        <a class="nav-link dropdown-toggle identifyingClass" href="#" id="logo-dropdown" data-id="1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Change photo
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-custom shadow animated--grow-in" aria-labelledby="logo-dropdown">
+                                            <a href=# data-target="#updateLogoModal" data-toggle="modal" class="dropdown-item" data-id="1">Upload photo</a>
+                                            <button class="dropdown-item" onclick="removeImage(@Model.Id)" id="remove">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="profile-head mt-3">
+                                <h4>
+                                    <a class="main--link" asp-controller="UserProfile" asp-action="Index" asp-route-username="@Model.User.UserName">
+                                        @Model.FirstName @Model.LastName
+                                    </a>
+                                </h4>
+                                <small class="small">@@@Model.User.UserName</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts row justify-content-center">
+                        @if (Model.User.PhoneNumber != null)
                         {
-                            <img src="~/imgs/profile.png"
-                                 alt="" />
+                            <p>
+                                <span>
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                (+20) @Model.User.PhoneNumber.Substring(1, 3)
+                                @Model.User.PhoneNumber.Substring(4, 3)
+                                @Model.User.PhoneNumber.Substring(7)
+                            </p>
                         }
-                        else
-                        {
-                            <img src="@Model.Image" alt="" />
-                        }
+                        <p>
+                            <span>
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </span>
+                            @Model.City - @Model.Government
+                        </p>
+                        <p>
+                            <span>
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            @Model.User.Email
+                        </p>
+                    </div>
+                    @if (Model.CarBrand != null)
+                    {
+                        <div class="contacts row justify-content-center">
+                            <p class="text-center text-primary mb-2" style="font-size: 3em;">
+                                <i class="mdi mdi-car-multiple" aria-hidden="true"></i>
+                            </p>
+                            <div class="row align-items-center pl-2">
+                                <span class="text-gray-600">Brand</span>
+                                <i class="mdi mdi-ray-start-arrow text-primary pl-2" style="font-size:1.5em;" aria-hidden="true"></i>
+                                @Model.CarBrand
+                            </div>
+
+                            @if (Model.CarModel != null)
+                            {
+                                <div class="row align-items-center pl-2">
+                                    <span class="text-gray-600">Model</span>
+                                    <i class="mdi mdi-ray-start-arrow text-primary pl-2" style="font-size:1.5em;" aria-hidden="true"></i>
+                                    @Model.CarModel
+                                </div>
+                            }
+                        </div>
                     }
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h3>@Model.FirstName @Model.LastName</h3>
-                    <h5>@Model.User.UserName</h5>
-                    <br />
-                    <br />
-                    <br />
-                </div>
-            </div>
-            <div class="col-md-2">
-                <input type="submit"
-                       class="profile-edit-btn"
-                       name="btnAddMore"
-                       value="Edit Profile" />
-            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-8">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           id="home-tab"
-                           data-toggle="tab"
-                           href="#home"
-                           role="tab"
-                           aria-controls="home"
-                           aria-selected="true">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           id="profile-tab"
-                           data-toggle="tab"
-                           href="#profile"
-                           role="tab"
-                           aria-controls="profile"
-                           aria-selected="false">Preferences</a>
-                    </li>
-                </ul>
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active"
-                         id="home"
-                         role="tabpanel"
-                         aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Frist name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p> @Model.FirstName</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Last name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.LastName</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.User.Email</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.User.PhoneNumber</p>
+        <div class="col-12 col-md-8">
+            <div class="card w-100">
+                <div class="card-body pb-5">
+                    <div class="row justify-content-center pl-5 mt-2">
+                        <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                            @if (ViewBag.ProfileOwner == true)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="current-tab" data-toggle="tab" href="#current" role="tab"
+                                       aria-controls="current" aria-selected="true">Shopping cart</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" id="previous-tab" data-toggle="tab" href="#previous" role="tab"
+                                   aria-controls="previous" aria-selected="false">History</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row mt-3 pl-5">
+                        <div class="tab-content profile-tab col-12" id="profileTabContent">
+                            @if (ViewBag.ProfileOwner == true)
+                            {
+                                <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
+                                    @if (CurrentServices.Count == 0)
+                                    {
+                                        <div class="row justify-content-center small text-gray-600 p-5">
+                                            There is no current requested service in the cart
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="shopping-cart">
+                                            <div class="ibox">
+                                                <div class="ibox-title">
+                                                    <span class="small text-gray-600 float-right">(<strong>@CurrentServices.Count</strong>) items</span>
+                                                    <h5 class="text-gray-600">Items in your cart</h5>
+                                                </div>
+
+                                                @foreach (var item in CurrentServices)
+                                                {
+                                                    <div class="ibox-content" id="@item.ServiceId">
+                                                        <div class="table-responsive">
+                                                            <table class="table shoping-cart-table">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="90">
+                                                                            <div class="cart-product-imitation">
+                                                                                @if (item.Service.Image != null)
+                                                                                {
+                                                                                    <img id="logo" class="photo" src="/Upload/images/@item.Service.Image" alt="Service image" />
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <img id="logo" class="photo" src="/imgs/car-service.jpg" alt="Service image" />
+                                                                                }
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="desc">
+                                                                            <h4>
+                                                                                <a asp-controller="WorkShops" asp-action="Details" asp-route-id="@item.Service.WorkShop.Id" class="main--link text-navy">
+                                                                                    @item.Service.Title
+                                                                                </a>
+                                                                            </h4>
+                                                                            <p class="small">
+                                                                                @item.Service.Description
+                                                                            </p>
+                                                                            <div class="row">
+                                                                                <dl class="small m-b-none col-12 col-md-6">
+                                                                                    <dt>Ordered from:</dt>
+                                                                                    <dd class="small">@item.Service.WorkShop.Name</dd>
+                                                                                </dl>
+                                                                                <div class="col-12 col-md-6 d-flex align-items-center justify-content-end small">
+                                                                                    <a href="#" class="text-muted main--link" onclick="removeService(@item.ServiceId)">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                        Remove item
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <h6>
+                                                                                @item.Service.Price <span class="small">LE</span>
+                                                                            </h6>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="previous-tab">
+                                @if (PrevServices.Count == 0)
+                                {
+                                    <div class="row justify-content-center small text-gray-600 p-5">
+                                        There is no requested service yet
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="shopping-cart">
+                                        <div class="ibox">
+                                            <div class="ibox-title">
+                                                <span class="small text-gray-600 float-right">(<strong>@PrevServices.Count</strong>) items</span>
+                                                <h5 class="text-gray-600">Previous orders</h5>
+                                            </div>
+
+                                            @foreach (var item in PrevServices)
+                                            {
+                                                <div class="ibox-content">
+                                                    <div class="table-responsive">
+                                                        <table class="table shoping-cart-table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="90">
+                                                                        <div class="cart-product-imitation">
+                                                                            @if (item.Service.Image != null)
+                                                                            {
+                                                                                <img id="logo" class="photo" src="/Upload/images/@item.Service.Image" alt="Service image" />
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <img id="logo" class="photo" src="/imgs/car-service.jpg" alt="Service image" />
+                                                                            }
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="desc">
+                                                                        <h4>
+                                                                            <a asp-controller="WorkShops" asp-action="Details" asp-route-id="@item.Service.WorkShop.Id" class="main--link text-navy">
+                                                                                @item.Service.Title
+                                                                            </a>
+                                                                        </h4>
+                                                                        <p class="small">
+                                                                            @item.Service.Description
+                                                                        </p>
+                                                                        <div class="row">
+                                                                            <dl class="small m-b-none col-12">
+                                                                                <dt>Ordered from:</dt>
+                                                                                <dd class="small">@item.Service.WorkShop.Name</dd>
+                                                                            </dl>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <h6>
+                                                                            @item.Service.Price <span class="small">LE</span>
+                                                                        </h6>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                }
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade show active"
-                         id="profile"
-                         role="tabpanel"
-                         aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <label>Car</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-modal">
+        <div class="modal fade" id="updateLogoModal" tabindex="-1" role="dialog" aria-labelledby="updateLogoModalLabel">
+            <div class="modal-dialog" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="updateLogoModalLabel">Change workshop logo</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="logoForm" method="post" asp-controller="Userprofile" asp-action="SaveImage" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="@Model.Id">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image">
+                                <label class="custom-file-label" for="image">Choose file</label>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Car Model</label>
+                            <div class="modal-footer mt-4">
+                                <button id="close-modal" type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                                <button type="submit" class="btn btn-primary" id="changePhoto">Save</button>
                             </div>
-                            <div class="col-md-6">
-                                <p>@Model.CarModel</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Car Brand</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.CarBrand</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <label>Adress</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Government</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.Government</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>City</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>@Model.City</p>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
+@section Scripts {
+    <script>
+        $(function () {
+            //last active tab
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+                localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('#profileTab a[href="' + activeTab + '"]').tab('show');
+            }
+
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+            var ProfileOwner = '@ViewBag.ProfileOwner';
+            if (ProfileOwner == 'False') {
+                $('#current-tab').removeClass('active');
+                $('#previous-tab').addClass('active');
+
+                $('#current').removeClass(['show', 'active']);
+                $('#previous').addClass(['show', 'active']);
+            }
+        });
+
+        function removeImage(id) {
+            $.ajax({
+                type: "GET",
+                url: `/Userprofile/RemoveImage/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $('#profile-img').attr('src', '/imgs/undraw_male_avatar_323b.svg');
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function removeService(id) {
+            $.ajax({
+                type: "GET",
+                url: `/WorkShops/RemoveUserService/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $(`#${id}`).remove();
+                    var count = Number($('#service-count').html())
+                    $('#service-count').html(count - 1);
+
+                    $('#cart-dropdown').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    </script>
+}

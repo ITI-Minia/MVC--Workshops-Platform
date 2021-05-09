@@ -307,6 +307,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AddedIn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -394,6 +397,9 @@ namespace WorkshopPlatform.Migrations
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("JoinedIn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Logo")
                         .HasColumnType("nvarchar(max)");
@@ -528,10 +534,9 @@ namespace WorkshopPlatform.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ServiceId");
 
-                    b.HasIndex("ServiceId", "UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserServices");
                 });

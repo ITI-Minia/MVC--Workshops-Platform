@@ -13566,6 +13566,23 @@
         }
       },
       {
+        "HashCode": -253441956,
+        "Kind": "MVC.ViewComponent",
+        "Name": "__Generated__NavHeaderViewComponentTagHelper",
+        "AssemblyName": "WorkshopPlatform",
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "vc:nav-header"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "__Generated__NavHeaderViewComponentTagHelper",
+          "MVC.ViewComponent.Name": "NavHeader"
+        }
+      },
+      {
         "HashCode": -653984039,
         "Kind": "Components.Bind",
         "Name": "Bind",
@@ -15639,6 +15656,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Admin\\VerifiedServices.cshtml",
+      "TargetPath": "Views\\Admin\\VerifiedServices.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -15659,8 +15681,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Delete.cshtml",
+      "TargetPath": "Views\\Services\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Create.cshtml",
+      "TargetPath": "Views\\Services\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\WorKShopMessageReciver.cshtml",
+      "TargetPath": "Views\\WorkShops\\WorKShopMessageReciver.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\WorkshopSetting.cshtml",
+      "TargetPath": "Views\\Services\\WorkshopSetting.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15669,13 +15711,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Admin\\Index.cshtml",
+      "TargetPath": "Views\\Admin\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\Components\\NavHeader\\_LoginPartial.cshtml",
+      "TargetPath": "Views\\Shared\\Components\\NavHeader\\_LoginPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\RequestedServices.cshtml",
+      "TargetPath": "Views\\Services\\RequestedServices.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15689,13 +15751,18 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\ServicesPartial.cshtml",
-      "TargetPath": "Views\\WorkShops\\ServicesPartial.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
-      "TargetPath": "Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Admin\\NeedConfirmServices.cshtml",
+      "TargetPath": "Views\\Admin\\NeedConfirmServices.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Message.cshtml",
+      "TargetPath": "Views\\WorkShops\\Message.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15704,13 +15771,43 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\_ServicesPartial.cshtml",
+      "TargetPath": "Views\\WorkShops\\_ServicesPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Details.cshtml",
+      "TargetPath": "Views\\Services\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\_ServiceNotifiPartial.cshtml",
+      "TargetPath": "Views\\WorkShops\\_ServiceNotifiPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\DisplayServices.cshtml",
+      "TargetPath": "Views\\Services\\DisplayServices.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Edit.cshtml",
+      "TargetPath": "Views\\Services\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Emergacy.cshtml",
       "TargetPath": "Views\\WorkShops\\Emergacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\_Layout2.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout2.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15724,8 +15821,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Edit.cshtml",
-      "TargetPath": "Views\\WorkShops\\Edit.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15734,8 +15831,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Create.cshtml",
-      "TargetPath": "Views\\WorkShops\\Create.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15769,6 +15866,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\_ReviewsPartial.cshtml",
+      "TargetPath": "Views\\WorkShops\\_ReviewsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
       "FileKind": "mvc"
@@ -15776,6 +15878,11 @@
     {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15804,18 +15911,28 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\Delete.cshtml",
-      "TargetPath": "Views\\WorkShops\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Index.cshtml",
+      "TargetPath": "Views\\Services\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Admin\\VerifiedWorkshops.cshtml",
+      "TargetPath": "Views\\Admin\\VerifiedWorkshops.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\GetRate.cshtml",
+      "TargetPath": "Views\\Services\\GetRate.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15829,8 +15946,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\WorkShops\\CreateService.cshtml",
-      "TargetPath": "Views\\WorkShops\\CreateService.cshtml",
+      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Admin\\NeedConfirmWorkshops.cshtml",
+      "TargetPath": "Views\\Admin\\NeedConfirmWorkshops.cshtml",
       "FileKind": "mvc"
     }
   ],

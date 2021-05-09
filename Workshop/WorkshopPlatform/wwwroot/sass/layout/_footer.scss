@@ -1,3 +1,112 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
+footer {
+    width: 100%;
+    background-color: $dark;
+    padding: 20px;
+    margin-top: 7em;
+    a {
+        color: white;
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+    }
+    .footer--logo--icon {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 2px solid white;
+        margin-top: 20px;
+        h1 {
+            color: white;
+        }
+        .footer--icons {
+            color: white;
+            align-self: flex-end;
+        }
+    }
+    .footer--links {
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 3px solid white;
+        .footer--frist--links {
+            .footer--frist--links--items {
+                padding-left: 0;
+                .footer--frist--links--item {
+                    padding: 10px 0;
+                    .sub {
+                        margin-top: 10px;
+                    }
+                    .sub--link {
+                        a {
+                            color: rgba(128, 128, 128, 0.795);
+                        }
+                    }
+                }
+            }
+        }
+        .footer--second--links {
+            padding: 0 100px;
+            .footer--frist--links--items {
+                padding-left: 0;
+                .footer--frist--links--item {
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+    .footer--contact {
+        display: flex;
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+    i {
+        margin-right: 7px;
+    }
+    .footer--form {
+        padding: 20px;
+        border: 3px solid white;
+        border-radius: 10px;
+        margin-top: 10px;
+        h1 {
+            color: white;
+            padding: 0 10px;
+        }
+        .input-icons {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 18px;
+            position: relative;
+            i {
+                position: absolute;
+                color: white;
+            }
+            .icon {
+                padding: 17px 10px;
+                min-width: 40px
+            }
+            .input-field {
+                width: 100%;
+                padding: 15px 35px;
+                background: $secondary;
+                border: none;
+                color: white;
+            }
+        }
+    }
+    .footer--btn {
+        background: $secondary;
+        color: white;
+        border-radius: 0px;
+        padding: 10px 50px;
+        &:hover {
+            color: $primary;
+        }
+        i {
+            margin-left: 15px;
+        }
+    }
+}

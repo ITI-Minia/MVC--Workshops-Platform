@@ -30,6 +30,8 @@ namespace Workshop.Models
         [ForeignKey("WorkShop")]
         public int WorkShopId { get; set; }
 
-        public virtual WorkShop WorkShop { get; set; }     
+        public virtual WorkShop WorkShop { get; set; }
+
+        public DateTime AddedIn { get; set; } = DateTime.Now;
     }
 }

@@ -27,6 +27,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
             _context = context;
         }
+
         public string StatusMessage { get; set; }
 
         [BindProperty]
@@ -34,16 +35,15 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-
+            [Display(Name = "Car Model")]
             public string CarModel { get; set; }
+
+            [Display(Name = "Car Brand")]
             public string CarBrand { get; set; }
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
-            public string City { get; set; }
-            [Required]
-            [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
+
             public string Government { get; set; }
 
+            public string City { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -57,7 +57,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             var brand = userProfile.CarBrand;
             var model = userProfile.CarModel;
 
-
             Input = new InputModel
             {
                 Government = government,
@@ -66,6 +65,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 CarModel = model,
             };
         }
+
         public async Task<IActionResult> OnGetAsync()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -102,7 +102,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             var model = userprofile.CarModel;
             var img = userprofile.Image;
 
-
             if (Input.Government != government)
             {
                 userprofile.Government = Input.Government;
@@ -119,14 +118,13 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             if (Input.CarModel != model)
             {
                 userprofile.CarModel = Input.CarModel;
-            }        
+            }
             _context.SaveChanges();
 
             await _signInManager.RefreshSignInAsync(user);
             TempData["Done"] = "Updated Sucessfully";
             StatusMessage = "Your data has been updated";
             return RedirectToPage();
-        } 
-
+        }
     }
 }

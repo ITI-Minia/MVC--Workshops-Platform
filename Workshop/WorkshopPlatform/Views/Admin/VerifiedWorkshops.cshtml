@@ -1,0 +1,80 @@
+﻿@model List<Workshop.Models.WorkShop>
+
+@{
+    Layout = "_Layout2";
+    ViewData["Title"] = "VerifiedWorkshops";
+}
+
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <h1 class="text-info title-4 text-secondary mb-4">Verified Workshops</h1>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2 dt-responsive nowrap" id="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>name</th>
+                                <th>email</th>
+                                <th>phone</th>
+                                <th>Government</th>
+                                <th>City</th>
+                                <th>Street</th>
+                                <th>Joined in</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ws in Model)
+                            {
+                                <tr class="tr-shadow">
+                                    <td>
+                                        <label class="au-checkbox">
+                                            <input type="checkbox">
+                                            <span class="au-checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td><a asp-controller="WorkShops" asp-action="Details" asp-route-id="@ws.Id">@ws.Name</a></td>
+                                    <td>
+                                        <span class="block-email">@ws.User.Email</span>
+                                    </td>
+                                    <td class="desc">@ws.User.PhoneNumber</td>
+                                    <td>@ws.Government</td>
+                                    <td>@ws.City</td>
+                                    <td>@ws.Address</td>
+                                    <td>@ws.JoinedIn.ToShortDateString()</td>
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                <i class="mdi mdi-send" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @*<tr class="spacer"></tr>*@
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END DATA TABLE -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        $('#table').dataTable({
+        });
+    </script>
+}

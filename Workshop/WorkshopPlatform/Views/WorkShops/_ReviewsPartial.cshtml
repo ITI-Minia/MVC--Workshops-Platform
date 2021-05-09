@@ -1,0 +1,306 @@
+﻿@model List<Workshop.Models.WorkshopRate>
+
+@if (Model.Count == 0)
+{
+    <div class="row justify-content-center small py-5" style="color:#aaa">
+        There is no reviews yet
+    </div>
+}
+else
+{
+    for (int i = 0; i < Model.Count; i = i + 2)
+    {
+        <div class="row mb-5 reviews-row">
+            <div class="col-12 col-md-6 p-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="comment--icon text-center">
+                            <span class="fa fa-quote-left text-white"></span>
+                        </div>
+                        <div class="row">
+                            @if (Model[i].UserProfile.Image != null)
+                            {
+                                <img src="~/Upload/images/@Model[i].UserProfile.Image" class="mt-4 ml-3 rounded-circle user--image">
+                            }
+                            else
+                            {
+                                <img src="~/imgs/undraw_male_avatar_323b.svg" class="mt-4 ml-3 rounded-circle user--image">
+                            }
+                            <div class="pl-3 mt-3 user--info">
+                                <div class="half-stars-rate">
+                                    <div class="rating-group mr-2">
+                                        <label aria-label="0 stars" class="rating__label" id="r-0">&nbsp;</label>
+                                        <label aria-label="0.5 stars" class="rating__label rating__label--half" for="r-05">
+                                            @if (Model[i].Rate >= 0.5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="1 star" class="rating__label" id="r-10">
+                                            @if (Model[i].Rate >= 1)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="1.5 stars" class="rating__label rating__label--half" id="r-15">
+                                            @if (Model[i].Rate >= 1.5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="2 stars" class="rating__label" id="r-20">
+                                            @if (Model[i].Rate >= 2)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="2.5 stars" class="rating__label rating__label--half" id="r-25">
+                                            @if (Model[i].Rate >= 2.5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="3 stars" class="rating__label" id="r-30">
+                                            @if (Model[i].Rate >= 3)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="3.5 stars" class="rating__label rating__label--half" id="r-35">
+                                            @if (Model[i].Rate >= 3.5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="4 stars" class="rating__label" id="r-40">
+                                            @if (Model[i].Rate >= 4)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="4.5 stars" class="rating__label rating__label--half" id="r-45">
+                                            @if (Model[i].Rate >= 4.5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                            }
+                                        </label>
+                                        <label aria-label="5 stars" class="rating__label" id="r-50">
+                                            @if (Model[i].Rate >= 5)
+                                            {
+                                                <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+                                <a asp-controller="UserProfile" asp-action="Index" asp-route-username="@Model[i].UserProfile.User.UserName"
+                                   class="h5 text-secondary">
+                                    @Model[i].UserProfile.FirstName
+                                    @Model[i].UserProfile.LastName
+                                </a>
+                                <br>
+                                <span class="date">@Model[i].Date.ToShortDateString()</span>
+                            </div>
+                        </div>
+                        <p class="pl-2 pt-4 user--comment"> @Model[i].Review </p>
+                    </div>
+                </div>
+            </div>
+            @if (i + 1 < Model.Count && Model[i + 1] != null)
+            {
+                <div class="col-12 col-md-6 p-1">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="comment--icon text-center">
+                                <span class="fa fa-quote-left text-white"></span>
+                            </div>
+                            <div class="row">
+                                @if (Model[i + 1].UserProfile.Image != null)
+                                {
+                                    <img src="~/Upload/images/@Model[i + 1].UserProfile.Image" class="mt-4 ml-3 rounded-circle user--image">
+                                }
+                                else
+                                {
+                                    <img src="~/imgs/undraw_male_avatar_323b.svg" class="mt-4 ml-3 rounded-circle user--image">
+                                }
+                                <div class="pl-3 mt-3 user--info">
+                                    <div class="half-stars-rate">
+                                        <div class="rating-group mr-2">
+                                            <label aria-label="0 stars" class="rating__label" id="r-0">&nbsp;</label>
+                                            <label aria-label="0.5 stars" class="rating__label rating__label--half" for="r-05">
+                                                @if (Model[i + 1].Rate >= 0.5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="1 star" class="rating__label" id="r-10">
+                                                @if (Model[i + 1].Rate >= 1)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="1.5 stars" class="rating__label rating__label--half" id="r-15">
+                                                @if (Model[i + 1].Rate >= 1.5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="2 stars" class="rating__label" id="r-20">
+                                                @if (Model[i + 1].Rate >= 2)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="2.5 stars" class="rating__label rating__label--half" id="r-25">
+                                                @if (Model[i + 1].Rate >= 2.5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="3 stars" class="rating__label" id="r-30">
+                                                @if (Model[i + 1].Rate >= 3)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="3.5 stars" class="rating__label rating__label--half" id="r-35">
+                                                @if (Model[i + 1].Rate >= 3.5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="4 stars" class="rating__label" id="r-40">
+                                                @if (Model[i + 1].Rate >= 4)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="4.5 stars" class="rating__label rating__label--half" id="r-45">
+                                                @if (Model[i + 1].Rate >= 4.5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star-half"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star-half"></i>
+                                                }
+                                            </label>
+                                            <label aria-label="5 stars" class="rating__label" id="r-50">
+                                                @if (Model[i + 1].Rate >= 5)
+                                                {
+                                                    <i class="rating__icon rating__icon--star fa fa-star"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="rating__icon rating__icon--none fa fa-star"></i>
+                                                }
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <a asp-controller="UserProfile" asp-action="Index" asp-route-username="@Model[i + 1].UserProfile.User.UserName"
+                                       class="h5 text-secondary">
+                                        @Model[i + 1].UserProfile.FirstName
+                                        @Model[i + 1].UserProfile.LastName
+                                    </a>
+                                    <br>
+                                    <span class="date">@Model[i + 1].Date.ToShortDateString()</span>
+                                </div>
+                            </div>
+                            <p class="pl-2 pt-4 user--comment"> @Model[i + 1].Review </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
+
+@if (Model.Count > 3)
+{
+    <nav aria-label="row Page navigation">
+        <input type="hidden" id="review-index" value="2">
+        <ul class="pagination row justify-content-center">
+            <li class="page-item">
+                <button class="prev" id="prev2" onclick="reviews(-1)">
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+            </li>
+            <li class="page-item">
+                <button class="next" id="next2" onclick="reviews(1)">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+}
