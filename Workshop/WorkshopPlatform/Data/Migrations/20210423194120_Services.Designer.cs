@@ -10,8 +10,8 @@ using WorkshopPlatform.Models;
 namespace WorkshopPlatform.Migrations
 {
     [DbContext(typeof(WorkShopDbContext))]
-    [Migration("20210423140932_user-services")]
-    partial class userservices
+    [Migration("20210423194120_Services")]
+    partial class Services
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

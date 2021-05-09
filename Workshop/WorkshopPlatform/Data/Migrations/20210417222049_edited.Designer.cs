@@ -10,8 +10,8 @@ using WorkshopPlatform.Models;
 namespace WorkshopPlatform.Migrations
 {
     [DbContext(typeof(WorkShopDbContext))]
-    [Migration("20210421143548_workshopImages2")]
-    partial class workshopImages2
+    [Migration("20210417222049_edited")]
+    partial class edited
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -421,26 +421,6 @@ namespace WorkshopPlatform.Migrations
                     b.ToTable("workshopServices");
                 });
 
-            modelBuilder.Entity("WorkshopPlatform.Models.WorkshopImages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("WorkShopId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("path")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("WorkShopId");
-
-                    b.ToTable("WorkshopImages");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -540,17 +520,6 @@ namespace WorkshopPlatform.Migrations
                     b.Navigation("WorkShop");
                 });
 
-            modelBuilder.Entity("WorkshopPlatform.Models.WorkshopImages", b =>
-                {
-                    b.HasOne("Workshop.Models.WorkShop", "WorkShop")
-                        .WithMany("Images")
-                        .HasForeignKey("WorkShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WorkShop");
-                });
-
             modelBuilder.Entity("Workshop.Models.UserProfile", b =>
                 {
                     b.Navigation("WorkshopRates");
@@ -558,8 +527,6 @@ namespace WorkshopPlatform.Migrations
 
             modelBuilder.Entity("Workshop.Models.WorkShop", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("Services");
 
                     b.Navigation("WorkshopRates");
