@@ -1,19 +1,15 @@
 ﻿@model Workshop.ViewModel.ServicesViewModel
 
-
-
 <div class="modal fade updateModal" id="myUpdateModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
             @*Modal Header*@
             <div class="modal-header">
-                <h4 class="modal-title">Update Service</h4>
+                <h4 class="modal-title text-primary">Update Service</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             @*Modal body*@
-            <div class="modal-body">
+            <div class="modal-body p-4">
                 <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="Id" />
@@ -35,25 +31,17 @@
                     </div>
 
                     <div class="form-group ">
-                        <label asp-for="Imagepath" class="control-label">Workshop Image</label>
+                        <label asp-for="Image" class="control-label">Workshop Image</label>
                         <div class="custom-file">
-
-                            <input asp-for="Imagepath" class="form-control custom-file-input imi" />
-                            <label class="custom-file-label iml">Choose Image ...</label>
+                            <input asp-for="Imagepath" class="form-control custom-file-input" />
+                            <label class="custom-file-label">Choose Image ...</label>
                         </div>
-
-                    </div>
-                    <div class="form-group" hidden>
-                        <label asp-for="WorkShopId" class="control-label"></label>
-                        <input asp-for="WorkShopId" class="form-control" />
-                        <span asp-validation-for="WorkShopId" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <input type="submit" value="Update" class="float-right mt-4 mb-4 btn btn-primary" />
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

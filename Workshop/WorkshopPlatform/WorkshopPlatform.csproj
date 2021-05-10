@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Hubs\NotificationUserHub.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
@@ -38,10 +42,8 @@
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="Views\Services\Delete.cshtml" />
-    <None Include="Views\Services\Details.cshtml" />
     <None Include="Views\Services\DisplayServices.cshtml" />
     <None Include="Views\Services\Edit.cshtml" />
-    <None Include="Views\Services\Index.cshtml" />
     <None Include="wwwroot\imgs\images\emergancy.svg" />
     <None Include="wwwroot\imgs\images\profile.webp" />
     <None Include="wwwroot\lib\twitter-bootstrap\css\bootstrap-grid.css.map" />

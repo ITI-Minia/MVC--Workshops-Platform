@@ -1,0 +1,159 @@
+﻿@model Workshop.Models.WorkShop
+
+@{
+    var images = Model.Images.ToList();
+    ViewData["Title"] = "Images";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<div id="wrapper" class="workshop--page">
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="gallery">
+            <div class="container-fluid">
+                <h2 class="text-muted"> Images </h2>
+                <br />
+                <div class="mt-2 mb-3">
+                    <button type="button" class="btn btn-primary text-white" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus-circle"></i> Add image
+                    </button>
+                </div>
+                <div class="card setting-card">
+                    <div class="card-body p-5">
+                        @for (int i = 0; i < images.Count; i = i + 2)
+                        {
+                            <div class="row mb-5 images-row justify-content-center">
+                                <div class="col-12 col-md-6">
+                                    <a asp-action="RemoveImage" asp-route-id="@images[i].Id" class="btn delete-icon">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <button class="image--btn" onclick="imageModal(this)" type="button" data-toggle="modal" data-target="#imageModal">
+                                        <img src="~/Upload/images/@images[i].path" alt="@images[i].path" id="img-@images[i].Id">
+                                    </button>
+                                </div>
+                                @if (i + 1 < images.Count && images[i + 1] != null)
+                                {
+                                    <div class="col-12 col-md-6">
+                                        <a asp-action="RemoveImage" asp-route-id="@images[i].Id" class="btn delete-icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                        <button class="image--btn" onclick="imageModal(this)" type="button" data-toggle="modal" data-target="#imageModal">
+                                            <img src="~/Upload/images/@images[i+1].path" alt="@images[i+1].path" id="img-@images[i+1].Id">
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        @if (images.Count > 6)
+                        {
+                            <nav aria-label="row Page navigation">
+                                <input type="hidden" id="image-index" value="3">
+                                <ul class="pagination row justify-content-center">
+                                    <li class="page-item">
+                                        <button class="prev" id="prev3" onclick="gallery(-1)">
+                                            <i class="fa fa-chevron-left"></i>
+                                        </button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button class="next" id="next3" onclick="gallery(1)">
+                                            <i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="row justify-content-center modal-dialog" role="document">
+        <div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="float: right;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body">
+                <img id="modal-img" src="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-modal">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="myModalLabel">Upload image</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form id="logoForm" method="post" asp-action="SaveImage" enctype="multipart/form-data">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image">
+                            <label class="custom-file-label" for="image">Choose file</label>
+                        </div>
+                        <div class="modal-footer mt-4">
+                            <button id="close-modal" type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+                            <button type="submit" class="btn btn-primary" id="changePhoto">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            gallery();
+
+            $('.custom-file-input').on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName);
+                console.log(fileName);
+            });
+        });
+
+        function imageModal(button) {
+            var img = $(button).children()[0];
+            $('#modal-img').attr('src', $(img).attr('src'));
+        }
+
+        function gallery(next = 0) {
+            var index = eval($('#image-index').val());
+            var count = eval($('#gallery .images-row').length);
+            var images = $('#gallery .images-row');
+
+            if (next == -1) index -= 6;
+            else if (next == 0) index = 0;
+
+            if (count > 3) {
+                for (i = index + 3; i < count; i++) {
+                    $(images[i]).addClass('d-none');
+                }
+                for (i = 0; i < index; i++) {
+                    $(images[i]).addClass('d-none');
+                }
+                for (i = index; i < index + 3; i++) {
+                    $(images[i]).removeClass('d-none');
+                }
+            }
+
+            index += 3;
+            $('#image-index').val(index);
+
+            if (index == 3)
+                $('#prev3').prop('disabled', true);
+            else
+                $('#prev3').prop('disabled', false);
+
+            if (index >= count)
+                $('#next3').prop('disabled', true);
+            else
+                $('#next3').prop('disabled', false);
+        }
+    </script>
+}

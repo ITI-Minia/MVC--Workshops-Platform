@@ -97,7 +97,8 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            var profile = await _context.UserProfiles.Include(u => u.User).FirstOrDefaultAsync();
+            var profile = await _context.UserProfiles.Where(p => p.Id == id)
+                .Include(u => u.User).FirstOrDefaultAsync();
 
             if (profile == null)
             {

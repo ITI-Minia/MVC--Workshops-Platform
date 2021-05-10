@@ -2,12 +2,15 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkshopPlatform.Interface;
 using WorkshopPlatform.Models;
+using WorkshopPlatform.wwwroot.Hubs;
 
 namespace WorkshopPlatform.Controllers
 {
@@ -17,12 +20,20 @@ namespace WorkshopPlatform.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly WorkShopDbContext _context;
+        private readonly IHubContext<NotificationUserHub> _notificationUserHubContext;
+        private readonly IUserConnectionManager _userConnectionManager;
 
-        public AdminController(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, WorkShopDbContext context)
+        public AdminController(IHttpContextAccessor httpContextAccessor,
+            UserManager<IdentityUser> userManager,
+            WorkShopDbContext context,
+            IHubContext<NotificationUserHub> notificationUserHubContext,
+            IUserConnectionManager userConnectionManager)
         {
             _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
             _context = context;
+            _notificationUserHubContext = notificationUserHubContext;
+            _userConnectionManager = userConnectionManager;
         }
 
         [Route("admin/dashboard")]

@@ -13,6 +13,7 @@ using WorkshopPlatform.Models;
 using System.Dynamic;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WorkshopPlatform.Controllers
 {
@@ -450,42 +451,40 @@ namespace WorkshopPlatform.Controllers
                 return RedirectToAction(nameof(Details));
             }
         }
+
         public async Task<IActionResult> WorKShopMessageReciver(string SenderName)
         {
-            if (SenderName==null)
+            if (SenderName == null)
             {
-                return View();   
+                return View();
             }
             else
-            { 
-            
-            var GetSender = _context.Users.Where(u => u.UserName == SenderName).FirstOrDefault();
-            var GetSenderId = GetSender.Id;
+            {
+                var GetSender = _context.Users.Where(u => u.UserName == SenderName).FirstOrDefault();
+                var GetSenderId = GetSender.Id;
 
-
-            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.WorkShopUserId = userID;
-            var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
-            var CurrentUserName = CurrentUser.UserName;
-            ViewBag.UserName = SenderName;
-            var Chatting = _context.Chats.Where(c => c.Receiver == userID && c.Sender == GetSenderId).FirstOrDefault();
-            var ChattingId = Chatting.Id;
-            ViewBag.Messages = await _context.Messages.Where(m => m.ChatId == ChattingId).ToListAsync();
+                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+                var CurrentUserName = CurrentUser.UserName;
+                ViewBag.UserName = SenderName;
+                var Chatting = _context.Chats.Where(c => c.Receiver == userID && c.Sender == GetSenderId).FirstOrDefault();
+                var ChattingId = Chatting.Id;
+                ViewBag.Messages = await _context.Messages.Where(m => m.ChatId == ChattingId).ToListAsync();
                 Messages messages = new Messages()
-                { UserId= GetSenderId };
+                { UserId = GetSenderId };
                 return PartialView(messages);
-
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> WorKShopMessageReciver(Messages messages)
         {
-        
             var SenderId = messages.UserId;
-            
+
             var WorkShopUserID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var CurrentUser = _context.Users.Where(n => n.Id == WorkShopUserID).FirstOrDefault();
-            
+
             var Chatting = _context.Chats.Where(c => c.Receiver == WorkShopUserID && c.Sender == SenderId).FirstOrDefault();
 
             messages.ChatId = Chatting.Id;
@@ -498,17 +497,13 @@ namespace WorkshopPlatform.Controllers
 
         public IActionResult Message(int? id)
         {
-
-            
-            
-                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.ClientID = userID;
-                ViewBag.SendersName = _context.Chats.Where(c => c.Receiver == userID).Include(c => c.UserSender);
-            
+            ViewBag.SendersName = _context.Chats.Where(c => c.Receiver == userID).Include(c => c.UserSender);
+
             @ViewBag.Id = 0;
 
-           
-            if (id !=null)
+            if (id != null)
             {
                 var WorkShopUser = _context.WorkShops.Where(w => w.Id == id).FirstOrDefault();
                 //workshopuserId
@@ -523,7 +518,7 @@ namespace WorkshopPlatform.Controllers
 
                 var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
                 Messages messages = new Messages()
-                { Id=(int)id};
+                { Id = (int)id };
 
                 if (Chatting == null)
                 {
@@ -538,39 +533,34 @@ namespace WorkshopPlatform.Controllers
                 }
                 else
                 {
-
                     var ChattingId = Chatting.Id;
                     var Recivers = Chatting.Receiver;
-                    
-                    ViewBag.Messages = _context.Messages.Where(m => m.ChatId == ChattingId).ToList();
-             
-                    return View();
 
+                    ViewBag.Messages = _context.Messages.Where(m => m.ChatId == ChattingId).ToList();
+
+                    return View();
                 }
             }
 
             return View();
-          
         }
+
         [HttpPost]
         public async Task<IActionResult> Message(Messages messages)
         {
-            
-            
-                var WorkShopUser = _context.WorkShops.Where(w => w.Id == messages.Id).FirstOrDefault();
-                var UserId = WorkShopUser.UserId;
-               
-                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
-                var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+            var WorkShopUser = _context.WorkShops.Where(w => w.Id == messages.Id).FirstOrDefault();
+            var UserId = WorkShopUser.UserId;
 
-                messages.ChatId = Chatting.Id;
-                messages.UserId = userID;
-                messages.Id = 0;
-                await _context.AddAsync(messages);
-                await _context.SaveChangesAsync();
-                return Ok();
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+            var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+
+            messages.ChatId = Chatting.Id;
+            messages.UserId = userID;
+            messages.Id = 0;
+            await _context.AddAsync(messages);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
-           
     }
 }

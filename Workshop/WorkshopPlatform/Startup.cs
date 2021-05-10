@@ -19,6 +19,8 @@ using System.Threading.Tasks;
 using WorkshopPlatform.Models;
 using WorkshopPlatform.Services;
 using chatting.Hubs;
+using WorkshopPlatform.Hubs;
+using WorkshopPlatform.wwwroot.Hubs;
 
 namespace WorkshopPlatform
 {
@@ -53,6 +55,7 @@ namespace WorkshopPlatform
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<WorkShopDbContext>();
             services.AddSignalR();
+
             // requires
             // using Microsoft.AspNetCore.Identity.UI.Services;
             // using WebPWrecover.Services;
@@ -104,8 +107,8 @@ namespace WorkshopPlatform
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chatHub");
-                //endpoints.MapHub<ChatHub>("/WorkShops/Message/{id?}");
-
+                endpoints.MapHub<NotificationHub>("/NotificationHub");
+                endpoints.MapHub<NotificationUserHub>("/NotificationUserHub");
 
                 endpoints.MapControllerRoute(
                     name: "default",

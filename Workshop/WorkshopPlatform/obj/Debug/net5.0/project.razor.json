@@ -15916,11 +15916,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Views\\Services\\Index.cshtml",
-      "TargetPath": "Views\\Services\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "g:\\ITI .Net\\Projects\\Project 5 - MVC\\MVC--Workshops-Platform\\Workshop\\WorkshopPlatform\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
