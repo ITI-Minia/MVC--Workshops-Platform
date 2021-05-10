@@ -201,7 +201,7 @@
                             <span class="text-secondary">
                                 <i class="bi bi-geo-alt-fill"></i>
                             </span>
-                            @Model.Address - @Model.City - @Model.Government
+                            @Model.Address - @Model.City.Name - @Model.City.Government.Name.Split("Governorate")[0]
                         </span> <br>
                         <span>
                             <span class="text-secondary">

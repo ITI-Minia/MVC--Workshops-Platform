@@ -1,0 +1,156 @@
+﻿@page
+@model WorkshopPlatform.Areas.Identity.Pages.Account.WorkshopSetLocationModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Set your Location";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Warsha</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap/css/bootstrap.css" />
+    <link href="~/css/site.min.css" rel="stylesheet" />
+</head>
+
+<body class="signup--page">
+
+    <div class="container mt-5">
+
+        <div class="d-flex justify-content-center">
+            <div class="d-none alert alert-danger alert-dismissible" role="alert" id="alert-error">
+                <div class="row">
+                    <div class="col-9">
+                        <i class="fa fa-exclamation-circle mr-3"></i>
+                        There are items that require your attention
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row shadow">
+            <div class="col-lg-6 d-none d-lg-block left--side text-center">
+                <h4 class="mt-5  text-secondary h5"> Your email has been verify successfully.  </h4>
+                <h1 class="text-primary pb-4 pt-4"> Just one step more! </h1>
+                <hr class="w-75">
+                <div class="container text-muted">
+                    <p>To completely verify your workshop please enter its location</p>
+                    <p class="small">
+                        Note you could skip this step for now but your workshop wouldn't be
+                        verified until you complete your information
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 bg-white right--side">
+                <div class="content m-5">
+                    <div class="mb-5">
+                        <span class="h5 text-primary header">Set Location</span>
+                        <hr class="header--border">
+                    </div>
+                    <div>
+                        <div class="signup--form">
+                            @*asp-route-returnUrl="@Model.ReturnUrl"*@
+                            <form id="signupForm" method="post" autocomplete="new-password">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <input type="text" asp-for="Government" placeholder="Government" id='username' title="Enter Government">
+                                        <span asp-validation-for="Government" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="right">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fas fa-city"></i>
+                                        <input asp-for="City"  id="email" placeholder="City" required>
+                                        <span asp-validation-for="City" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <i class="fas fa-street-view"></i>
+                                        <input type="tel" asp-for="Street" id="phone" placeholder="Street" required>
+                                        <span asp-validation-for="Street" class="fa fa-times error--icon" data-toggle="tooltip" data-placement="top">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center mt-4 mb-4">
+                                    <button type="submit" id="signup" class="btn btn-primary btn-rounded col-sm-11 btn-lg">
+                                        Save
+                                    </button>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div class="form-link">
+                                        <small class="text-muted">Skip for now? <a asp-page="Login" class="main--link">Sign in</a></small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/twitter-bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        // remove icon when focus
+        $('input').focus(function () {
+            $(this).prev().fadeOut()
+        });
+
+        //get back icon and validate input when blur
+        $('input').blur(function () {
+            $(this).prev().fadeIn();
+        });
+
+        $('.error--icon').on('DOMSubtreeModified', function () {
+            if ($(this).prev().hasClass('input-validation-error') && $(this).html() != "") {
+                var inner = $(this).children('span');
+                $(this).attr('data-original-title', inner.text())
+                    .html("");
+            }
+        });
+
+        $('#signup').click(function () {
+
+            $('#signupForm input').each(function () {
+
+                if ($(this).hasClass('input-validation-error')) {
+
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 4500);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                    return;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

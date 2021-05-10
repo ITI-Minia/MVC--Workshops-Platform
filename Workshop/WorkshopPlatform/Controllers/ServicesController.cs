@@ -341,6 +341,8 @@ namespace WorkshopPlatform.Controllers
 
                 var workshop = await _context.WorkShops
                      .Include(w => w.User)
+                     .Include(w => w.City)
+                     .Include(w => w.City.Government)
                      .FirstOrDefaultAsync(w => w.User.Id == userID);
 
                 var viewModel = new WorkshopViewModel
@@ -350,8 +352,8 @@ namespace WorkshopPlatform.Controllers
                     ImageUrl = workshop.Image,
                     LogoeUrl = workshop.Logo,
                     Address = workshop.Address,
-                    City = workshop.City,
-                    Government = workshop.Government,
+                    City = workshop.City.Name,
+                    Government = workshop.City.Government.Name,
                     UserId = workshop.UserId,
                     User = workshop.User,
                 };
@@ -432,8 +434,11 @@ namespace WorkshopPlatform.Controllers
 
                 workshop.Name = workshopViewModel.Name;
                 workshop.Address = workshopViewModel.Address;
-                workshop.City = workshopViewModel.City;
-                workshop.Government = workshopViewModel.Government;
+
+                var government = _context.Governments.Where(g => g.Name == workshopViewModel.Government).FirstOrDefault();
+                workshop.City = _context.Cities
+                                 .Where(c => c.Name == workshopViewModel.City && c.GovernmentId == government.Id)
+                                 .FirstOrDefault();
 
                 _context.Update(workshop);
                 _context.SaveChanges();

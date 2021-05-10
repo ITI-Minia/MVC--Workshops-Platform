@@ -92,7 +92,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
-            [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long with one (digit, upper and lower case letter).")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -147,8 +146,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                     {
                         UserId = user.Id,
                         Name = Input.Name,
-                        City = "",
-                        Government = "",
+                        CityId = null,
                         Address = ""
                     });
 
@@ -165,7 +163,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
                     var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
+                        "/Account/WorkshopSetLocation",
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);

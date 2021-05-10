@@ -42,6 +42,8 @@ namespace WorkshopPlatform.Controllers
         {
             var workshops = _context.WorkShops.Where(w => w.Verified)
                                     .Include(w => w.User)
+                                    .Include(w => w.City)
+                                    .Include(w => w.City.Government)
                                     .ToList();
             return View(workshops);
         }
@@ -51,6 +53,8 @@ namespace WorkshopPlatform.Controllers
         {
             var workshops = _context.WorkShops.Where(w => !w.Verified)
                                     .Include(w => w.User)
+                                    .Include(w => w.City)
+                                    .Include(w => w.City.Government)
                                     .ToList();
             return View(workshops);
         }
