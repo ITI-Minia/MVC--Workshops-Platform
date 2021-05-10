@@ -28,13 +28,20 @@ using WorkshopPlatform.Models;
 #nullable disable
 #nullable restore
 #line 3 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
+using Workshop.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4153fee4a8771c901676bcb23e7a5f600517de91", @"/Views/Services/GetRate.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d20155237d2441f696b608e058899312afdc569", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef9b5f32b559d91f5339a2d3b419c1b94e291f40", @"/Views/_ViewImports.cshtml")]
     public class Views_Services_GetRate : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Workshop.Models.WorkshopRate>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("text-muted"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -98,7 +105,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("                                <tr>\r\n                                    <td>\r\n                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4153fee4a8771c901676bcb23e7a5f600517de916082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4153fee4a8771c901676bcb23e7a5f600517de916299", async() => {
                 WriteLiteral("\r\n                                            <div class=\"row pl-3 align-items-center\">\r\n");
 #nullable restore
 #line 30 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\Services\GetRate.cshtml"

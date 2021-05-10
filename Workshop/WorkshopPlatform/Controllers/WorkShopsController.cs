@@ -38,14 +38,14 @@ namespace WorkshopPlatform.Controllers
         // GET: WorkShops
         public async Task<IActionResult> Index()
         {
-            var workShopDbContext = _context.WorkShops;
+            var workShopDbContext = _context.WorkShops.Where(w => w.Verified);
 
             return View(await workShopDbContext.ToListAsync());
         }
 
         public async Task<IActionResult> Emergacy(string City, string Government, string Street)
         {
-            var workShopDbContext = _context.WorkShops.Include(w => w.User);
+            var workShopDbContext = _context.WorkShops.Where(w => w.Verified).Include(w => w.User);
 
             if (Street != "" && Street != null)
             {
@@ -240,7 +240,9 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            var service = await _context.Services.FindAsync(id);
+            var service = await _context.Services.Where(s => s.Id == id)
+                                                 .Include(s => s.WorkShop)
+                                                 .FirstOrDefaultAsync();
 
             if (service == null)
             {
@@ -254,9 +256,16 @@ namespace WorkshopPlatform.Controllers
               {
                   UserId = userID,
                   ServiceId = service.Id,
-                  Date = DateTime.Now,
-                  Finished = false
               });
+
+            //send notification to workshop
+            _context.Notifications.Add(new Notification
+            {
+                ReceiverId = service.WorkShop.UserId,
+                Type = "RequestService",
+                SenderID = userID,
+                ContentId = service.Id,
+            });
 
             _context.SaveChanges();
 

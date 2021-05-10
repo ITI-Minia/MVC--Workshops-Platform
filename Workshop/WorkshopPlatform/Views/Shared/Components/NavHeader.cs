@@ -33,14 +33,25 @@ namespace WorkshopPlatform.Views.Shared.Components
         {
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            //get user notifications
+            var notifications = await _context.Notifications.Where(n => n.ReceiverId == userID)
+                                              .ToListAsync();
+            int notifCount = notifications.Where(n => n.Unread == true).ToList().Count;
+
+            ViewBag.Notifications = notifications;
+            ViewBag.context = _context;
+            ViewBag.UnreadCount = notifCount;
+
             if (User.IsInRole("Workshop"))
             {
-                var workshop = _context.WorkShops.Where(w => w.UserId == userID).Include(w => w.User).FirstOrDefault();
+                var workshop = _context.WorkShops.Where(w => w.UserId == userID)
+                               .Include(w => w.User).FirstOrDefault();
 
                 return View("_LoginPartial", workshop);
             }
 
-            var profile = _context.UserProfiles.Where(u => u.UserId == userID).Include(p => p.User).FirstOrDefault();
+            var profile = _context.UserProfiles.Where(u => u.UserId == userID)
+                         .Include(p => p.User).FirstOrDefault();
 
             //services that user in current session had orderd
             var userServices = await _context.UserServices.Where(s => s.UserId == userID && s.Finished == false)

@@ -28,13 +28,20 @@ using WorkshopPlatform.Models;
 #nullable disable
 #nullable restore
 #line 3 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
+using Workshop.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8ff10d1c0eff4b3b2428b5717832db103e03a4ab", @"/Views/WorkShops/Emergacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d20155237d2441f696b608e058899312afdc569", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef9b5f32b559d91f5339a2d3b419c1b94e291f40", @"/Views/_ViewImports.cshtml")]
     public class Views_WorkShops_Emergacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Workshop.Models.WorkShop>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("form1"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -79,7 +86,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"container-fluid  emergancy workShops \" id=\"workShops\">\r\n    <div class=\"row justify-content-center searchContent mb-4\">\r\n        <div class=\"col-12 col-md-7\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ff10d1c0eff4b3b2428b5717832db103e03a4ab6164", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ff10d1c0eff4b3b2428b5717832db103e03a4ab6381", async() => {
                 WriteLiteral("\r\n                <div class=\"input-group\">\r\n");
 #nullable restore
 #line 12 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\WorkShops\Emergacy.cshtml"
@@ -377,7 +384,7 @@ WriteAttributeValue("", 2832, Model.ElementAt(i).Image, 2832, 25, false);
 
                                 <div class='actions mt-auto btn'>
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ff10d1c0eff4b3b2428b5717832db103e03a4ab20865", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8ff10d1c0eff4b3b2428b5717832db103e03a4ab21082", async() => {
                 WriteLiteral("<div>Show more</div>");
             }
             );

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WorkshopPlatform.Models.Notification>
+@{
+    var notifications = (List<Notification>)Model;
+    Service Service = null;
+    WorkShopDbContext context = ViewBag.context;
+}
+
+<h6 class="dropdown-header">
+    Notifications Center
+</h6>
+@if (notifications.Count == 0)
+{
+    <div class="row justify-content-center p-5" id="service-empty">
+        There is no notifications.
+    </div>
+}
+else
+{
+    @for (int i = 0; i < notifications.Count && i < 3; i++)
+    {
+        if (notifications[i].Type == "FinishService")
+        {
+
+            Service = context.Services.Find(notifications[i].ContentId);
+            var workshop = context.WorkShops.Where(w => w.UserId == notifications[i].SenderID).FirstOrDefault();
+
+            <a class="dropdown-item d-flex align-items-center p-3" onclick="ReadNotification(@notifications[i].Id)"
+               asp-controller="WorkShops" asp-action="Details" asp-route-id="@workshop.Id">
+                <div class="mr-3">
+                    <div class="">
+                        @if (workshop.Image == null)
+                        {
+                            <img src="/imgs/Workshop-logo-default.png" alt="workshop logo">
+                        }
+                        else
+                        {
+                            <img src="/Upload/images/@workshop.Image" alt="workshop logo">
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="small date">
+                        @notifications[i].Date.ToShortDateString() -  @notifications[i].Date.ToShortTimeString()
+                    </div>
+                    <span class="font-weight-bold">Your requested service <b>"@Service.Title"</b> has been finished </span>
+                </div>
+            </a>
+        }
+        if (notifications[i].Type == "RequestService")
+        {
+            Service = context.Services.Find(notifications[i].ContentId);
+            var user = context.Users.Find(notifications[i].SenderID);
+            var userprofile = context.UserProfiles.Where(p => p.UserId == notifications[i].SenderID).FirstOrDefault();
+
+            <a class="dropdown-item d-flex align-items-center p-3" onclick="ReadNotification(@notifications[i].Id)"
+               asp-controller="Services" asp-action="Index">
+                <div class="mr-3">
+                    <div class="">
+                        @if (userprofile.Image == null)
+                        {
+                            <img src="/imgs/undraw_male_avatar_323b.svg" alt="workshop logo">
+                        }
+                        else
+                        {
+                            <img src="/Upload/images/@userprofile.Image" alt="workshop logo">
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="small date">
+                        @notifications[i].Date.ToShortDateString() -  @notifications[i].Date.ToShortTimeString()
+                    </div>
+                    <span class="font-weight-bold">@user.UserName requested <b>"@Service.Title"</b> service. </span>
+                </div>
+            </a>
+        }
+    }
+}

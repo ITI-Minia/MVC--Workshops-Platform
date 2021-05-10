@@ -1,7 +1,7 @@
 ﻿@model Workshop.ViewModel.ServicesViewModel
 
 @{
-    ViewData["Title"] = "DisplayServices";
+    ViewData["Title"] = "Services";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
@@ -29,10 +29,10 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Price</th>
-                                <th width="500px">Description</th>
+                                <th width="400px">Description</th>
                                 <th>Image</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Verified</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,14 +60,25 @@
                                         }
                                     </td>
                                     <td>
-                                        <a class="btn" onclick="update(@item.Id)">
-                                            <i class="fas fa-edit text-primary"></i>
-                                            @*update*@
-                                        </a>
+                                        @if (item.Verified)
+                                        {
+
+                                            <i class="fas fa-check verified" data-toggle="tooltip" data-placement="top" title="Verified"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-times text-danger" data-toggle="tooltip" data-placement="top" title="Not Verified"></i>
+                                        }
+                                    </td>
                                     <td>
-                                        <a class="btn" onclick="Delete(@item.Id)">
-                                            <i class="fas fa-trash-alt text-danger"></i>
-                                        </a>
+                                        <div class="table-data-feature row justify-content-center">
+                                            <button class="item mr-3" onclick="update(@item.Id)" data-toggle="tooltip" data-placement="top" title="Update">
+                                                <i class="mdi mdi-pencil" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="item" onclick="Delete(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             }

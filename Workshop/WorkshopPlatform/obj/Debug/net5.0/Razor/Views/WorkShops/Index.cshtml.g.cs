@@ -28,13 +28,20 @@ using WorkshopPlatform.Models;
 #nullable disable
 #nullable restore
 #line 3 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
+using Workshop.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\_ViewImports.cshtml"
 using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a1947f3b2cd2c4e8f2345d39f31fba379b94987f", @"/Views/WorkShops/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4d20155237d2441f696b608e058899312afdc569", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef9b5f32b559d91f5339a2d3b419c1b94e291f40", @"/Views/_ViewImports.cshtml")]
     public class Views_WorkShops_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Workshop.Models.WorkShop>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("form1"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -79,7 +86,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"container-fluid workShops\" id=\"workShops\">\r\n    <div class=\"row justify-content-center searchContent mb-4\">\r\n        <div class=\"col-12 col-md-7\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f6123", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f6340", async() => {
                 WriteLiteral("\r\n                <div class=\"input-group\">\r\n");
 #nullable restore
 #line 12 "G:\ITI .Net\Projects\Project 5 - MVC\MVC--Workshops-Platform\Workshop\WorkshopPlatform\Views\WorkShops\Index.cshtml"
@@ -348,7 +355,7 @@ WriteAttributeValue("", 2675, Model.ElementAt(i).Image, 2675, 25, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\'actions mt-auto btn\'>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f18965", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f19182", async() => {
                 WriteLiteral("<div>Show more</div>");
             }
             );
@@ -572,7 +579,7 @@ WriteAttributeValue("", 6321, Model.ElementAt(i).Image, 6321, 25, false);
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                                    </div>\r\n                                    <div class=\'actions mt-auto btn\'>\r\n                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f30488", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a1947f3b2cd2c4e8f2345d39f31fba379b94987f30705", async() => {
                 WriteLiteral("<div>Show more</div>");
             }
             );

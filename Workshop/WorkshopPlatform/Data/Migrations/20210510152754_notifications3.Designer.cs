@@ -10,8 +10,8 @@ using WorkshopPlatform.Models;
 namespace WorkshopPlatform.Migrations
 {
     [DbContext(typeof(WorkShopDbContext))]
-    [Migration("20210425190756_message")]
-    partial class message
+    [Migration("20210510152754_notifications3")]
+    partial class notifications3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -309,6 +309,9 @@ namespace WorkshopPlatform.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AddedIn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -396,6 +399,9 @@ namespace WorkshopPlatform.Migrations
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("JoinedIn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Logo")
                         .HasColumnType("nvarchar(max)");
@@ -508,6 +514,42 @@ namespace WorkshopPlatform.Migrations
                     b.ToTable("Governments");
                 });
 
+            modelBuilder.Entity("WorkshopPlatform.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Unread")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderID");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>
                 {
                     b.Property<int>("Id")
@@ -530,10 +572,9 @@ namespace WorkshopPlatform.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ServiceId");
 
-                    b.HasIndex("ServiceId", "UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserServices");
                 });
@@ -698,6 +739,23 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired();
 
                     b.Navigation("Government");
+                });
+
+            modelBuilder.Entity("WorkshopPlatform.Models.Notification", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderID");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>

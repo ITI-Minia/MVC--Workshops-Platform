@@ -25,8 +25,9 @@ namespace WorkshopPlatform.Models
         public DbSet<UserServices> UserServices { get; set; }
         public DbSet<Government> Governments { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Chat> Chats { get; set; }
         public DbSet<Messages> Messages { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

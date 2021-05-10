@@ -223,6 +223,28 @@ namespace WorkshopPlatform.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Workshop.Models.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Receiver")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Sender")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Receiver");
+
+                    b.HasIndex("Sender");
+
+                    b.ToTable("Chats");
+                });
+
             modelBuilder.Entity("Workshop.Models.Confirmations", b =>
                 {
                     b.Property<int>("Id")
@@ -248,6 +270,34 @@ namespace WorkshopPlatform.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Confirmations");
+                });
+
+            modelBuilder.Entity("Workshop.Models.Messages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("When")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Workshop.Models.Service", b =>
@@ -462,6 +512,42 @@ namespace WorkshopPlatform.Migrations
                     b.ToTable("Governments");
                 });
 
+            modelBuilder.Entity("WorkshopPlatform.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Unread")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderID");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>
                 {
                     b.Property<int>("Id")
@@ -562,6 +648,38 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Workshop.Models.Chat", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserReciver")
+                        .WithMany()
+                        .HasForeignKey("Receiver");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "UserSender")
+                        .WithMany()
+                        .HasForeignKey("Sender");
+
+                    b.Navigation("UserReciver");
+
+                    b.Navigation("UserSender");
+                });
+
+            modelBuilder.Entity("Workshop.Models.Messages", b =>
+                {
+                    b.HasOne("Workshop.Models.Chat", "Chat")
+                        .WithMany("Messages")
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Workshop.Models.Service", b =>
                 {
                     b.HasOne("Workshop.Models.WorkShop", "WorkShop")
@@ -621,6 +739,23 @@ namespace WorkshopPlatform.Migrations
                     b.Navigation("Government");
                 });
 
+            modelBuilder.Entity("WorkshopPlatform.Models.Notification", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderID");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("WorkshopPlatform.Models.UserServices", b =>
                 {
                     b.HasOne("Workshop.Models.Service", "Service")
@@ -649,6 +784,11 @@ namespace WorkshopPlatform.Migrations
                         .IsRequired();
 
                     b.Navigation("WorkShop");
+                });
+
+            modelBuilder.Entity("Workshop.Models.Chat", b =>
+                {
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("Workshop.Models.UserProfile", b =>

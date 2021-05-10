@@ -8,6 +8,9 @@
     List<UserServices> Services = null;
     int servicesCount = 0;
 
+    List<Notification> notifications = ViewBag.Notifications;
+    int notifCount = ViewBag.UnreadCount;
+
     if (User.IsInRole("User"))
     {
         Services = ((List<UserServices>)ViewBag.UserServices);
@@ -75,7 +78,6 @@
                         <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                     </div>
                 </li>
-
                 <!-- Nav Item - shopping cart  -->
                 <li class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -127,11 +129,35 @@
                                 }
                             }
                         </div>
-
-                        <a class="dropdown-item text-center small bg-info text-light" href="#">Show All</a>
+                        <a class="dropdown-item text-center small bg-info text-light"
+                           asp-controller="UserProfile" asp-action="Index" asp-route-username="@User.Identity.Name">
+                            Show All
+                        </a>
                     </div>
                 </li>
-
+                <!-- Nav Item - Notifications -->
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <a class="nav-link dropdown-toggle" href="#" onclick="UserNotifications()" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell fa-fw"></i>
+                        <!-- Counter - Alerts -->
+                        @if (notifCount != 0)
+                        {
+                            <span class="badge badge-danger badge-counter" id="notification-count">
+                                @notifCount
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger badge-counter" id="notification-count"></span>
+                        }
+                    </a>
+                    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                        <div id="Notifications-center">
+                            @await Html.PartialAsync("_NotificationsPartial", notifications, ViewData)
+                        </div>
+                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notifications</a>
+                    </div>
+                </li>
                 <li class="topbar-divider d-none d-sm-block"></li>
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -168,50 +194,27 @@
         @if (User.IsInRole("Workshop"))
         {
             <ul class="navbar-nav ml-auto">
-                <!-- Nav Item - Alerts -->
+                <!-- Nav Item - Notifications -->
                 <li class="nav-item dropdown no-arrow mx-1">
-                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" onclick="UserNotifications()" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
-                        <span class="badge badge-danger badge-counter">3+</span>
+                        <!-- Counter - Alerts -->
+                        @if (notifCount != 0)
+                        {
+                            <span class="badge badge-danger badge-counter" id="notification-count">
+                                @notifCount
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger badge-counter" id="notification-count"></span>
+                        }
                     </a>
                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                        <h6 class="dropdown-header">
-                            Alerts Center
-                        </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-primary">
-                                    <i class="fas fa-file-alt text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 12, 2019</div>
-                                <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-success">
-                                    <i class="fas fa-donate text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 7, 2019</div>
-                                $290.29 has been deposited into your account!
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-warning">
-                                    <i class="fas fa-exclamation-triangle text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">December 2, 2019</div>
-                                Spending Alert: We've noticed unusually high spending for your account.
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        <div id="Notifications-center">
+                            @await Html.PartialAsync("_NotificationsPartial", notifications, ViewData)
+                        </div>
+                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Notifications</a>
                     </div>
                 </li>
                 <!-- Nav Item - Messages -->
@@ -308,7 +311,7 @@
         {
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <a asp-controller="Admin" asp-action="Index" class="btn btn-primary btn-rounded">Dashboard</a>
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-outline-primary btn-light btn-rounded">Dashboard</a>
                 </li>
                 <li class="topbar-divider d-none d-sm-block"></li>
                 <!-- Nav Item - User Information -->

@@ -19,8 +19,6 @@ using System.Threading.Tasks;
 using WorkshopPlatform.Models;
 using WorkshopPlatform.Services;
 using chatting.Hubs;
-using WorkshopPlatform.Hubs;
-using WorkshopPlatform.wwwroot.Hubs;
 
 namespace WorkshopPlatform
 {
@@ -107,8 +105,6 @@ namespace WorkshopPlatform
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chatHub");
-                endpoints.MapHub<NotificationHub>("/NotificationHub");
-                endpoints.MapHub<NotificationUserHub>("/NotificationUserHub");
 
                 endpoints.MapControllerRoute(
                     name: "default",

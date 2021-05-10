@@ -4163,8 +4163,9 @@ img.leaflet-marker-icon {
 }
 
 .dashboard input,
-.dashboard .custom-file-label,
 .dashboard button,
+.dashboard select,
+.dashboard .custom-file-label,
 .dashboard .btn {
   border-radius: 20px;
 }
@@ -4253,6 +4254,10 @@ img.leaflet-marker-icon {
   margin-top: -57px;
   color: white;
   opacity: 0.5;
+}
+
+.dashboard .verified {
+  color: #39d475;
 }
 
 .shopping-cart .text-navy {

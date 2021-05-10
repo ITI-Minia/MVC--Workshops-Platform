@@ -9,6 +9,10 @@
     <link href="~/css/site.min.css" rel="stylesheet" />
 </head>
 <body>
+    @if (User.IsInRole("Admin"))
+    {
+        <input type="hidden" id="UserRole" value="1">
+    }
     <header class="main--header">
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top  shadow justify-content-between">
 

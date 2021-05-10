@@ -14,12 +14,11 @@ namespace WorkshopPlatform.Models
         public int Id { get; set; }
 
         [ForeignKey("Sender")]
-        [Required]
-        public int SenderID { get; set; }
+        public string SenderID { get; set; }
 
         [ForeignKey("Receiver")]
         [Required]
-        public int ReceiverId { get; set; }
+        public string ReceiverId { get; set; }
 
         [Required]
         public string Type { get; set; }
@@ -27,8 +26,11 @@ namespace WorkshopPlatform.Models
         [ForeignKey("Content")]
         public int ContentId { get; set; }
 
+        public DateTime Date { get; set; } = DateTime.Now;
+
+        public bool Unread { get; set; } = true;
+
         public virtual IdentityUser Receiver { get; set; }
         public virtual IdentityUser Sender { get; set; }
-        public virtual dynamic Content { get; set; }
     }
 }

@@ -46,32 +46,6 @@ namespace WorkshopPlatform.Controllers
             return RedirectToActionPermanent("RequestedServices");
         }
 
-        // GET: Services/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var service = await _context.Services
-                .Include(s => s.WorkShop)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (service == null)
-            {
-                return NotFound();
-            }
-
-            return View(service);
-        }
-
-        // GET: Services/Create
-        public IActionResult Create()
-        {
-            ViewData["WorkShopId"] = new SelectList(_context.WorkShops, "Id", "Address");
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ServicesViewModel servicesViewModel)
@@ -99,7 +73,7 @@ namespace WorkshopPlatform.Controllers
                     }
                 }
 
-                Service services = new()
+                Service service = new()
                 {
                     Title = servicesViewModel.Title,
                     Price = servicesViewModel.Price,
@@ -111,10 +85,18 @@ namespace WorkshopPlatform.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    await _context.Services.AddAsync(services);
+                    await _context.Services.AddAsync(service);
+
+                    //send notification to workshop
+                    _context.Notifications.Add(new Notification
+                    {
+                        ReceiverId = userID,
+                        Type = "AddService",
+                        ContentId = service.Id,
+                    });
+
                     await _context.SaveChangesAsync();
-                    TempData["Done"] = "created Sucessfully";
-                    return RedirectToAction(nameof(DisplayServices));
+                    TempData["Done"] = "Created sucessfully";
                 }
             }
             catch (UnauthorizedAccessException)
@@ -123,9 +105,7 @@ namespace WorkshopPlatform.Controllers
             }
             catch (Exception)
             {
-                TempData["Done"] = "Service Doesn't created Sucessfully";
-
-                return RedirectToAction(nameof(DisplayServices));
+                TempData["Done"] = "Service doesn't created Sucessfully";
             }
 
             return RedirectToAction(nameof(DisplayServices));
@@ -215,6 +195,7 @@ namespace WorkshopPlatform.Controllers
             var service = await _context.Services
                 .Include(s => s.WorkShop)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             ServicesViewModel viewModel = new ServicesViewModel
             {
                 Id = service.Id,
@@ -240,14 +221,12 @@ namespace WorkshopPlatform.Controllers
         {
             var service = await _context.Services.FindAsync(id);
             _context.Services.Remove(service);
-            await _context.SaveChangesAsync();
-            TempData["Done"] = "Deleted Sucessfully";
-            return RedirectToAction(nameof(DisplayServices));
-        }
 
-        private bool ServiceExists(int id)
-        {
-            return _context.Services.Any(e => e.Id == id);
+            await _context.SaveChangesAsync();
+
+            TempData["Done"] = "Deleted Sucessfully";
+
+            return RedirectToAction(nameof(DisplayServices));
         }
 
         public async Task<IActionResult> DisplayServices()
@@ -331,8 +310,23 @@ namespace WorkshopPlatform.Controllers
         {
             foreach (var item in data)
             {
-                var US = _context.UserServices.Find(item.Id);
+                var US = _context.UserServices.Where(s => s.Id == item.Id)
+                    .Include(s => s.Service.WorkShop.User)
+                    .FirstOrDefault();
+
                 US.Finished = item.Finished;
+
+                if (US.Finished)
+                {
+                    //send notification to user
+                    _context.Notifications.Add(new Notification
+                    {
+                        ReceiverId = US.UserId,
+                        Type = "FinishService",
+                        SenderID = US.Service.WorkShop.UserId,
+                        ContentId = US.ServiceId,
+                    });
+                }
             }
 
             _context.SaveChanges();
