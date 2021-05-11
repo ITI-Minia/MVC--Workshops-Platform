@@ -33,7 +33,6 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
-            [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z-\W]{8,}$", ErrorMessage = "Password must be at least 8 characters long with one (digit, upper and lower case letter).")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
             [Display(Name = "Password")]
             public string Password { get; set; }

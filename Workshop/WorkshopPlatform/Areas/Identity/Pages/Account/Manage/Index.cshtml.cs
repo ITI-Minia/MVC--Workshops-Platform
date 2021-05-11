@@ -153,18 +153,18 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
                 //copy (upload) image to that path
                 ImageFile.CopyTo(new FileStream(Fullpath, FileMode.Create));
 
-                if (userprofile.Image != null)
-                {
-                    string OldImgPath = Path.Combine(uploads, userprofile.Image);
-                    try
-                    {
-                        System.IO.File.Delete(OldImgPath);
-                    }
-                    catch
-                    {
-                        StatusMessage = "Unexpected error when trying to set Photo.";
-                    }
-                }
+                //if (userprofile.Image != null)
+                //{
+                //    string OldImgPath = Path.Combine(uploads, userprofile.Image);
+                //    try
+                //    {
+                //        System.IO.File.Delete(OldImgPath);
+                //    }
+                //    catch
+                //    {
+                //        StatusMessage = "Unexpected error when trying to set Photo.";
+                //    }
+                //}
                 userprofile.Image = fileName;
             }
             else

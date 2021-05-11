@@ -77,11 +77,12 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            if (profile.Image != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
-                System.IO.File.Delete(Path.Combine(uploadsFolder, profile.Image));
-            }
+            //if (profile.Image != null)
+            //{
+            //    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+            //    System.IO.File.Delete(Path.Combine(uploadsFolder, profile.Image));
+            //}
+
             profile.Image = null;
 
             _context.SaveChanges();

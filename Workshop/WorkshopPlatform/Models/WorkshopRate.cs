@@ -10,7 +10,7 @@ namespace Workshop.Models
 {
     public class WorkshopRate
     {
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public string Review { get; set; }
 
         [Range(0, 5)]

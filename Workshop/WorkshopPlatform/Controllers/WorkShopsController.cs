@@ -235,6 +235,23 @@ namespace WorkshopPlatform.Controllers
             ViewBag.WorkshopOwner = WorkshopOwner;
             ViewData["UserServices"] = userServices;
 
+            //for review
+            var rates = await _context.WorkshopRates.Where(r => r.WorkShopId == workShop.Id &&
+                          r.UserProfile.UserId == userID).ToListAsync();
+
+            int rateCount = rates.Count;
+
+            var userServices2 = await _context.UserServices.Where(s => s.UserId == userID &&
+                                                          s.Service.WorkShopId == workShop.Id
+                                                          && s.Finished == true)
+                                                          .ToListAsync();
+            var serviceCount = userServices2.Count;
+
+            if (rateCount == 0 && serviceCount > 0)
+            {
+                ViewBag.Rate = "1";
+            }
+
             return View(workShop);
         }
 
@@ -443,27 +460,63 @@ namespace WorkshopPlatform.Controllers
             return RedirectToAction("Details", new { id = workShop.Id });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserRateAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workShop = await _context.WorkShops.FindAsync(id);
+
+            if (workShop == null)
+            {
+                return NotFound();
+            }
+
+            var userRate = new WorkshopRate { WorkShopId = workShop.Id };
+
+            return PartialView("_UserRatePartial", userRate);
+        }
+
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRate(WorkshopRate WorkshopRate)
         {
+            var workShop = await _context.WorkShops.FindAsync(WorkshopRate.WorkShopId);
+
             try
             {
-                WorkshopRate.Date = DateTime.Now;
                 var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                //var user = _userManager.FindByIdAsync(userID).Result;
-                int UId = int.Parse(userID);
-                var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
-                WorkshopRate.UserProfileId = UId;
-                WorkshopRate.UserProfile = userprofile;
+                var userprofile = _context.UserProfiles.Where(p => p.UserId == userID).FirstOrDefault();
 
-                _context.Add(WorkshopRate);
+                WorkshopRate.UserProfileId = userprofile.Id;
+
+                _context.WorkshopRates.Add(WorkshopRate);
+
+                //calculate rate
+                var Rates = await _context.WorkshopRates.Where(w => w.WorkShopId == WorkshopRate.WorkShopId).ToListAsync();
+
+                double rate = 0;
+
+                foreach (var item in Rates)
+                {
+                    rate += (double)item.Rate;
+                }
+
+                double total = rate / Rates.Count;
+
+                workShop.Rate = (double)total;
+
+
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details));
+
+
+                return RedirectToAction("Details", new { id = workShop.Id });
             }
             catch (Exception)
             {
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction("Details", new { id = workShop.Id });
             }
         }
 

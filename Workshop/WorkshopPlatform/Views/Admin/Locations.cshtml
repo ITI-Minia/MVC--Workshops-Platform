@@ -27,40 +27,38 @@
                     </button>
                 </div>
                 <div class="">
-                    <form method="post" asp-action="Update">
-                        <table class="table table-borderless table-data3 small" id="dataTable1" width="100%" cellspacing="0">
-                            <thead>
+                    <table class="table table-borderless table-data3 small" id="dataTable1" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                @*<th>Workshops count</th>*@
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in governments)
+                            {
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Workshops count</th>
-                                    <th>Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in governments)
-                                {
-                                    <tr>
-                                        <td>
-                                            @item.Name
-                                        </td>
-                                        <td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    @*<td>
                                             0
-                                        </td>
-                                        <td>
-                                            <div class="table-data-feature row justify-content-center">
-                                                <button class="item mr-3" onclick="update(@item.Id)" data-toggle="tooltip" data-placement="top" title="Update">
-                                                    <i class="mdi mdi-pencil" aria-hidden="true"></i>
-                                                </button>
-                                                <button class="item" onclick="Delete(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        </td>*@
+                                    <td>
+                                        <div class="table-data-feature row justify-content-center">
+                                            <button class="item mr-3" onclick="updateGover(@item.Id)" data-toggle="modal" data-target="#myModal">
+                                                <i class="mdi mdi-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Update"></i>
+                                            </button>
+                                            @*<button class="item" onclick="DeleteGover(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
                                                     <i class="mdi mdi-delete" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </form>
+                                                </button>*@
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
                 <hr class="mb-5">
                 <h2 class="text-muted"> Cities </h2><br />
@@ -75,7 +73,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Government</th>
-                                <th>Workshops count</th>
+                                @*<th>Workshops count</th>*@
                                 <th>options</th>
                             </tr>
                         </thead>
@@ -89,17 +87,17 @@
                                     <td>
                                         @item.Government.Name
                                     </td>
-                                    <td>
-                                        0
-                                    </td>
+                                    @*<td>
+                                            0
+                                        </td>*@
                                     <td>
                                         <div class="table-data-feature row justify-content-center">
-                                            <button class="item mr-3" onclick="update(@item.Id)" data-toggle="tooltip" data-placement="top" title="Update">
-                                                <i class="mdi mdi-pencil" aria-hidden="true"></i>
+                                            <button class="item mr-3" onclick="updateCity(@item.Id)" data-toggle="modal" data-target="#myModal">
+                                                <i class="mdi mdi-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Update"></i>
                                             </button>
-                                            <button class="item" onclick="Delete(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
-                                            </button>
+                                            @*<button class="item" onclick="DeleteCity(@item.Id)" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                                </button>*@
                                         </div>
                                     </td>
                                 </tr>
@@ -169,5 +167,77 @@
                 });
             });
         });
+
+        function updateGover(id) {
+            $.ajax({
+                type: "GET", //Method type
+                url: `/Admin/UpdateGovernment/${id}`, //url to load partial view
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $("#modal-header").text("Update government");
+                    $('#modal-body').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function updateCity(id) {
+            $.ajax({
+                type: "GET", //Method type
+                url: `/Admin/UpdateCity/${id}`, //url to load partial view
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $("#modal-header").text("Update city");
+                    $('#modal-body').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function DeleteGover(id) {
+            $.ajax({
+                type: "GET", //Method type
+                url: `/Admin/DeleteGovernment/${id}`, //url to load partial view
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function DeleteCity(id) {
+            $.ajax({
+                type: "GET", //Method type
+                url: `/Admin/DeleteCity/${id}`, //url to load partial view
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
     </script>
 }

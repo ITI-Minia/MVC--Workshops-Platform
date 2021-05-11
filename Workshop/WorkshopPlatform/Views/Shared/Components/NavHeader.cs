@@ -34,8 +34,9 @@ namespace WorkshopPlatform.Views.Shared.Components
             var userID = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             //get user notifications
-            var notifications = await _context.Notifications.Where(n => n.ReceiverId == userID)
+            var notifications = await _context.Notifications.Where(n => n.ReceiverId == userID).Take(3)
                                               .ToListAsync();
+
             int notifCount = notifications.Where(n => n.Unread == true).ToList().Count;
 
             ViewBag.Notifications = notifications;

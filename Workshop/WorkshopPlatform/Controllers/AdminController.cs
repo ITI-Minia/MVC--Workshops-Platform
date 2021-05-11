@@ -224,17 +224,84 @@ namespace WorkshopPlatform.Controllers
             if (government == null)
                 return NotFound();
 
-            try
+            if (ModelState.IsValid)
             {
-                _context.Governments.Add(government);
-                _context.SaveChanges();
+                try
+                {
+                    _context.Governments.Add(government);
+                    _context.SaveChanges();
 
-                TempData["Done"] = "New government created sucessfully";
+                    TempData["Done"] = "New government created sucessfully";
+                }
+                catch
+                {
+                    TempData["Done"] = "The new government doesn't created, something went wrong";
+                }
             }
-            catch
+            return RedirectToAction("Locations");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateGovernmentAsync(int? id)
+        {
+            if (id == null)
             {
-                TempData["Done"] = "The new government doesn't created, something went wrong";
+                return NotFound();
             }
+            var governament = await _context.Governments.FindAsync(id);
+
+            if (governament == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView("_UpdateGovernmentPartial", governament);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateGovernmentAsync(Government government)
+        {
+            var governament2 = await _context.Governments.FindAsync(government.Id);
+
+            if (governament2 == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    governament2.Name = government.Name;
+                    _context.SaveChanges();
+
+                    TempData["Done"] = "the government updated sucessfully";
+                }
+                catch
+                {
+                    TempData["Done"] = "The government doesn't updated, something went wrong";
+                }
+            }
+
+            return RedirectToAction("Locations");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteGovernmentAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var gov = await _context.Governments.FindAsync(id);
+
+            if (gov == null)
+            {
+                return NotFound();
+            }
+
+            _context.Governments.Remove(gov);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction("Locations");
         }
@@ -254,19 +321,87 @@ namespace WorkshopPlatform.Controllers
         {
             if (city == null)
                 return NotFound();
-
-            try
+            if (ModelState.IsValid)
             {
-                _context.Cities.Add(city);
-                _context.SaveChanges();
+                try
+                {
+                    _context.Cities.Add(city);
+                    _context.SaveChanges();
 
-                TempData["Done"] = "New city created sucessfully";
+                    TempData["Done"] = "New city created sucessfully";
+                }
+                catch
+                {
+                    TempData["Done"] = "The new city doesn't created, something went wrong";
+                }
             }
-            catch
+            return RedirectToAction("Locations");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateCityAsync(int? id)
+        {
+            if (id == null)
             {
-                TempData["Done"] = "The new City doesn't created, something went wrong";
+                return NotFound();
+            }
+            var city = await _context.Cities.Where(c => c.Id == id).Include(c => c.Government).FirstOrDefaultAsync();
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+            var Governments = _context.Governments.ToList();
+
+            ViewBag.GovernmentId = new SelectList(Governments, "Id", "Name");
+
+            return PartialView("_UpdateCityPartial", city);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCityAsync(City city)
+        {
+            var city2 = await _context.Cities.FindAsync(city.Id);
+
+            if (city2 == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    city2.Name = city.Name;
+                    city2.GovernmentId = city.GovernmentId;
+
+                    _context.SaveChanges();
+
+                    TempData["Done"] = "the city has been updated sucessfully";
+                }
+                catch
+                {
+                    TempData["Done"] = "The city doesn't update, something went wrong";
+                }
             }
 
+            return RedirectToAction("Locations");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteCityAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var city = await _context.Cities.FindAsync(id);
+
+            if (city == null)
+            {
+                return NotFound();
+            }
+            _context.Cities.Remove(city);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Locations");
         }
     }

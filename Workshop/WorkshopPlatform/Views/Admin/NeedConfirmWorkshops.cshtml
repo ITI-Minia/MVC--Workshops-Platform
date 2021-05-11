@@ -49,9 +49,24 @@
                                         <span class="block-email">@ws.User.Email</span>
                                     </td>
                                     <td class="desc">@ws.User.PhoneNumber</td>
-                                    <td>@ws.City.Government.Name</td>
-                                    <td>@ws.City.Name</td>
-                                    <td>@ws.Address</td>
+                                    <td>
+                                        @if (ws.City.Government != null)
+                                        {
+                                            @ws.City.Government.Name
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (ws.City != null)
+                                        {
+                                            @ws.City.Name
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (ws.Address != null)
+                                        {
+                                            @ws.Address
+                                        }
+                                    </td>
                                     <td>@ws.JoinedIn.ToShortDateString()</td>
                                     <td>
                                         <div class="table-data-feature row justify-content-center">

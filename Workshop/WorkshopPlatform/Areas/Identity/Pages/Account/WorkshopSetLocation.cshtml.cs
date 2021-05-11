@@ -28,6 +28,7 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
             _context = context;
         }
 
+        [BindProperty]
         public string UserId { get; set; }
 
         [Required]
@@ -44,12 +45,11 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
         [PageRemote(ErrorMessage = "The government doesn't contain this city",
             HttpMethod = "post",
             PageHandler = "CheckCity",
-            AdditionalFields = "__RequestVerificationToken")]
+            AdditionalFields = "Government, __RequestVerificationToken")]
         [BindProperty]
         public string City { get; set; }
 
         [Required]
-        [RegularExpression("[A-Za-z -]{3,}", ErrorMessage = "Enter 3 or more letters (special characters not allowed)")]
         [BindProperty]
         public string Street { get; set; }
 
@@ -88,23 +88,18 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account
                 var government = _context.Governments.Where(g => g.Name == Government).FirstOrDefault();
                 var city = _context.Cities.Where(c => c.Name == City && c.GovernmentId == government.Id).FirstOrDefault();
 
-                workshop.CityId = city.Id;
+                workshop.City = city;
                 workshop.Address = Street;
 
                 await _context.SaveChangesAsync();
             }
 
-            return new RedirectToPageResult("/WorkshopComplete");
+            return RedirectToPage("./WorkshopComplete");
         }
 
         public JsonResult OnPostCheckCity()
         {
-            City city = null;
-
-            var government = _context.Governments.Where(g => g.Name == Government).FirstOrDefault();
-
-            if (government != null)
-                city = _context.Cities.Where(c => c.Name == City && c.GovernmentId == government.Id).FirstOrDefault();
+            var city = _context.Cities.Where(c => c.Name == City && c.Government.Name == Government).FirstOrDefault();
 
             var valid = city != null;
 

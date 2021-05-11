@@ -53,8 +53,14 @@
                                     <td class="desc" data-toggle="tooltip" data-placement="top" title="@s.Description">
                                         @if (s.Description != null)
                                         {
-                                            @s.Description.Substring(0, 40) @if (s.Description.Length > 50)
-                                            {<span>...</span>}
+                                            @if (s.Description.Length > 40)
+                                            {
+                                                @s.Description.Substring(0, 40) <span>...</span>
+                                            }
+                                            else
+                                            {
+                                                @s.Description
+                                            }
                                         }
                                     </td>
                                     <td>

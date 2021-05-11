@@ -345,6 +345,9 @@ namespace WorkshopPlatform.Controllers
                      .Include(w => w.City.Government)
                      .FirstOrDefaultAsync(w => w.User.Id == userID);
 
+                ViewBag.Verified = workshop.Verified;
+
+
                 var viewModel = new WorkshopViewModel
                 {
                     Id = workshop.Id,

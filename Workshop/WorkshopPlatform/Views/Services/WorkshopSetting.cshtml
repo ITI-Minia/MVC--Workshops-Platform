@@ -9,6 +9,16 @@
     <div class="col-12 col-md-9 mt-4 pt-md-0">
         <div class="card setting-card">
             <div class="card-body p-5">
+                @{ if (ViewBag.Verified == false)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Your workshop hasn't been verified yet <br>
+                            Update your data or wait for our review
+                        </div>
+                    }
+                }
+
                 @{ if (TempData["Done"] != null)
                     {
                         <div class="alert alert-primary alert-dismissible">
