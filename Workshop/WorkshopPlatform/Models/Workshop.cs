@@ -32,11 +32,8 @@ namespace Workshop.Models
         [Required]
         public string Address { get; set; }
 
-        [Required]
-        public string City { get; set; }
-
-        [Required]
-        public string Government { get; set; }
+        [ForeignKey("City")]
+        public int? CityId { get; set; }
 
         [Range(0, 5)]
         public double Rate { get; set; }
@@ -47,6 +44,7 @@ namespace Workshop.Models
         public string UserId { get; set; }
 
         public virtual IdentityUser User { get; set; }
+        public virtual City City { get; set; }
 
         public virtual ICollection<Service> Services { get; set; }
         public virtual ICollection<WorkshopRate> WorkshopRates { get; set; }

@@ -141,36 +141,39 @@ namespace WorkshopPlatform.Areas.Identity.Pages.Account.Manage
             }
 
             string fileName = string.Empty;
+            string uploads = Path.Combine(hosting.WebRootPath, "Upload/images");
 
             if (ImageFile != null)
             {
                 fileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
 
                 //image path
-                string uploads = Path.Combine(hosting.WebRootPath, "Upload/images");
                 string Fullpath = Path.Combine(uploads, fileName);
 
                 //copy (upload) image to that path
                 ImageFile.CopyTo(new FileStream(Fullpath, FileMode.Create));
 
-                if (userprofile.Image != null)
-                {
-                    string OldImgPath = Path.Combine(uploads, userprofile.Image);
-                    try
-                    {
-                        System.IO.File.Delete(OldImgPath);
-                    }
-                    catch
-                    {
-                        StatusMessage = "Unexpected error when trying to set Photo.";
-                    }
-                }
+                //if (userprofile.Image != null)
+                //{
+                //    string OldImgPath = Path.Combine(uploads, userprofile.Image);
+                //    try
+                //    {
+                //        System.IO.File.Delete(OldImgPath);
+                //    }
+                //    catch
+                //    {
+                //        StatusMessage = "Unexpected error when trying to set Photo.";
+                //    }
+                //}
                 userprofile.Image = fileName;
             }
             else
             {
                 if (RemoveImage == "true")
                 {
+                    if (userprofile.Image != null)
+                        System.IO.File.Delete(Path.Combine(uploads, userprofile.Image));
+
                     userprofile.Image = null;
                 }
             }

@@ -46,5 +46,8 @@ namespace Workshop.ViewModel
         public string UserId { get; set; }
 
         public virtual IdentityUser User { get; set; }
+
+        public string RemoveImage { get; set; } = "false";
+        public string RemoveLogo { get; set; } = "false";
     }
 }

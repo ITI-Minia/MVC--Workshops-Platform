@@ -28,9 +28,9 @@ namespace WorkshopPlatform.Models
         public virtual Service Service { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
 
         [Required]
-        public bool Finished { get; set; }
+        public bool Finished { get; set; } = false;
     }
 }

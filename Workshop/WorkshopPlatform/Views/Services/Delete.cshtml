@@ -2,30 +2,23 @@
 <div class="modal fade delete" id="myDeleteModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            @*Modal Header*@
             <div class="modal-header">
                 <h4 class="modal-title">Delete Service</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            @*Modal body*@
             <div class="modal-body">
                 <form method="post" asp-action="Delete">
-                    Are you sure to delete this service
-                    <br />
-                    <br />
+                    <p class="pt-3 pb-4">
+                        Are you sure to delete this service?
+                    </p>
                     <hr />
-                    <div class="form-group" style="">
-                        @*<input type="hidden" id="serviceId" />*@
+                    <div class="form-group">
                         <input type="hidden" asp-for="Id" />
-
-                        <input type="submit" value="Delete" class="btn btn-danger" />
-                        @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+                        <button id="close-modal" type="button" class="btn btn-light float-right ml-3" data-dismiss="modal">cancel</button>
+                        <input type="submit" value="Delete" class="btn btn-danger float-right" />
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

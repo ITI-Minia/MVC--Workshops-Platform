@@ -53,6 +53,7 @@ namespace WorkshopPlatform
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<WorkShopDbContext>();
             services.AddSignalR();
+
             // requires
             // using Microsoft.AspNetCore.Identity.UI.Services;
             // using WebPWrecover.Services;
@@ -104,8 +105,6 @@ namespace WorkshopPlatform
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chatHub");
-                //endpoints.MapHub<ChatHub>("/WorkShops/Message/{id?}");
-
 
                 endpoints.MapControllerRoute(
                     name: "default",

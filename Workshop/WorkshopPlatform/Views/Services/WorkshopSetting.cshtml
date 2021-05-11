@@ -5,86 +5,156 @@
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<section>
-    <div class="container">
-        @{ if (TempData["Done"] != null)
-            {
-                <div class="alert alert-primary alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    @TempData["Done"]
+<section class="setting-layout row justify-content-center">
+    <div class="col-12 col-md-9 mt-4 pt-md-0">
+        <div class="card setting-card">
+            <div class="card-body p-5">
+                @{ if (ViewBag.Verified == false)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            Your workshop hasn't been verified yet <br>
+                            Update your data or wait for our review
+                        </div>
+                    }
+                }
+
+                @{ if (TempData["Done"] != null)
+                    {
+                        <div class="alert alert-primary alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            @TempData["Done"]
+                        </div>
+                    }
+                }
+                <div class="row pl-lg-5 pr-lg-5 mb-2">
+                    <div class="col-12 col-lg-3">Workshop logo</div>
                 </div>
-            }
-        }
-        <div class="row">
-            <div class="col-md-8">
-                <form asp-action="WorkshopSetting" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="Id" />
-                    <div class="form-group">
-                        <label asp-for="Name" class="control-label" style="color: #E2AD21"></label>
-                        <input asp-for="Name" class="form-control" style="width:70%" />
-                        <span asp-validation-for="Name" class="text-danger"></span>
+                <div class="row pl-3">
+                    <div class="col-12">
+                        <form asp-action="WorkshopSetting" class="setting-form" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="Id" />
+                            <div class="row image-row mb-5">
+                                <div class="col-12 pb-3 col-sm-4 col-lg-3 pb-sm-0 pl-5">
+                                    @if (Model.LogoeUrl != null)
+                                    {
+                                        <img id="LogoImage" src="~/Upload/images/@Model.LogoeUrl" class="rounded-circle img-thumbnail" width="130" height="130" alt="workshop logo">
+                                    }
+                                    else
+                                    {
+                                        <img id="LogoImage" src="~/imgs/Workshop-logo-default.png" class="rounded-circle img-thumbnail" width="130" height="130" alt="workshop logo">
+                                    }
+                                </div>
+                                <br class="d-block d-sm-none">
+                                <div class="align-self-center pl-4">
+                                    <div class="form-group">
+                                        <input asp-for="Logopath" type="file" id="Logopath" class="form-control-file d-none" />
+                                        <label class="" asp-for="Logopath">
+                                            <span class="btn btn-primary btn-rounded text-white">
+                                                Upload photo
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="align-self-center pl-3">
+                                    <div class="form-group">
+                                        <input asp-for="RemoveLogo" id="RemoveLogo" class="d-none" />
+                                        <button type="button" onclick="removeLogo()" class="btn btn-light btn-outline-secondary btn-rounded">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row pl-lg-5 pr-lg-5">
+                                <label asp-for="User.UserName" class="col-12 col-lg-2">Username</label>
+                                <input asp-for="User.UserName" class="col-12 col-lg-10 form-control" disabled />
+                            </div>
+                            <div class="form-group pl-lg-5 pr-lg-5">
+                                <div class="row">
+                                    <label asp-for="Name" class="col-12 col-lg-2"></label>
+                                    <input asp-for="Name" class="col-12 col-lg-10 form-control" />
+                                </div>  <div class="row">
+                                    <div class="d-none d-md-block col-2"></div>
+                                    <div class="col-12 col-lg-10">
+                                        <span asp-validation-for="Name" class="small text-danger"></span>
+                                    </div>
+                                </div>
+                            </div> <div class="form-group pl-lg-5 pr-lg-5">
+                                <div class="row">
+                                    <label asp-for="Government" class="col-12 col-lg-2"></label>
+                                    <input asp-for="Government" class="col-12 col-lg-10 form-control" />
+                                </div>  <div class="row">
+                                    <div class="d-none d-md-block col-2"></div>
+                                    <div class="col-12 col-lg-10">
+                                        <span asp-validation-for="Government" class="small text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group pl-lg-5 pr-lg-5">
+                                <div class="row">
+                                    <label asp-for="City" class="col-12 col-lg-2"></label>
+                                    <input asp-for="City" class="col-12 col-lg-10 form-control" />
+                                </div>  <div class="row">
+                                    <div class="d-none d-lg-block col-2"></div>
+                                    <div class="col-12 col-lg-10">
+                                        <span asp-validation-for="City" class="small text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group pl-lg-5 pr-lg-5">
+                                <div class="row">
+                                    <label asp-for="Address" class="col-12 col-lg-2"></label>
+                                    <input asp-for="Address" class="col-12 col-lg-10 form-control" />
+                                </div>  <div class="row">
+                                    <div class="d-none d-lg-block col-2"></div>
+                                    <div class="col-12 col-lg-10">
+                                        <span asp-validation-for="Address" class="small text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pl-lg-5 pr-lg-5 mb-2">
+                                <div class="col-12 col-lg-2">Cover photo</div>
+                            </div>
+                            <div class="row image-row mb-5">
+                                <div class="col-12 pb-3 col-12 pb-sm-0 pl-5 mb-3">
+                                    @if (Model.ImageUrl != null)
+                                    {
+                                        <img id="coverImage" src="~/Upload/images/@Model.ImageUrl" alt="cover photo" class="img-thumbnail" style="height:300px">
+                                    }
+                                    else
+                                    {
+                                        <img id="coverImage" height="300" alt="cover photo" class="d-none img-thumbnail" style="height:300px">
+                                    }
+                                </div>
+                                <div class="align-self-center pl-lg-5 pr-1">
+                                    <div class="form-group">
+                                        <input asp-for="Imagepath" type="file" id="Imagepath" class="form-control-file d-none" />
+                                        <label class="" asp-for="Imagepath">
+                                            <span class="btn btn-outline-primary border-primary">
+                                                Upload photo
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                @if (Model.ImageUrl != null)
+                                {
+                                    <div class="align-self-center pl-3">
+                                        <div class="form-group">
+                                            <input asp-for="RemoveImage" id="RemoveImage" class="d-none" />
+                                            <button type="button" onclick="removeImage()" class="btn btn-light btn-outline-secondary btn-rounded">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group row pl-lg-5 pr-lg-5 justify-content-end">
+                                <button id="update-profile-button" type="submit" class="btn btn-primary btn-rounded">Save</button>
+                            </div>
+                        </form>
                     </div>
-
-
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label" style="color: #E2AD21"></label>
-                        <input asp-for="Address" class="form-control" style="width:70%" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="City" class="control-label" style="color: #E2AD21"></label>
-                        <input asp-for="City" class="form-control" style="width:70%" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Government" class="control-label" style="color: #E2AD21"></label>
-                        <input asp-for="Government" class="form-control" style="width:70%" />
-                        <span asp-validation-for="Government" class="text-danger"></span>
-                    </div>
-                    <div class="form-group ">
-                        <img src="~/imgs/@Model.ImageUrl" style="width:124px" class="img-thumbnail" />
-                        <label asp-for="Imagepath" class="control-label" style="color: #E2AD21">Workshop Image</label>
-                        <div class="custom-file">
-
-                            <input asp-for="Imagepath" class="form-control custom-file-input" style="width:70%" />
-                            <label class="custom-file-label" style="width:70%">Choose Image ...</label>
-                        </div>
-
-                    </div>
-                    <div class="form-group ">
-                        <img src="~/imgs/@Model.LogoeUrl" style="width:124px" class="img-thumbnail" />
-
-                        <label asp-for="Logopath" class="control-label" style="color: #E2AD21">Workshop Logo</label>
-                        <div class="custom-file">
-
-                            <input asp-for="Logopath" class="form-control custom-file-input" style="width:70%" />
-                            <label class="custom-file-label" style="width:70%">Choose Logo ...</label>
-                        </div>
-
-                    </div>
-                    <div class="form-group" hidden>
-                        <label asp-for="Rate" class="control-label"></label>
-                        <input asp-for="Rate" class="form-control" />
-                        <span asp-validation-for="Rate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" hidden>
-                        <label asp-for="Verified" class="control-label"></label>
-                        <input asp-for="Verified" class="form-control" />
-                        <span asp-validation-for="Verified" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" hidden>
-                        <label asp-for="UserId" class="control-label"></label>
-                        <input asp-for="UserId" class="form-control" />
-                        <span asp-validation-for="UserId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Update" class="btn btn-primary" />
-                    </div>
-                </form>
+                </div>
             </div>
-
-
         </div>
     </div>
 </section>
@@ -97,5 +167,42 @@
                 console.log(fileName);
             });
         });
-        </script>
+
+        function readURL(input, photoID) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(`#${photoID}`).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+
+                if ($(`#${photoID}`).hasClass('d-none')) {
+                    $(`#${photoID}`).removeClass('d-none')
+                }
+            }
+        }
+
+        $("#Logopath").change(function () {
+            readURL(this, 'LogoImage');
+        });
+
+        $("#Imagepath").change(function () {
+            readURL(this, 'coverImage');
+        });
+
+        function removeImage() {
+            $("#Imagepath")[0].value = "";
+            $("#RemoveImage")[0].value = "true";
+
+            if (!$(`#coverImage`).hasClass('d-none')) {
+                $(`#coverImage`).addClass('d-none')
+            }
+        }
+
+        function removeLogo() {
+            $("#Logopath")[0].value = "";
+            $("#RemoveLogo")[0].value = "true";
+            $('#LogoImage').attr('src', '/imgs/Workshop-logo-default.png');
+        }
+    </script>
 }

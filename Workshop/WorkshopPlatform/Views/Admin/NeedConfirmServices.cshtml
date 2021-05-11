@@ -6,6 +6,7 @@
 }
 
 <div class="dashboard">
+    <input type="hidden" id="which-delete" value="0" />
     <div class="row">
         <div class="col-md-12">
             <div class="container">
@@ -14,7 +15,7 @@
                         <div class="row">
                             <div class="col-11">
                                 <i class="fa fa-exclamation-circle mr-3"></i>
-                                Service "<span id="s-name"></span>" confirmed successfully
+                                <span id="message" class="small"></span>
                             </div>
                             <div class="col-1">
                                 <button type="button" class="close ml-5" onclick="$('#alert-error').fadeOut()">
@@ -24,60 +25,63 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="text-info title-4 text-secondary mb-4">Service - Need confirmation</h1>
-                <div class="table-responsive table-responsive-data2">
-                    <table class="table table-data2 dt-responsive nowrap" id="table">
+                <h3 class="text-muted"> Services verification requests </h3><br />
+                <div class="">
+                    <table class="table table-borderless table-data3 small" id="table">
                         <thead>
                             <tr>
-                                <th>
-                                    <label class="au-checkbox">
-                                        <input type="checkbox">
-                                        <span class="au-checkmark"></span>
-                                    </label>
-                                </th>
                                 <th>Title</th>
                                 <th>Workshop</th>
                                 <th>Description</th>
-                                <th>img</th>
-                                <th>Add in</th>
-                                <th></th>
+                                <th>Images</th>
+                                <th>Date</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var s in Model)
                             {
-                                <tr class="tr-shadow" id="@s.Id">
+                                <tr class="" id="@s.Id">
                                     <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
+                                        <span class="">@s.Title</span>
                                     </td>
                                     <td>
-                                        <span class="block-email">@s.Title</span>
+                                        <a asp-controller="WorkShops" asp-action="Details" asp-route-id="@s.WorkShop.Id">
+                                            @s.WorkShop.Name
+                                        </a>
                                     </td>
-                                    <td><a asp-controller="WorkShops" asp-action="Details" asp-route-id="@s.WorkShop.Id">@s.WorkShop.Name</a></td>
-
-                                    <td class="desc">@s.Description.Substring(0, 20) ...</td>
-                                    <td>
-                                        @if (@s.Image == null)
+                                    <td class="desc" data-toggle="tooltip" data-placement="top" title="@s.Description">
+                                        @if (s.Description != null)
                                         {
-                                            <img src="~/imgs/car-service.jpg" width="50" height="50">
+                                            @if (s.Description.Length > 40)
+                                            {
+                                                @s.Description.Substring(0, 40) <span>...</span>
+                                            }
+                                            else
+                                            {
+                                                @s.Description
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (s.Image != null)
+                                        {
+                                            <img src="~/Upload/images/@s.Image" class="rounded-circle img-service" />
                                         }
                                         else
                                         {
-                                            <img src="/Upload/images/@s.Image" width="50" height="50">
+                                            <img src="~/imgs/car-service.jpg" class="rounded-circle img-service" />
+
                                         }
                                     </td>
-                                    <td>@s.AddedIn</td>
+                                    <td>@s.AddedIn.ToShortDateString()</td>
                                     <td>
-                                        <button class="btn btn-secondary" onclick="confirm(@s.Id)">verify</button>
-                                    </td>
-                                    <td>
-                                        <div class="table-data-feature">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="mdi mdi-delete" aria-hidden="true"></i>
+                                        <div class="table-data-feature row justify-content-center">
+                                            <button class="item mr-3" onclick="confirm(@s.Id)" data-toggle="tooltip" data-placement="top" title="Verify">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="item" onclick="whichDelete(@s.Id)" data-toggle="modal" data-target="#myDeleteModal">
+                                                <i class="mdi mdi-delete" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete"></i>
                                             </button>
                                         </div>
                                     </td>
@@ -87,7 +91,27 @@
                     </table>
                 </div>
             </div>
-            <!-- END DATA TABLE -->
+        </div>
+    </div>
+
+    <div class="modal fade delete" id="myDeleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Service</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="pt-3 pb-4">
+                        Are you sure to delete this service?
+                    </p>
+                    <hr />
+                    <div class="form-group">
+                        <button id="close-modal" type="button" class="btn btn-light float-right ml-3" data-dismiss="modal">cancel</button>
+                        <input type="button" onclick="deleteService()" value="Delete" class="btn btn-danger float-right" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -96,8 +120,6 @@
     <script>
 
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-
             $('#collapse2').addClass('show');
             $('#collapse1').removeClass('show');
         });
@@ -113,13 +135,12 @@
                 dataType: "html",
                 success: function (response) {
                     $(`#${id}`).remove();
-
                     $('#alert-error').removeClass('d-none')
                         .addClass(['fade', 'show']).fadeIn();
-                    $('#s-name').html(response);
+                    $('#message').html(response);
                     let promise1 = (
                         new Promise((resolve, reject) => {
-                            setTimeout(() => resolve("Welcome !!"), 4500);
+                            setTimeout(() => resolve("Welcome !!"), 10000);
                         }))
                         .then(() => $('#alert-error').fadeOut().addClass('d-none')
                             .removeClass(['fade', 'show']));
@@ -131,6 +152,39 @@
                     alert(response.responseText);
                 }
             });
+        }
+
+        function deleteService() {
+            var id = $('#which-delete')[0].value;
+            $('#myDeleteModal').modal('hide');
+            $.ajax({
+                type: "GET",
+                url: `/Admin/DeleteService/${id}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    $(`#${id}`).remove();
+                    $('#alert-error').removeClass('d-none')
+                        .addClass(['fade', 'show']).fadeIn();
+                    $('#message').html(response);
+                    let promise1 = (
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => resolve("Welcome !!"), 10000);
+                        }))
+                        .then(() => $('#alert-error').fadeOut().addClass('d-none')
+                            .removeClass(['fade', 'show']));
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        function whichDelete(id) {
+            $('#which-delete')[0].value = id;
         }
     </script>
 }

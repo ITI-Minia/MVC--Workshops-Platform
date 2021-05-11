@@ -10,17 +10,13 @@
         right: 0;
         bottom: 40px;
         width: 100%;
-        left:20px;
+        left: 20px;
     }
-    .chat
-    {
-        width:100%;
+
+    .chat {
+        width: 100%;
     }
-   
 </style>
-
-
-
 
 @if (Enumerable.Count(ViewBag.SendersName) > 0)
 {
@@ -48,39 +44,32 @@ ViewBag.Id++;
 }
         <p hidden id="UserName">@ViewBag.UserName</p>
         <p hidden id="UserId">@ViewBag.UserId</p>
-
-
-
     </div>
     <div class="chats" id="chat">
-
     </div>
-
-
 
 }
 else
 {
-<div class="chats col-md-12" id="chat">
-    <div class="chat-banner">
-        <div>
-            <span id="chat-pic">
-                <img id="pic" src="~/imgs/person.png" />
-            </span>
+    <div class="chats col-md-12" id="chat">
+        <div class="chat-banner">
+            <div>
+                <span id="chat-pic">
+                    <img id="pic" src="~/imgs/person.png" />
+                </span>
+            </div>
+            <div><i class='fas fa-info'></i></div>
         </div>
-        <div><i class='fas fa-info'></i></div>
-    </div>
 
-    <div class="chat">
-        @foreach (var item in ViewBag.Messages)
-        {
-            @if (item.UserId == ViewBag.ClientID)
+        <div class="chat">
+            @foreach (var item in ViewBag.Messages)
             {
+                @if (item.UserId == ViewBag.ClientID)
+                {
 
                     <div class="col-12">
 
-
-                        <div class="chat chat-right sender" >
+                        <div class="chat chat-right sender">
                             <div class="chat-body">
                                 <div class="chat-bubble">
                                     <div class="chat-content">
@@ -93,19 +82,17 @@ else
                         </div>
                     </div>
 
-            }
-
-            else
-            {
+                }
+                else
+                {
 
                     <div class="col-12" style="display:flex;justify-content:flex-end">
 
-                        <div class="chat chat-left receiver" >
+                        <div class="chat chat-left receiver">
                             <div class="chat-body">
                                 <div class="chat-bubble">
                                     <div class="chat-content">
                                         <p>@item.Text</p>
-
 
                                         <span class="chat-time"> @item.When</span>
                                     </div>
@@ -114,33 +101,26 @@ else
                         </div>
                     </div>
 
-                    }
-                    }
-                </div>
-               
+                }
+            }
+        </div>
 
+        <p hidden id="UserName">@ViewBag.UserName</p>
+        <p hidden id="UserId">@ViewBag.UserId</p>
+    </div>
+    <div class="chat-footer">
 
-                <p hidden id="UserName">@ViewBag.UserName</p>
-                <p hidden id="UserId">@ViewBag.UserId</p>
+        <form asp-action="Message"
+              data-ajax-begin="clearInputField" data-ajax-complete=""
+              data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
+              data-ajax="true" data-ajax-method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="text" asp-for="Text" class="form-control send-input" id="messageText" placeholder="type something" />
 
-
-            </div>
-<div class="chat-footer">
-
-    <form asp-action="Message"
-          data-ajax-begin="clearInputField" data-ajax-complete=""
-          data-ajax-failure="alert('Fail')" data-ajax-success="sendMessage"
-          data-ajax="true" data-ajax-method="POST">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="text" asp-for="Text" class="form-control send-input" id="messageText" placeholder="type something" />
-
-
-        <input type="submit" value="Send" class="btn btn-primary" id="submitButton" onclick="" style="margin:auto;display:inline-block" />
-        <input type="hidden" asp-for="Id" name="Id" />
-    </form>
-</div>
-
- 
+            <input type="submit" value="Send" class="btn btn-primary" id="submitButton" onclick="" style="margin:auto;display:inline-block" />
+            <input type="hidden" asp-for="Id" name="Id" />
+        </form>
+    </div>
 
 }
 
@@ -149,12 +129,10 @@ else
         const userName = document.getElementById('UserName').innerHTML;
         var UserId = document.getElementById('UserId').innerHTML;
         console.log(userName);
-        
-       
+
         function GetUserId(id) {
             var UserId = document.getElementById(id).innerHTML;
             console.log(UserId);
-           
 
             $.ajax({
                 type: "Get",
@@ -164,7 +142,7 @@ else
 
                 success: function (res) {
                     $("#chat").html(res);
-                   
+
                 },
                 error: function (err) {
                     console.log(err);
@@ -178,4 +156,3 @@ else
 
     <script src="~/js/signalRHandler.js"></script>
 }
-

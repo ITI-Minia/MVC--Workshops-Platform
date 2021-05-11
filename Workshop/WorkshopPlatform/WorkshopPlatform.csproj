@@ -17,11 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
@@ -38,10 +40,8 @@
   <ItemGroup>
     <None Include="compilerconfig.json" />
     <None Include="Views\Services\Delete.cshtml" />
-    <None Include="Views\Services\Details.cshtml" />
     <None Include="Views\Services\DisplayServices.cshtml" />
     <None Include="Views\Services\Edit.cshtml" />
-    <None Include="Views\Services\Index.cshtml" />
     <None Include="wwwroot\imgs\images\emergancy.svg" />
     <None Include="wwwroot\imgs\images\profile.webp" />
     <None Include="wwwroot\lib\twitter-bootstrap\css\bootstrap-grid.css.map" />

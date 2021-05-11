@@ -42,7 +42,25 @@ else
                             @if (User.IsInRole("User"))
                             {
                                 <div class="col-4 text-center buy" onclick="buyClicked(@Model[i].Id)">
-                                    <i class="mdi mdi-cart-plus" aria-hidden="true"></i>
+                                    <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                        <input type="hidden" name="cmd" value="_cart">
+                                        <input type="hidden" name="business" value="Yomna.hosny@yahoo.com">
+                                        <input type="hidden" name="lc" value="EG">
+                                        <input type="hidden" name="item_name" value="@Model[i].Title">
+                                        <input type="hidden" name="item_number" value="1" style="display:none">
+                                        <input type="hidden" name="amount" value="@Model[i].Price">
+                                        <input type="hidden" name="currency_code" value="USD">
+                                        <input type="hidden" name="button_subtype" value="products">
+                                        <input type="hidden" name="no_note" value="0">
+                                        <input type="hidden" name="shipping" value="10.00">
+                                        <input type="hidden" name="add" value="1">
+                                        <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+                                        <button type="submit" class="btn">
+                                            <i class="mdi mdi-cart-plus" aria-hidden="true"></i>
+                                        </button>
+                                        @*<input type="image" src="" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">*@
+                                        <img alt="" border="0" src="" width="1" height="1">
+                                    </form>
                                 </div>
                             }
                         </div>
@@ -99,7 +117,25 @@ else
                                 @if (User.IsInRole("User"))
                                 {
                                     <div class="col-4 text-center buy" onclick="buyClicked(@Model[i + 1].Id)">
-                                        <i class="mdi mdi-cart-plus" aria-hidden="true"></i>
+                                        <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                            <input type="hidden" name="cmd" value="_cart">
+                                            <input type="hidden" name="business" value="Yomna.hosny@yahoo.com">
+                                            <input type="hidden" name="lc" value="EG">
+                                            <input type="hidden" name="item_name" value="@Model[i+1].Title">
+                                            <input type="hidden" name="item_number" value="1" style="display:none">
+                                            <input type="hidden" name="amount" value="@Model[i+1].Price">
+                                            <input type="hidden" name="currency_code" value="USD">
+                                            <input type="hidden" name="button_subtype" value="products">
+                                            <input type="hidden" name="no_note" value="0">
+                                            <input type="hidden" name="shipping" value="10.00">
+                                            <input type="hidden" name="add" value="1">
+                                            <input type="hidden" name="bn" value="PP-ShopCartBF:btn_cart_LG.gif:NonHostedGuest">
+                                            <button type="submit" class="btn">
+                                                <i class="mdi mdi-cart-plus" aria-hidden="true"></i>
+                                            </button>
+                                            @*<input type="image" src="" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">*@
+                                            <img alt="" border="0" src="" width="1" height="1">
+                                        </form>
                                     </div>
                                 }
                             </div>

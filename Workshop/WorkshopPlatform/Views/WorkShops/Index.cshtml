@@ -87,12 +87,16 @@
                                 <h2 class="row">
                                     @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                                 </h2>
-                                <div class='address row pl-4'>
-                                    <span class="text-secondary pr-1">
-                                        <i class="bi bi-geo-alt-fill text-lg text-lg"></i>
-                                    </span>
-                                    @address - @Model.ElementAt(i).City - @Model.ElementAt(i).Government
-                                </div>
+                                @if (Model.ElementAt(i).City != null)
+                                {
+                                    <div class='address row pl-4'>
+                                        <span class="text-secondary pr-1">
+                                            <i class="bi bi-geo-alt-fill text-lg text-lg"></i>
+                                        </span>
+                                        @address - @Model.ElementAt(i).City.Name - @Model.ElementAt(i).City.Government.Name
+                                    </div>
+                                }
+
                                 <div class='actions mt-auto btn'>
                                     <a asp-action="Details" class='wsbtn btn' asp-route-id="@Model.ElementAt(i).Id"><div>Show more</div></a>
                                 </div>
@@ -154,12 +158,15 @@
                                     <h2 class="row">
                                         @Html.DisplayFor(modelItem => Model.ElementAt(i).Name)
                                     </h2>
-                                    <div class='address row pl-4'>
-                                        <span class="text-secondary pr-1">
-                                            <i class="bi bi-geo-alt-fill"></i>
-                                        </span>
-                                        @address - @Model.ElementAt(i).City - @Model.ElementAt(i).Government
-                                    </div>
+                                    @if (Model.ElementAt(i).City != null)
+                                    {
+                                        <div class='address row pl-4'>
+                                            <span class="text-secondary pr-1">
+                                                <i class="bi bi-geo-alt-fill"></i>
+                                            </span>
+                                            @address - @Model.ElementAt(i).City.Name - @Model.ElementAt(i).City.Government.Name
+                                        </div>
+                                    }
                                     <div class='actions mt-auto btn'>
                                         <a asp-action="Details" class='wsbtn btn' asp-route-id="@Model.ElementAt(i).Id"><div>Show more</div></a>
                                     </div>

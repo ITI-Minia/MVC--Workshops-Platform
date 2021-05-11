@@ -25,8 +25,9 @@ namespace WorkshopPlatform.Models
         public DbSet<UserServices> UserServices { get; set; }
         public DbSet<Government> Governments { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Chat> Chats { get; set; }
         public DbSet<Messages> Messages { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,13 +37,19 @@ namespace WorkshopPlatform.Models
 
                 e.HasIndex(p => new { p.UserProfileId, p.WorkShopId }).IsUnique();
 
-                e.HasOne(p => p.UserProfile).WithMany(p => p.WorkshopRates).HasForeignKey(p => p.UserProfileId);
+                e.HasOne(p => p.UserProfile)
+                 .WithMany(p => p.WorkshopRates)
+                 .HasForeignKey(p => p.UserProfileId);
 
-                e.HasOne(p => p.WorkShop).WithMany(p => p.WorkshopRates).HasForeignKey(p => p.WorkShopId);
+                e.HasOne(p => p.WorkShop)
+                 .WithMany(p => p.WorkshopRates)
+                 .HasForeignKey(p => p.WorkShopId);
             });
             modelBuilder.Entity<Service>(e =>
             {
-                e.HasOne(p => p.WorkShop).WithMany(p => p.Services).HasForeignKey(p => p.WorkShopId).OnDelete(DeleteBehavior.Restrict);
+                e.HasOne(p => p.WorkShop).WithMany(p => p.Services)
+                .HasForeignKey(p => p.WorkShopId)
+                .OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<UserProfile>(e =>
             {
@@ -59,6 +66,16 @@ namespace WorkshopPlatform.Models
                 e.Property(p => p.UserName).IsRequired();
                 e.HasIndex(p => p.Email).IsUnique();
                 e.Property(p => p.Email).IsRequired();
+            });
+
+            modelBuilder.Entity<Government>(e =>
+            {
+                e.HasIndex(c => c.Name).IsUnique();
+            });
+
+            modelBuilder.Entity<City>(e =>
+            {
+                e.HasIndex(p => new { p.Name, p.GovernmentId }).IsUnique();
             });
 
             base.OnModelCreating(modelBuilder);

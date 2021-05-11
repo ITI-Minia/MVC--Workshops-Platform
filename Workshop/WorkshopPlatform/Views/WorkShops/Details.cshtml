@@ -197,12 +197,15 @@
                             @Model.User.PhoneNumber.Substring(4, 3)
                             @Model.User.PhoneNumber.Substring(7)
                         </span> <br>
-                        <span>
-                            <span class="text-secondary">
-                                <i class="bi bi-geo-alt-fill"></i>
-                            </span>
-                            @Model.Address - @Model.City - @Model.Government
-                        </span> <br>
+                        @if (Model.City != null)
+                        {
+                            <span>
+                                <span class="text-secondary">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </span>
+                                @Model.Address - @Model.City.Name - @Model.City.Government.Name.Split("Governorate")[0]
+                            </span> <br>
+                        }
                         <span>
                             <span class="text-secondary">
                                 <i class="fa fa-envelope"></i>
@@ -281,7 +284,13 @@
                             </a>
                         </li>
                     </ul>
-                    <span type="button" class="follow">Message</span>
+                    @if (ViewBag.WorkshopOwner == false)
+                    {
+                        <a asp-controller="WorkShops" asp-action="Message" asp-route-id="@Model.Id" class="follow">
+                            Message
+                        </a>
+                    }
+
                     <div class="row gallery">
                     </div>
                     <div id="tabContent" class="tab-content col-12">
@@ -411,9 +420,55 @@
             </div>
         </div>
     </div>
+
+    @if (ViewBag.Rate != null)
+    {
+        <input type="hidden" value="@ViewBag.Rate" id="ifRate">
+    }
+    else
+    {
+        <input type="hidden" value="-1" id="ifRate">
+    }
+
+    <input type="hidden" value="@Model.Id" id="workshopId">
+
+    <div id="rateWorkshop">
+    </div>
 </div>
 
 @section Scripts {
     <script src="/js/workshop.js"></script>
+    <script>
+        $(function () {
+            var isRated = $('#ifRate')[0].value;
+            var Id = $('#workshopId')[0].value;
 
+            console.log(isRated);
+            if (isRated == "1") {
+                $.ajax({
+                    type: "GET",
+                    url: `/WorkShops/UserRate/${Id}`,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        $('#rateWorkshop').html(response);
+
+                        $('#RateModal').modal('show');
+                        $('#RateModal').fadeOut();
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        })
+
+        function getRate(value) {
+            console.log(value);
+            $('#Rate')[0].value = value;
+        }
+    </script>
 }

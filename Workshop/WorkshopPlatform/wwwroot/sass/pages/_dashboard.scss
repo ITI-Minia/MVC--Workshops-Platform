@@ -1,4 +1,11 @@
 .dashboard {
+    input,
+    button,
+    select,
+    .custom-file-label,
+    .btn {
+        border-radius: 20px;
+    }
     .dataTables_info {
         font-size: 14px;
         color: $gray-400;
@@ -7,13 +14,73 @@
     .dataTables_filter {
         font-size: 16px;
         color: $gray-400;
-        padding-top: 2em;
-        padding-bottom: 2em;
+        padding-top: 1em;
+        padding-bottom: 0em;
+        input,
+        select {
+            border-radius: 20px;
+        }
     }
     table {
         padding-bottom: 2em;
     }
     .pagination {
         font-size: 15px;
+        a {
+            border: none;
+        }
+        .next {
+            a {
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+        }
+        .previous {
+            a {
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+            }
+        }
+    }
+    .img-profile {
+        height: 2rem;
+        width: 2rem
+    }
+    .img-service {
+        height: 3.5rem;
+        width: 3.5rem
+    }
+    .card {
+        border: none;
+    }
+    input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        /* IE */
+        -moz-transform: scale(1.5);
+        /* FF */
+        -webkit-transform: scale(1.5);
+        /* Safari and Chrome */
+        -o-transform: scale(1.5);
+        /* Opera */
+        padding: 10px;
+    }
+    .alert-dismissible {
+        border-radius: 40px;
+    }
+    .delete-icon {
+        float: right;
+        position: relative;
+        top: 67px;
+        right: 14px;
+        z-index: 5;
+        font-size: 21px;
+        margin-top: -57px;
+        color: white;
+        opacity: 0.5;
+    }
+    .verified {
+        color: rgb(57, 212, 117);
     }
 }

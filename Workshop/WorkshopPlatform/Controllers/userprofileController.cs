@@ -77,11 +77,12 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            if (profile.Image != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
-                System.IO.File.Delete(Path.Combine(uploadsFolder, profile.Image));
-            }
+            //if (profile.Image != null)
+            //{
+            //    string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Upload/images");
+            //    System.IO.File.Delete(Path.Combine(uploadsFolder, profile.Image));
+            //}
+
             profile.Image = null;
 
             _context.SaveChanges();
@@ -97,7 +98,8 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            var profile = await _context.UserProfiles.Include(u => u.User).FirstOrDefaultAsync();
+            var profile = await _context.UserProfiles.Where(p => p.Id == id)
+                .Include(u => u.User).FirstOrDefaultAsync();
 
             if (profile == null)
             {

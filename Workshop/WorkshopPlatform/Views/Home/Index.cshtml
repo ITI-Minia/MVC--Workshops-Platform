@@ -1,7 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
-
+<link href="~/css/leaflet.css" rel="stylesheet" />
+<link href="~/css/leaflet-search.css" rel="stylesheet" />
+<style>
+    img.leaflet-marker-icon {
+        width: auto !important;
+    }
+</style>
 <div class="home--page">
     <div class="slid">
         <div id="carouselExampleIndicators"
@@ -166,6 +172,7 @@
     </div>
 </div>
 @section Scripts {
+
     <script>
         var lat;
         var lang;
@@ -216,7 +223,6 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var response = JSON.parse(xhr.responseText);
                     City = response.address;
-                    console.log(City);
                     return;
                 }
             }
@@ -229,7 +235,7 @@
 
             var mymap = L.map("map", {
                 center: [lat, lang],
-                zoom: 20,
+                zoom: 15,
             });
 
             L.tileLayer(
@@ -283,4 +289,7 @@
             );
         });
     </script>
+
+    <script src="~/js/leaflet.js"></script>
+    <script src="~/js/leaflet-search.js"></script>
 }

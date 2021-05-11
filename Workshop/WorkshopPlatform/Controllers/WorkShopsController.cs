@@ -13,6 +13,7 @@ using WorkshopPlatform.Models;
 using System.Dynamic;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WorkshopPlatform.Controllers
 {
@@ -37,19 +38,22 @@ namespace WorkshopPlatform.Controllers
         // GET: WorkShops
         public async Task<IActionResult> Index()
         {
-            var workShopDbContext = _context.WorkShops;
+            var workShopDbContext = _context.WorkShops.Where(w => w.Verified)
+                                    .Include(w => w.City).Include(w => w.City.Government);
 
             return View(await workShopDbContext.ToListAsync());
         }
 
         public async Task<IActionResult> Emergacy(string City, string Government, string Street)
         {
-            var workShopDbContext = _context.WorkShops.Include(w => w.User);
+            var workShopDbContext = _context.WorkShops.Where(w => w.Verified).Include(w => w.User)
+                                                      .Include(w => w.City).Include(w => w.City.Government);
 
             if (Street != "" && Street != null)
             {
                 Street = Street.ToLower();
-                var workShop = await workShopDbContext.Where(ws => ws.Address.ToLower().Contains(Street) && ws.Government.ToLower().Contains(Government) && ws.City.ToLower().Contains(City)).ToListAsync();
+                var workShop = await workShopDbContext.Where(ws => ws.Address.ToLower().Contains(Street)
+                && ws.City.Government.Name.ToLower().Contains(Government) && ws.City.Name.ToLower().Contains(City)).ToListAsync();
                 if (workShop.Count != 0)
                     return View(workShop);
                 else
@@ -57,7 +61,7 @@ namespace WorkshopPlatform.Controllers
                     if (Government != "" && Government != null)
                     {
                         Government = Government.ToLower();
-                        workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(Government)).ToListAsync();
+                        workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(Government)).ToListAsync();
                         if (workShop.Count != 0)
                             return View(workShop);
                         else
@@ -65,7 +69,7 @@ namespace WorkshopPlatform.Controllers
                             if (City != "" && City != null)
                             {
                                 City = City.ToLower();
-                                workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                                workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(City)).ToListAsync();
                                 if (workShop.Count != 0)
                                     return View(workShop);
                                 else
@@ -80,7 +84,7 @@ namespace WorkshopPlatform.Controllers
                         if (City != "" && City != null)
                         {
                             City = City.ToLower();
-                            workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                            workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(City)).ToListAsync();
                             if (workShop.Count != 0)
                                 return View(workShop);
                             else
@@ -94,7 +98,7 @@ namespace WorkshopPlatform.Controllers
             else if (Government != "" && Government != null)
             {
                 Government = Government.ToLower();
-                var workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(Government)).ToListAsync();
+                var workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(Government)).ToListAsync();
 
                 if (workShop.Count != 0)
                     return View(workShop);
@@ -103,7 +107,7 @@ namespace WorkshopPlatform.Controllers
                     if (City != "" && City != null)
                     {
                         City = City.ToLower();
-                        workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                        workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(City)).ToListAsync();
                         if (workShop.Count != 0)
                             return View(workShop);
                         else
@@ -116,7 +120,7 @@ namespace WorkshopPlatform.Controllers
             else if (City != "" && City != null)
             {
                 City = City.ToLower();
-                var workShop = await workShopDbContext.Where(ws => ws.Government.ToLower().Contains(City)).ToListAsync();
+                var workShop = await workShopDbContext.Where(ws => ws.City.Government.Name.ToLower().Contains(City)).ToListAsync();
                 return View(workShop);
             }
             else
@@ -127,28 +131,29 @@ namespace WorkshopPlatform.Controllers
         {
             if (search == "" || search == null)
             {
-                var workShopDbContext = _context.WorkShops;
+                var workShopDbContext = _context.WorkShops.Include(w => w.City).Include(w => w.City.Government);
 
                 return View("Index", await workShopDbContext.ToListAsync());
             }
             else
             {
-                var workShopDbContext = _context.WorkShops.ToList();
+                var workShopDbContext = _context.WorkShops.Include(w => w.City).Include(w => w.City.Government);
                 search = search.ToLower();
-                var workShop = await _context.WorkShops.Where(ws => ws.Name.ToLower().Contains(search) ||
+                var workshops = await workShopDbContext.Where(ws => ws.Name.ToLower().Contains(search) ||
                                                                            ws.Rate.ToString().Contains(search) ||
                                                                            ws.Address.ToLower().Contains(search) ||
-                                                                           ws.City.ToLower().Contains(search) ||
-                                                                           ws.Government.ToLower().Contains(search)).ToListAsync();
-                if (workShop == null)
+                                                                           ws.City.Name.ToLower().Contains(search) ||
+                                                                           ws.City.Government.Name.ToLower().Contains(search))
+                                                                           .ToListAsync();
+                if (workshops == null)
                 {
                     return NotFound();
                 }
-                ViewBag.SearchData = workShop;
-                ViewBag.SearchCount = workShop.Count();
+                ViewBag.SearchData = workshops;
+                ViewBag.SearchCount = workshops.Count();
                 ViewBag.flag = 1;
                 ViewBag.searchText = search;
-                return View("Index", workShop);
+                return View("Index", workshops);
             }
         }
 
@@ -168,8 +173,8 @@ namespace WorkshopPlatform.Controllers
                 var workShop = await _context.WorkShops.Include(w => w.User).Where(ws => ws.Name.ToLower().Contains(search) ||
                                                                            ws.Rate.ToString().Contains(search) ||
                                                                            ws.Address.ToLower().Contains(search) ||
-                                                                           ws.City.ToLower().Contains(search) ||
-                                                                           ws.Government.ToLower().Contains(search)/*||*/
+                                                                           ws.City.Name.ToLower().Contains(search) ||
+                                                                           ws.City.Government.Name.ToLower().Contains(search)/*||*/
                                                                           /* ws.User.PhoneNumber.ToString().Contains(id)*/).ToListAsync();
                 if (workShop == null)
                 {
@@ -195,6 +200,8 @@ namespace WorkshopPlatform.Controllers
                 .Include(w => w.User)
                 .Include(w => w.Services)
                 .Include(w => w.Images)
+                .Include(w => w.City)
+                .Include(w => w.City.Government)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (workShop == null)
@@ -228,6 +235,23 @@ namespace WorkshopPlatform.Controllers
             ViewBag.WorkshopOwner = WorkshopOwner;
             ViewData["UserServices"] = userServices;
 
+            //for review
+            var rates = await _context.WorkshopRates.Where(r => r.WorkShopId == workShop.Id &&
+                          r.UserProfile.UserId == userID).ToListAsync();
+
+            int rateCount = rates.Count;
+
+            var userServices2 = await _context.UserServices.Where(s => s.UserId == userID &&
+                                                          s.Service.WorkShopId == workShop.Id
+                                                          && s.Finished == true)
+                                                          .ToListAsync();
+            var serviceCount = userServices2.Count;
+
+            if (rateCount == 0 && serviceCount > 0)
+            {
+                ViewBag.Rate = "1";
+            }
+
             return View(workShop);
         }
 
@@ -239,7 +263,9 @@ namespace WorkshopPlatform.Controllers
                 return NotFound();
             }
 
-            var service = await _context.Services.FindAsync(id);
+            var service = await _context.Services.Where(s => s.Id == id)
+                                                 .Include(s => s.WorkShop)
+                                                 .FirstOrDefaultAsync();
 
             if (service == null)
             {
@@ -253,9 +279,16 @@ namespace WorkshopPlatform.Controllers
               {
                   UserId = userID,
                   ServiceId = service.Id,
-                  Date = DateTime.Now,
-                  Finished = false
               });
+
+            //send notification to workshop
+            _context.Notifications.Add(new Notification
+            {
+                ReceiverId = service.WorkShop.UserId,
+                Type = "RequestService",
+                SenderID = userID,
+                ContentId = service.Id,
+            });
 
             _context.SaveChanges();
 
@@ -427,65 +460,99 @@ namespace WorkshopPlatform.Controllers
             return RedirectToAction("Details", new { id = workShop.Id });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> UserRateAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var workShop = await _context.WorkShops.FindAsync(id);
+
+            if (workShop == null)
+            {
+                return NotFound();
+            }
+
+            var userRate = new WorkshopRate { WorkShopId = workShop.Id };
+
+            return PartialView("_UserRatePartial", userRate);
+        }
+
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> UserRate(WorkshopRate WorkshopRate)
         {
+            var workShop = await _context.WorkShops.FindAsync(WorkshopRate.WorkShopId);
+
             try
             {
-                WorkshopRate.Date = DateTime.Now;
                 var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                //var user = _userManager.FindByIdAsync(userID).Result;
-                int UId = int.Parse(userID);
-                var userprofile = _context.UserProfiles.Where(w => w.Id == UId).FirstOrDefault();
-                WorkshopRate.UserProfileId = UId;
-                WorkshopRate.UserProfile = userprofile;
+                var userprofile = _context.UserProfiles.Where(p => p.UserId == userID).FirstOrDefault();
 
-                _context.Add(WorkshopRate);
+                WorkshopRate.UserProfileId = userprofile.Id;
+
+                _context.WorkshopRates.Add(WorkshopRate);
+
+                //calculate rate
+                var Rates = await _context.WorkshopRates.Where(w => w.WorkShopId == WorkshopRate.WorkShopId).ToListAsync();
+
+                double rate = 0;
+
+                foreach (var item in Rates)
+                {
+                    rate += (double)item.Rate;
+                }
+
+                double total = rate / Rates.Count;
+
+                workShop.Rate = (double)total;
+
+
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details));
+
+
+                return RedirectToAction("Details", new { id = workShop.Id });
             }
             catch (Exception)
             {
-                return RedirectToAction(nameof(Details));
+                return RedirectToAction("Details", new { id = workShop.Id });
             }
         }
+
         public async Task<IActionResult> WorKShopMessageReciver(string SenderName)
         {
-            if (SenderName==null)
+            if (SenderName == null)
             {
-                return View();   
+                return View();
             }
             else
-            { 
-            
-            var GetSender = _context.Users.Where(u => u.UserName == SenderName).FirstOrDefault();
-            var GetSenderId = GetSender.Id;
+            {
+                var GetSender = _context.Users.Where(u => u.UserName == SenderName).FirstOrDefault();
+                var GetSenderId = GetSender.Id;
 
-
-            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 ViewBag.WorkShopUserId = userID;
-            var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
-            var CurrentUserName = CurrentUser.UserName;
-            ViewBag.UserName = SenderName;
-            var Chatting = _context.Chats.Where(c => c.Receiver == userID && c.Sender == GetSenderId).FirstOrDefault();
-            var ChattingId = Chatting.Id;
-            ViewBag.Messages = await _context.Messages.Where(m => m.ChatId == ChattingId).ToListAsync();
+                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+                var CurrentUserName = CurrentUser.UserName;
+                ViewBag.UserName = SenderName;
+                var Chatting = _context.Chats.Where(c => c.Receiver == userID && c.Sender == GetSenderId).FirstOrDefault();
+                var ChattingId = Chatting.Id;
+                ViewBag.Messages = await _context.Messages.Where(m => m.ChatId == ChattingId).ToListAsync();
                 Messages messages = new Messages()
-                { UserId= GetSenderId };
+                { UserId = GetSenderId };
                 return PartialView(messages);
-
             }
         }
+
         [HttpPost]
         public async Task<IActionResult> WorKShopMessageReciver(Messages messages)
         {
-        
             var SenderId = messages.UserId;
-            
+
             var WorkShopUserID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var CurrentUser = _context.Users.Where(n => n.Id == WorkShopUserID).FirstOrDefault();
-            
+
             var Chatting = _context.Chats.Where(c => c.Receiver == WorkShopUserID && c.Sender == SenderId).FirstOrDefault();
 
             messages.ChatId = Chatting.Id;
@@ -498,17 +565,13 @@ namespace WorkshopPlatform.Controllers
 
         public IActionResult Message(int? id)
         {
-
-            
-            
-                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewBag.ClientID = userID;
-                ViewBag.SendersName = _context.Chats.Where(c => c.Receiver == userID).Include(c => c.UserSender);
-            
+            ViewBag.SendersName = _context.Chats.Where(c => c.Receiver == userID).Include(c => c.UserSender);
+
             @ViewBag.Id = 0;
 
-           
-            if (id !=null)
+            if (id != null)
             {
                 var WorkShopUser = _context.WorkShops.Where(w => w.Id == id).FirstOrDefault();
                 //workshopuserId
@@ -523,7 +586,7 @@ namespace WorkshopPlatform.Controllers
 
                 var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
                 Messages messages = new Messages()
-                { Id=(int)id};
+                { Id = (int)id };
 
                 if (Chatting == null)
                 {
@@ -538,39 +601,34 @@ namespace WorkshopPlatform.Controllers
                 }
                 else
                 {
-
                     var ChattingId = Chatting.Id;
                     var Recivers = Chatting.Receiver;
-                    
-                    ViewBag.Messages = _context.Messages.Where(m => m.ChatId == ChattingId).ToList();
-             
-                    return View();
 
+                    ViewBag.Messages = _context.Messages.Where(m => m.ChatId == ChattingId).ToList();
+
+                    return View();
                 }
             }
 
             return View();
-          
         }
+
         [HttpPost]
         public async Task<IActionResult> Message(Messages messages)
         {
-            
-            
-                var WorkShopUser = _context.WorkShops.Where(w => w.Id == messages.Id).FirstOrDefault();
-                var UserId = WorkShopUser.UserId;
-               
-                var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
-                var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+            var WorkShopUser = _context.WorkShops.Where(w => w.Id == messages.Id).FirstOrDefault();
+            var UserId = WorkShopUser.UserId;
 
-                messages.ChatId = Chatting.Id;
-                messages.UserId = userID;
-                messages.Id = 0;
-                await _context.AddAsync(messages);
-                await _context.SaveChangesAsync();
-                return Ok();
+            var userID = _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var CurrentUser = _context.Users.Where(n => n.Id == userID).FirstOrDefault();
+            var Chatting = _context.Chats.Where(c => c.Receiver == UserId && c.Sender == userID).FirstOrDefault();
+
+            messages.ChatId = Chatting.Id;
+            messages.UserId = userID;
+            messages.Id = 0;
+            await _context.AddAsync(messages);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
-           
     }
 }

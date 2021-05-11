@@ -1,110 +1,89 @@
-﻿
+﻿@model List<Workshop.Models.WorkshopRate>
 @{
     ViewData["Title"] = "GetRate";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-
-
-<!-- Page Wrapper -->
 <div id="wrapper">
-
-
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-        <!-- Main Content -->
         <div id="content">
-            <!-- Begin Page Content -->
             <div class="container-fluid">
-                @{ if (TempData["Done"] != null)
-                    {
-                        <div class="alert alert-primary alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
-                            @TempData["Done"]
-                        </div>
-                    }
+                <h2 class="text-muted"> Client reviews </h2><br />
+                <div class="">
+                    <table class="table table-borderless table-data3 small" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th width="500px">Review</th>
+                                <th>Rate</th>
+                                <th class="text-center">Date</th>
+                            </tr>
+                        </thead>
 
-                }
-            
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="text-muted" asp-controller="UserProfile" asp-action="Index" asp-route-username="@item.UserProfile.User.UserName">
+                                            <div class="row pl-3 align-items-center">
+                                                @if (item.UserProfile.Image == null)
+                                                {
+                                                    <img class="img-profile rounded-circle mr-2" src="/imgs/undraw_male_avatar_323b.svg">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-profile rounded-circle mr-2" src="/Upload/images/@item.UserProfile.Image">
+                                                }
+                                                @item.UserProfile.User.UserName
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @item.Review
+                                    </td>
 
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="mytable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-
-                                        <th>UserName</th>
-                                        <th>Date</th>
-                                        <th>Review</th>
-                                        <th>Rate</th>
-
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @foreach (var item in ViewBag.Rates)
-                                    {
-
-                                        <tr>
-                                            <td>
-                                                @item.UserProfile.FirstName @item.UserProfile.LastName
-                                            </td>
-                                            <td>
-                                                @item.Date
-                                            </td>
-                                            <td>
-                                                @item.Review
-                                            </td>
-
-                                            <td>
-                                                @item.Rate
-                                            </td>
-                                        </tr>
-                                    }
-
-                                </tbody>
-                            </table>
-                            <div class="pagination-container">
-                                <nav>
-                                    <ul class="pagination"></ul>
-                                </nav>
-                            </div>
-
-                        </div>
+                                    <td class="text-warning">
+                                        @{
+                                            var rate = (int)@item.Rate;
+                                            int j = 0;
+                                        }
+                                        @for (j = 0; j < rate; j++)
+                                        {
+                                            <i class='fa fa-star rate'></i>
+                                        }
+                                        @if (@item.Rate % 1 >= 0.5)
+                                        {
+                                            <i class='fa fa-star-half-alt rate'></i>
+                                            j++;
+                                        }
+                                        @for (; j < 5; j++)
+                                        {
+                                            <i class='far fa-star rate'></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @item.Date.ToShortDateString()
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pagination-container">
+                        <nav>
+                            <ul class="pagination"></ul>
+                        </nav>
                     </div>
-
                 </div>
-
-
-
-
-
             </div>
-            <!-- /.container-fluid -->
-
         </div>
-        <!-- End of Main Content -->
-
-       
-
     </div>
-    <!-- End of Content Wrapper -->
-
 </div>
-<!-- End of Page Wrapper -->
-<!-- Scroll to Top Button-->
-
-
-
 
 @section Scripts {
-
-
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
 }
-
-
-
